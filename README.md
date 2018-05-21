@@ -310,3 +310,57 @@ This Git repository is public on GitHub.
 - Render Images from Data Sources
 - Prefilter JSON
 - Get Geo-location Data
+
+### Intermediate Front End Development Projects
+
+- Build a Random Quote Machine
+- Show the Local Weather
+- Build a Wikipedia Viewer
+- Use the Twitch.tv JSON API
+
+### Intermediate Algorithm Scripting
+
+- Sum All Numbers in a Range
+- Diff Two Arrays
+- Roman Numeral Converter
+- Wherefore art thou
+- Search and Replace
+- Pig Latin
+- DNA Pairing
+- Missing letters
+- Boo who
+- Sorted Union
+- Convert HTML Entities
+- Spinal Tap Case
+- Sum All Odd Fibonacci Numbers
+- Sum All Primes
+- Smallest Common Multiple
+- Finders Keepers
+- Drop it
+- Steamroller
+- Binary Agents
+- Everything Be True
+- Arguments Optional
+
+### Advanced Algorithm Scripting
+
+- Validate US Telephone Numbers
+- Record Collection
+- Symmetric Difference
+- Exact Change
+- Inventory Update
+- No repeats please
+- Make a Person
+- Map the Debris
+- Pairwise
+
+### Advanced Front End Development Projects
+
+- Build a JavaScript Calculator
+- Build a Pomodoro Clock
+- Build a Tic Tac Toe Game
+- Build a Simon Game
+
+### Claim Your Front End Development Certificate
+
+- Claim Your Front End Development Certificate
