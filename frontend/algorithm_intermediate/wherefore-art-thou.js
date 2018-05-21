@@ -13,9 +13,15 @@ function whatIsInAName(collection, source) {
   var collectionValues = Object.values(collection);
   var sourceValues = Object.values(source);
 
+  return JSON.stringify(Object.values(collection))
+    + '\n' + 'length of collection[2]: ' + Object.keys(collection[2]).length
+    + '\n' + 'length of source: ' + Object.keys(source).length
+    + '\n' + 'keys in collection[2]: ' + Object.keys(collection[2])
+    + '\n' + 'key: ' + Object.keys(source)
+    + '\n' + 'value: ' + Object.values(source);
+
   // Only change code above this line
   // return arr;
-  return collectionValues;
 }
 
-whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 });
