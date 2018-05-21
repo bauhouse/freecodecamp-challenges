@@ -8,7 +8,7 @@ function rot13(str) { // LBH QVQ VG!
   var letter = '';
   var newLetter = '';
 
-  for (i = 0; i < str.length; i++) {
+  for (var i = 0; i < str.length; i++) {
     var character = str[i];
     // Test if character is a letter of the alphabet
     if (alphabet.indexOf(character) === -1) {
