@@ -301,3 +301,12 @@ This Git repository is public on GitHub.
 - Where do I belong
 - Caesars Cipher
 
+### JSON APIs and Ajax
+
+- Trigger Click Events with jQuery
+- Change Text with Click Events
+- Get JSON with the jQuery getJSON Method
+- Convert JSON Data to HTML
+- Render Images from Data Sources
+- Prefilter JSON
+- Get Geo-location Data
