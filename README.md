@@ -36,118 +36,118 @@ This Git repository is public on GitHub.
 
 ### HTML5 and CSS
 
-- Learn How freeCodeCamp Works Complete
-- Say Hello to HTML Elements Complete
-- Headline with the h2 Element Complete
-- Inform with the Paragraph Element Complete
-- Uncomment HTML Complete
-- Comment out HTML Complete
-- Fill in the Blank with Placeholder Text Complete
-- Delete HTML Elements Complete
-- Change the Color of Text Complete
-- Join a freeCodeCamp Study Group in Your City Complete
-- Become a Supporter Complete
-- Use CSS Selectors to Style Elements Complete
-- Use a CSS Class to Style an Element Complete
-- Style Multiple Elements with a CSS Class Complete
-- Change the Font Size of an Element Complete
-- Set the Font Family of an Element Complete
-- Import a Google Font Complete
-- Specify How Fonts Should Degrade Complete
-- Add Images to your Website Complete
-- Size your Images Complete
-- Add Borders Around your Elements Complete
-- Add Rounded Corners with a Border Radius Complete
-- Make Circular Images with a Border Radius Complete
-- Link to External Pages with Anchor Elements Complete
-- Nest an Anchor Element within a Paragraph Complete
-- Make Dead Links using the Hash Symbol Complete
-- Turn an Image into a Link Complete
-- Create a Bulleted Unordered List Complete
-- Create an Ordered List Complete
-- Create a Text Field Complete
-- Add Placeholder Text to a Text Field Complete
-- Create a Form Element Complete
-- Add a Submit Button to a Form Complete
-- Use HTML5 to Require a Field Complete
-- Create a Set of Radio Buttons Complete
-- Create a Set of Checkboxes Complete
-- Check Radio Buttons and Checkboxes by Default Complete
-- Nest Many Elements within a Single Div Element Complete
-- Give a Background Color to a Div Element Complete
-- Set the ID of an Element Complete
-- Use an ID Attribute to Style an Element Complete
-- Adjusting the Padding of an Element Complete
-- Adjust the Margin of an Element Complete
-- Add a Negative Margin to an Element Complete
-- Add Different Padding to Each Side of an Element Complete
-- Add Different Margins to Each Side of an Element Complete
-- Use Clockwise Notation to Specify the Padding of an Element Complete
-- Use Clockwise Notation to Specify the Margin of an Element Complete
-- Style the HTML Body Element Complete
-- Inherit Styles from the Body Element Complete
-- Prioritize One Style Over Another Complete
-- Override Styles in Subsequent CSS Complete
-- Override Class Declarations by Styling ID Attributes Complete
-- Override Class Declarations with Inline Styles Complete
-- Override All Other Styles by using Important Complete
-- Use Hex Code for Specific Colors Complete
-- Use Hex Code to Mix Colors Complete
-- Use Abbreviated Hex Code Complete
-- Use RGB values to Color Elements Complete
+- Learn How freeCodeCamp Works
+- Say Hello to HTML Elements
+- Headline with the h2 Element
+- Inform with the Paragraph Element
+- Uncomment HTML
+- Comment out HTML
+- Fill in the Blank with Placeholder Text
+- Delete HTML Elements
+- Change the Color of Text
+- Join a freeCodeCamp Study Group in Your City
+- Become a Supporter
+- Use CSS Selectors to Style Elements
+- Use a CSS Class to Style an Element
+- Style Multiple Elements with a CSS Class
+- Change the Font Size of an Element
+- Set the Font Family of an Element
+- Import a Google Font
+- Specify How Fonts Should Degrade
+- Add Images to your Website
+- Size your Images
+- Add Borders Around your Elements
+- Add Rounded Corners with a Border Radius
+- Make Circular Images with a Border Radius
+- Link to External Pages with Anchor Elements
+- Nest an Anchor Element within a Paragraph
+- Make Dead Links using the Hash Symbol
+- Turn an Image into a Link
+- Create a Bulleted Unordered List
+- Create an Ordered List
+- Create a Text Field
+- Add Placeholder Text to a Text Field
+- Create a Form Element
+- Add a Submit Button to a Form
+- Use HTML5 to Require a Field
+- Create a Set of Radio Buttons
+- Create a Set of Checkboxes
+- Check Radio Buttons and Checkboxes by Default
+- Nest Many Elements within a Single Div Element
+- Give a Background Color to a Div Element
+- Set the ID of an Element
+- Use an ID Attribute to Style an Element
+- Adjusting the Padding of an Element
+- Adjust the Margin of an Element
+- Add a Negative Margin to an Element
+- Add Different Padding to Each Side of an Element
+- Add Different Margins to Each Side of an Element
+- Use Clockwise Notation to Specify the Padding of an Element
+- Use Clockwise Notation to Specify the Margin of an Element
+- Style the HTML Body Element
+- Inherit Styles from the Body Element
+- Prioritize One Style Over Another
+- Override Styles in Subsequent CSS
+- Override Class Declarations by Styling ID Attributes
+- Override Class Declarations with Inline Styles
+- Override All Other Styles by using Important
+- Use Hex Code for Specific Colors
+- Use Hex Code to Mix Colors
+- Use Abbreviated Hex Code
+- Use RGB values to Color Elements
 - Use RGB to Mix Colors
 
 ### Responsive Design with Bootstrap
 
-- Use Responsive Design with Bootstrap Fluid Containers Incomplete
-- Make Images Mobile Responsive Incomplete
-- Center Text with Bootstrap Incomplete
-- Create a Bootstrap Button Incomplete
-- Create a Block Element Bootstrap Button Incomplete
-- Taste the Bootstrap Button Color Rainbow Incomplete
-- Call out Optional Actions with Button Info Incomplete
-- Warn your Users of a Dangerous Action Incomplete
-- Use the Bootstrap Grid to Put Elements Side By Side Incomplete
-- Ditch Custom CSS for Bootstrap Incomplete
-- Use Spans for Inline Elements Incomplete
-- Create a Custom Heading Incomplete
-- Add Font Awesome Icons to our Buttons Incomplete
-- Add Font Awesome Icons to all of our Buttons Incomplete
-- Responsively Style Radio Buttons Incomplete
-- Responsively Style Checkboxes Incomplete
-- Style Text Inputs as Form Controls Incomplete
-- Line up Form Elements Responsively with Bootstrap Incomplete
-- Create a Bootstrap Headline Incomplete
-- House our page within a Bootstrap Container Fluid Div Incomplete
-- Create a Bootstrap Row Incomplete
-- Split your Bootstrap Row Incomplete
-- Create Bootstrap Wells Incomplete
-- Add Elements within your Bootstrap Wells Incomplete
-- Apply the Default Bootstrap Button Style Incomplete
-- Create a Class to Target with jQuery Selectors Incomplete
-- Add ID Attributes to Bootstrap Elements Incomplete
-- Label Bootstrap Wells Incomplete
-- Give Each Element a Unique ID Incomplete
-- Label Bootstrap Buttons Incomplete
+- Use Responsive Design with Bootstrap Fluid Containers
+- Make Images Mobile Responsive
+- Center Text with Bootstrap
+- Create a Bootstrap Button
+- Create a Block Element Bootstrap Button
+- Taste the Bootstrap Button Color Rainbow
+- Call out Optional Actions with Button Info
+- Warn your Users of a Dangerous Action
+- Use the Bootstrap Grid to Put Elements Side By Side
+- Ditch Custom CSS for Bootstrap
+- Use Spans for Inline Elements
+- Create a Custom Heading
+- Add Font Awesome Icons to our Buttons
+- Add Font Awesome Icons to all of our Buttons
+- Responsively Style Radio Buttons
+- Responsively Style Checkboxes
+- Style Text Inputs as Form Controls
+- Line up Form Elements Responsively with Bootstrap
+- Create a Bootstrap Headline
+- House our page within a Bootstrap Container Fluid Div
+- Create a Bootstrap Row
+- Split your Bootstrap Row
+- Create Bootstrap Wells
+- Add Elements within your Bootstrap Wells
+- Apply the Default Bootstrap Button Style
+- Create a Class to Target with jQuery Selectors
+- Add ID Attributes to Bootstrap Elements
+- Label Bootstrap Wells
+- Give Each Element a Unique ID
+- Label Bootstrap Buttons
 - Use Comments to Clarify Code
 
 ### jQuery
 
-- Learn how Script Tags and Document Ready Work Incomplete
-- Target HTML Elements with Selectors Using jQuery Incomplete
-- Target Elements by Class Using jQuery Incomplete
-- Target Elements by ID Using jQuery Incomplete
-- Delete your jQuery Functions Incomplete
-- Target the same element with multiple jQuery Selectors Incomplete
-- Remove Classes from an element with jQuery Incomplete
-- Change the CSS of an Element Using jQuery Incomplete
-- Disable an Element Using jQuery Incomplete
-- Change Text Inside an Element Using jQuery Incomplete
-- Remove an Element Using jQuery Incomplete
-- Use appendTo to Move Elements with jQuery Incomplete
-- Clone an Element Using jQuery Incomplete
-- Target the Parent of an Element Using jQuery Incomplete
-- Target the Children of an Element Using jQuery Incomplete
-- Target a Specific Child of an Element Using jQuery Incomplete
-- Target Even Numbered Elements Using jQuery Incomplete
+- Learn how Script Tags and Document Ready Work
+- Target HTML Elements with Selectors Using jQuery
+- Target Elements by Class Using jQuery
+- Target Elements by ID Using jQuery
+- Delete your jQuery Functions
+- Target the same element with multiple jQuery Selectors
+- Remove Classes from an element with jQuery
+- Change the CSS of an Element Using jQuery
+- Disable an Element Using jQuery
+- Change Text Inside an Element Using jQuery
+- Remove an Element Using jQuery
+- Use appendTo to Move Elements with jQuery
+- Clone an Element Using jQuery
+- Target the Parent of an Element Using jQuery
+- Target the Children of an Element Using jQuery
+- Target a Specific Child of an Element Using jQuery
+- Target Even Numbered Elements Using jQuery
 - Use jQuery to Modify the Entire Page
