@@ -1,6 +1,6 @@
 # freeCodeCamp
 
-Keeping track of my work on the freeCodeCamp challenges to earn certification.
+Tracking my personal progress to earn certification by completing challenges at [freeCodeCamp](https://www.freecodecamp.org).
 
 ## Stephen Bau
 
