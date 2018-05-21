@@ -2,11 +2,40 @@
 
 Keeping track of my work on the freeCodeCamp challenges to earn certification.
 
+## Stephen Bau
+
+- User: [Stephen Bau](https://www.freecodecamp.org/bauhouse)
+- Username: [bauhouse](https://www.freecodecamp.org/bauhouse)
+- GitHub: [bauhouse](https://github.com/bauhouse/)
+- Twitter: [bauhouse](https://twitter.com/bauhouse/)
+- Medium: [bauhouse](https://medium.com/@bauhouse)
+- LinkedIn: [bauhouse](https://www.linkedin.com/in/bauhouse/)
+- Behance: [stephenbau](https://www.behance.net/stephenbau)
+
+A designer with 30 years of experience.
+
+- User Experience Design
+- User Interface Design
+- Information Architecture
+- Interaction Design
+- Brand Identity
+- Corporate Communications
+- Publications
+- Books
+- Packaging
+- Video
+
+
+### GitHub
+
+This Git repository is public on GitHub.
+
+- Repository: [bauhouse/freecodecamp](https://github.com/bauhouse/freecodecamp)
+
 ## Front End Development Certification
 
 ### HTML5 and CSS
 
-- Keeping track of my work on the freeCodeCamp challenges to earn certification.
 - Learn How freeCodeCamp Works Complete
 - Say Hello to HTML Elements Complete
 - Headline with the h2 Element Complete
