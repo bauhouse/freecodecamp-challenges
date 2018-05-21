@@ -10,9 +10,12 @@ function whatIsInAName(collection, source) {
   var collectionEntries = Object.entries(collection);
   var sourceEntries = Object.entries(source);
 
+  var collectionValues = Object.values(collection);
+  var sourceValues = Object.values(source);
+
   // Only change code above this line
   // return arr;
-  return collectionEntries;
+  return collectionValues;
 }
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
