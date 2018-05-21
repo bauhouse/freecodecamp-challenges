@@ -130,3 +130,24 @@ This Git repository is public on GitHub.
 - Give Each Element a Unique ID Incomplete
 - Label Bootstrap Buttons Incomplete
 - Use Comments to Clarify Code
+
+### jQuery
+
+- Learn how Script Tags and Document Ready Work Incomplete
+- Target HTML Elements with Selectors Using jQuery Incomplete
+- Target Elements by Class Using jQuery Incomplete
+- Target Elements by ID Using jQuery Incomplete
+- Delete your jQuery Functions Incomplete
+- Target the same element with multiple jQuery Selectors Incomplete
+- Remove Classes from an element with jQuery Incomplete
+- Change the CSS of an Element Using jQuery Incomplete
+- Disable an Element Using jQuery Incomplete
+- Change Text Inside an Element Using jQuery Incomplete
+- Remove an Element Using jQuery Incomplete
+- Use appendTo to Move Elements with jQuery Incomplete
+- Clone an Element Using jQuery Incomplete
+- Target the Parent of an Element Using jQuery Incomplete
+- Target the Children of an Element Using jQuery Incomplete
+- Target a Specific Child of an Element Using jQuery Incomplete
+- Target Even Numbered Elements Using jQuery Incomplete
+- Use jQuery to Modify the Entire Page
