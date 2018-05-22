@@ -1,18 +1,22 @@
 
 function sumPrimes(num) {
   var integers = [];
+  var integerDivisors = [];
   var primes = [];
 
-  for (var i = 1; i < num; i++) {
-    var divisors = integers.filter( value=> value < i );
-    primes.push([i, divisors.filter( value => i % value == 0 && value != 1 )]);
+  for (var i = 1; i <= num; i++) {
+    var divisors = integers.filter( value=> value < i ).filter( value => i % value == 0 && value != 1 );
+    var isPrime = !(divisors.length > 0) && i != 1;
+    integerDivisors.push([i, divisors, isPrime]);
+    if (isPrime) {
+      primes.push(i);
+    }
     integers.push(i);
   }
 
-  // primes = integers.filter( value => );
+  var sum = primes.reduce( function( acc, val ) { return acc + val; } );
 
-
-  return primes;
+  return sum;
 }
 
-console.log(sumPrimes(10));
+sumPrimes(10);
