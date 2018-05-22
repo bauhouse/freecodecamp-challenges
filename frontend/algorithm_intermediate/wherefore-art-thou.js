@@ -8,7 +8,7 @@ function whatIsInAName(collection, source) {
     var match = [];
     for (var key in source) {
       match.push(Object.keys(collection[i]).includes(key));
-      match.push(Object.values(collection[i]).includes(source[key]));
+      match.push(collection[i][key] === source[key]);
     }
     if (!match.includes(false)) {
       arr.push(collection[i]);
