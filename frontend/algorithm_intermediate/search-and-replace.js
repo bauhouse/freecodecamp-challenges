@@ -3,20 +3,16 @@ function myReplace(str, before, after) {
   var words = str.split(" ");
   var index = words.indexOf(before);
   var word = words[index];
-  var initialCap = word[0];
-  var upper = isUpperCase(initialCap);
-  if (upper) {
+  var firstLetter = word[0];
+  var capitalized = isUpperCase(firstLetter);
+  if (capitalized) {
     after = capitalize(after);
   } else {
     after = after.toLowerCase();
   }
   var replace = words.splice(words.indexOf(before), 1, after);
-  // var words = words.map(word => isUpperCase(word.splice(0,1)));
-  // return index;
-  // return str.replace(before, after);
-  // return str;
-  // return replace + ' ' + words + '\n' + 'Initial cap: ' + initialCap + '\n' + 'isUpperCase: ' + upper;
-  return words.join(' ');
+  str = words.join(' ');
+  return str;
 }
 
 function isUpperCase(character) {
