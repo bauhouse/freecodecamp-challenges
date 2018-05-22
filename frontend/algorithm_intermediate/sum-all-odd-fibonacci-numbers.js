@@ -8,9 +8,12 @@ function sumFibs(num) {
     if ( fib < num ) { sequence.push(fib) };
   }
 
-  var sum = sequence.reduce( function(acc,val) { return acc + val });
+  var sum = sequence.reduce( function(acc,val) {return acc + val;});
 
-  return sum;
+  var oddNumbers = sequence.filter( value => value % 2 > 0 );
+  var sumOdd = oddNumbers.reduce( function(acc,val) {return acc + val;});
+
+  return sumOdd;
 }
 
 sumFibs(4);
