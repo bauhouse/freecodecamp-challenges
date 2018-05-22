@@ -2,16 +2,18 @@
 function convertHTML(str) {
   // &colon;&rpar;
   var entities = {
-    ampersand: ["&", "&amp"],
-    lessthan: ["<", "&lt;"],
-    greaterthan: [">", "&gt;"],
-    quote: ['"', "&quot;"],
-    apostrophe: ["'", "&apos;"]
+    ampersand: [/&/g, "&amp;"],
+    lessthan: [/</g, "&lt;"],
+    greaterthan: [/>/g, "&gt;"],
+    quote: [/"/g, "&quot;"],
+    apostrophe: [/'/g, "&apos;"]
   };
 
-  str = entities.ampersand[1] + entities.lessthan[1] + entities.greaterthan[1] + entities.quote[1] + entities.apostrophe[1];
+  for (key in entities) {
+    str = str.replace(entities[key][0], entities[key][1]);
+  }
 
   return str;
 }
 
-console.log(convertHTML("Dolce & Gabbana"));
+convertHTML("Dolce & Gabbana");
