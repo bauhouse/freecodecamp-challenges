@@ -7,9 +7,7 @@ function pairElement(str) {
     T: "A"
   };
   
-  str = str.split('');
-  str = str.map(value => [value, lookup[value]]);
-  return str;
+  return str.split('').map(value => [value, lookup[value]]);
 }
 
 pairElement("GCG");
