@@ -19,7 +19,7 @@ function spinalCase(str) {
   str = str.replace(/^\s+/, '');
 
   // Replace spaces with hyphens
-  str = str.replace(/[\s]/g, '-');
+  str = str.replace(/\s/g, '-');
 
   // Replace multiple hyphens with single hyphen
   str = str.replace(/--+/g, '-');
