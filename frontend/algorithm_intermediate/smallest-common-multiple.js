@@ -12,11 +12,12 @@ function smallestCommons(arr) {
   // Find common divisors
   var common = findDivisors(max);
 
-  return sequence;
+  return common;
 }
 
 function findDivisors(num) {
   var divisors = [];
+  divisors = range(num);
   return divisors;
 }
 
@@ -44,7 +45,7 @@ function productOfArray(arr) {
   return product;
 }
 
-function range(max, min = 1, reverse = false) {
+function range(max, min = 1, reverse = true) {
   var range = [];
   if (reverse) {
     for (var i = max; i >= min; i--) {
