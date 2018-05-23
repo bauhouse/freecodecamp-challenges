@@ -65,27 +65,42 @@ function findDenominators(num) {
   var dividend = num;
   var quotient = dividend;
   var divisors = findLCD(num);
+  var division = [];
   var denominators = [];
-
-  while (findLCD(dividend)) {
+  if (num == 1) {
+    return "The number 1 has no lowest common denominators."
+  }
+  while (dividend > 1) {
     divisors = findLCD(dividend);
-    for (var i = divisors.length - 1; i >= 0; i--) {
-      var divisor = divisors[i];
-      quotient = dividend / divisor;
-      if (!findLCD(divisor)) {
-        // denominators.push([dividend, divisor, quotient]);
+    if (divisors) {
+      for (var i = divisors.length - 1; i >= 0; i--) {
+        var divisor = divisors[i];
+        quotient = dividend / divisor;
+        if (!findLCD(divisor)) {
+          division.push([dividend, divisor, quotient]);
+          denominators.push(divisor)
+          dividend = quotient;
+        }
+      }
+    } else {
+      return "The number " + num + " is a prime number.";
+    }
+    if (!findLCD(dividend)) {
+      if (dividend == 1) {
+        break;
+      } else {
+        quotient = dividend / divisor;
+        division.push([dividend, divisor, quotient]);
         denominators.push(divisor)
-        dividend = quotient;
+        break;
       }
     }
   }
-  if (!findLCD(dividend)){
-    quotient = dividend / divisor;
-    // denominators.push([dividend, divisor, quotient])
-    denominators.push(divisor)
-  }
-  if (productOfArray(denominators) === num) {
-    return denominators;
+  if (denominators.length) {
+    var product = productOfArray(denominators);
+    if (product === num) {
+      return denominators;
+    }
   }
   return null;
 }
@@ -95,8 +110,11 @@ function findCommonValues(arr1, arr2) {
 }
 
 function productOfArray(arr) {
-  var product = arr.reduce(function(acc,val){return acc * val;});
-  return product;
+  if (arr.length) {
+    var product = arr.reduce(function(acc,val){return acc * val;});
+    return product;
+  }
+  return null;
 }
 
 function range(max, min = 1, reverse = true) {
@@ -129,4 +147,4 @@ function primeNumbers(num) {
   return primes;
 }
 
-console.log(smallestCommons([1,240]));
+console.log(smallestCommons([1,144]));
