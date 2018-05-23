@@ -99,7 +99,7 @@ function findDenominators(num) {
   if (denominators.length) {
     var product = productOfArray(denominators);
     if (product === num) {
-      return division;
+      return denominators;
     }
   }
   return null;
@@ -147,4 +147,4 @@ function primeNumbers(num) {
   return primes;
 }
 
-console.log(smallestCommons([1,60]));
+console.log(smallestCommons([1,144]));
