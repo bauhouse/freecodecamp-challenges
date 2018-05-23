@@ -17,14 +17,6 @@ function smallestCommons(arr) {
     multiples.push(multiply(sequence[i], product));
   }
 
-  // var resultsArray = [];
-  // var results = divide(product, min, max);
-  //
-  // var recursive = [];
-  // for (var j = 0; j < results.length; j++ ) {
-  //   recursive[j] = divide(results[j][2], min, max, resultsArray);
-  // }
-
   return multiples;
 }
 
