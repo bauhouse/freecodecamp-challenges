@@ -15,16 +15,16 @@ function smallestCommons(arr) {
 
   multiples[0] = multiply(max, product);
   multiples[1] = multiply(max - 1, product);
-  for (var i = index; i >= 0; i--) {
-    multiples.push(multiply(sequence[i], product));
+  for (var j = index; j >= 0; j--) {
+    multiples.push(multiply(sequence[j], product));
   }
 
   var common = findCommonValues(multiples[0], multiples[1]);
-  for (var i = 0; i < sequence.length - 1; i++) {
+  for (var k = 0; k < sequence.length - 1; k++) {
     if (i == 0) {
-      common = findCommonValues(multiples[i], multiples[i + 1]);
+      common = findCommonValues(multiples[k], multiples[k + 1]);
     } else {
-      common = findCommonValues(common, multiples[i + 1])
+      common = findCommonValues(common, multiples[k + 1]);
     }
   }
 
