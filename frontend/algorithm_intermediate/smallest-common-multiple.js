@@ -35,23 +35,6 @@ function isDivisible(number, divisor) {
   return number % divisor === 0;
 }
 
-function divide(dividend, min, max) {
-  var results = [];
-  var divisibleByAll = true;
-
-  for (var i = min; i <= max; i++) {
-    var quotient = null;
-    var divisible = isDivisible(dividend, i);
-    if (divisible) {
-      quotient = dividend / i;
-    } else {
-      return false;
-    }
-    results.push([i, divisible, quotient]);
-  }
-  return results;
-}
-
 function multiply(factor, max) {
   var results = [];
   var i = max / factor;
@@ -67,4 +50,4 @@ function findCommonValues(arr1, arr2) {
   return arr1.filter(value => arr2.includes(value));
 }
 
-console.log(smallestCommons([10,5]));
+smallestCommons([1,5]);
