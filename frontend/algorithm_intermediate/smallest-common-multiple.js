@@ -4,12 +4,20 @@ function smallestCommons(arr) {
   var max = Math.max(...arr);
   
   // Create an array of values from max to min
-  var sequence = range(min, max);
+  var sequence = range(min, max, true);
   
   // Return the product of the range of values
   var product = productOfArray(sequence);
+  
+  // Find common divisors
+  var common = findDivisors(max);
 
   return sequence;
+}
+
+function findDivisors(num) {
+  var divisors = [];
+  return divisors;
 }
 
 function isDivisible(number, divisor) {
@@ -36,10 +44,16 @@ function productOfArray(arr) {
   return product;
 }
 
-function range(min, max) {
+function range(min, max, reverse = true) {
   var range = [];
-  for (var i = min; i <= max; i++) {
-    range.push(i);
+  if (reverse) {
+    for (var i = max; i >= min; i--) {
+      range.push(i);
+    }
+  } else {
+    for (var i = min; i <= max; i++) {
+      range.push(i);
+    }
   }
   return range;
 }
