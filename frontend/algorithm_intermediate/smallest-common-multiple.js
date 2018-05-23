@@ -1,3 +1,6 @@
+const factors = number => Array
+  .from(Array(number + 1), (_, i) => i)
+  .filter(i => number % i === 0)
 
 function smallestCommons(arr) {
   var min = Math.min(...arr);
@@ -15,10 +18,32 @@ function smallestCommons(arr) {
   // Find lowest common denominators
   var lcd = findLCD(max);
 
-  // Find all the factors of the number as a set of lowest common denominators
-  var denominators = findDenominators(max);
+  // Find all the prime factors of the number as a set of lowest common denominators
+  var denominators1 = findDenominators(162);
+  var denominators2 = findDenominators(60);
 
-  return denominators;
+  var commonDenominators = findCommonValues(denominators1, denominators2);
+
+  // Experimenting with map() and filter() methods of Array objects
+  var filter = lcd.map( (value, index) => {
+    var x = denominators1.filter( a => a === value );
+    var y = denominators2.filter( a => a === value );
+    var greatest = Math.max(x.length,y.length);
+    return [value, x, y, greatest];
+  });
+
+  filter = filterArrays(denominators2, denominators1);
+
+  var factors1 = factors(24);
+  var factors2 = factors(36);
+
+  var commonFactors = findCommonValues(factors1, factors2);
+  // Find the greatest common factor
+  var gcf = commonFactors.slice(-1);
+
+  // return commonDenominators + '\n' + denominators1 + '\n' + denominators2;
+  // return commonFactors + '\n' + factors1 + '\n' + factors2 + '\n' + gcf;
+  return filter;
 }
 
 function findDivisors(num) {
@@ -107,6 +132,14 @@ function findDenominators(num) {
 
 function findCommonValues(arr1, arr2) {
   return arr1.filter(value => arr2.includes(value));
+}
+
+function filterArrays(arr1, arr2) {
+  var arr = arr1.map( (value, index, array) => {
+    var valuesArr = arr2.filter( x => x === value );
+    return [value, valuesArr.length];
+  });
+  return arr;
 }
 
 function productOfArray(arr) {
