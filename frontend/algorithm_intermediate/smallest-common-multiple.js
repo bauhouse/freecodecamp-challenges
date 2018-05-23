@@ -11,14 +11,27 @@ function smallestCommons(arr) {
   
   // Find common divisors
   var common = findDivisors(max);
+  
+  // Find lowest common denominators
+  var lcd = divide(max, common);
 
-  return common;
+  return lcd;
 }
 
 function findDivisors(num) {
   var divisors = [];
-  divisors = range(num);
-  return divisors;
+  var i = 2;
+  while (i < num) {
+    if (isDivisible(num, i)) {
+      divisors.push(i);
+    }
+    i++;
+  }
+  if (divisors.length) {
+    var denominators = divide(num,divisors);
+    return denominators;
+  }
+  return null;
 }
 
 function isDivisible(number, divisor) {
@@ -34,6 +47,18 @@ function multiply(factor, max) {
     i--;
   }
   return results;
+}
+
+function divide(num, divisors) {
+  var i = divisors.length;
+  var quotient = 0;
+  var denominators = [];
+  while (i > 0) {
+    quotient = num / divisors[i];
+    denominators.push(divisors[i]);
+    i--;
+  }
+  return denominators;
 }
 
 function findCommonValues(arr1, arr2) {
@@ -59,4 +84,4 @@ function range(max, min = 1, reverse = true) {
   return range;
 }
 
-smallestCommons([1,5]);
+smallestCommons([1,9]);
