@@ -4,7 +4,7 @@ function smallestCommons(arr) {
   var max = Math.max(...arr);
   
   // Create an array of values from max to min
-  var sequence = range(min, max, true);
+  var sequence = range(max, min, true);
   
   // Return the product of the range of values
   var product = productOfArray(sequence);
@@ -44,7 +44,7 @@ function productOfArray(arr) {
   return product;
 }
 
-function range(min, max, reverse = true) {
+function range(max, min = 1, reverse = true) {
   var range = [];
   if (reverse) {
     for (var i = max; i >= min; i--) {
