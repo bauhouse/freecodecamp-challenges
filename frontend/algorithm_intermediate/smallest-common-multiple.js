@@ -44,7 +44,7 @@ function productOfArray(arr) {
   return product;
 }
 
-function range(max, min = 1, reverse = true) {
+function range(max, min = 1, reverse = false) {
   var range = [];
   if (reverse) {
     for (var i = max; i >= min; i--) {
