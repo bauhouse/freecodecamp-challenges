@@ -2,33 +2,14 @@
 function smallestCommons(arr) {
   var min = Math.min(...arr);
   var max = Math.max(...arr);
+  
+  // Create an array of values from max to min
+  var sequence = range(min, max);
+  
+  // Return the product of the range of values
+  var product = productOfArray(sequence);
 
-  var sequence = [];
-  for (var i = min; i <= max; i++) {
-    sequence.push(i);
-  }
-
-  var index = sequence.length - 1;
-  var product = sequence.reduce(function(acc,val){return acc * val;});
-
-  var multiples = [];
-
-  multiples[0] = multiply(max, product);
-  multiples[1] = multiply(max - 1, product);
-  for (var j = index; j >= 0; j--) {
-    multiples.push(multiply(sequence[j], product));
-  }
-
-  var common = findCommonValues(multiples[0], multiples[1]);
-  for (var k = 0; k < sequence.length - 1; k++) {
-    if (i == 0) {
-      common = findCommonValues(multiples[k], multiples[k + 1]);
-    } else {
-      common = findCommonValues(common, multiples[k + 1]);
-    }
-  }
-
-  return common.pop();
+  return sequence;
 }
 
 function isDivisible(number, divisor) {
@@ -48,6 +29,19 @@ function multiply(factor, max) {
 
 function findCommonValues(arr1, arr2) {
   return arr1.filter(value => arr2.includes(value));
+}
+
+function productOfArray(arr) {
+  var product = arr.reduce(function(acc,val){return acc * val;});
+  return product;
+}
+
+function range(min, max) {
+  var range = [];
+  for (var i = min; i <= max; i++) {
+    range.push(i);
+  }
+  return range;
 }
 
 smallestCommons([1,5]);
