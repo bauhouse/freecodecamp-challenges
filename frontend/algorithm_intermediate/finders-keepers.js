@@ -1,7 +1,7 @@
 
 function findElement(arr, func) {
-  var num = 0;
-  return num;
+  var num = arr.filter(value => {return func(value)});
+  return num[0];
 }
 
-findElement([1, 2, 3, 4], function(num){ return num % 2 === 0; });
+findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; });
