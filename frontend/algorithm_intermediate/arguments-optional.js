@@ -1,25 +1,23 @@
 
 function addTogether() {
   const args = Array.from(arguments);
-  var x = args[0];
-  if (args.length > 1) {
-    var includesArr = args.map(arg => {
-      return Array.isArray(arg);
-    }).includes(true);
-    if (includesArr) {
-      return undefined;
-    }
-    var y = args[1];
-    if (typeof x !== "number" || typeof y !== "number") {
-      return undefined;
-    } else {
-      return x + y;
-    }
+  var not = args.some(num => {
+    return typeof num !== "number";
+  });
+  if (not) {
+    return undefined;
   } else {
-    return function(y) {
+    var x = args[0]
+    if (args.length > 1) {
+      var y = args[1];
       return x + y;
-    };
+    } else {
+      return function(y) {
+        return x + y;
+      }
+    }
   }
+  return y;
 }
 
-addTogether(2,3);
+console.log(addTogether(2)([3]));
