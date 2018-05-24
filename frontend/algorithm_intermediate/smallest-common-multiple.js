@@ -12,49 +12,39 @@ function smallestCommons(arr) {
   // Return the product of the range of values
   var product = productOfArray(sequence);
 
-  // Find common divisors
-  var divisors = findDivisors(max);
-
-  // Find lowest common denominators
-  var lcd = findLCD(max);
-
   // Find all the prime factors of the number as a set of lowest common denominators
-  var denominators1 = findDenominators(162);
-  var denominators2 = findDenominators(60);
-
-  var commonDenominators = findCommonValues(denominators1, denominators2);
-
-  // Experimenting with map() and filter() methods of Array objects
-  var filter = lcd.map( (value, index) => {
-    var x = denominators1.filter( a => a === value );
-    var y = denominators2.filter( a => a === value );
-    var least = Math.min(x.length,y.length);
-    var arr = [value, x, y, least];
-    var common = [];
-    if (x.length < y.length) {
-      common.push(x[0]);
-    } else {
-      common.push(y[0]);
-    }
-    return common;
+  var denominators = sequence.map(value => {
+    return findDenominators(value);
   });
 
-  // filter = filterArrays(denominators2, denominators1);
+  // Filter lowest common denominators
+  var lcd = denominators.filter(value => {
+    return value !== null;
+  });
 
-  var factors1 = factors(24);
-  var factors2 = factors(36);
+  // Find multiples for each number
+  var multiples = [];
+  multiples[0] = multiply(max, product);
+  multiples[1] = multiply(max - 1, product);
 
-  var commonFactors = findCommonValues(factors1, factors2);
-  // Find the greatest common factor
-  var gcf = commonFactors.slice(-1);
+  // Filter common multiples in the largest two numbers
+  var commonMultiples = findCommonValues(multiples[0], multiples[1]);
 
-  // return commonDenominators + '\n' + denominators1 + '\n' + denominators2;
-  // return commonFactors + '\n' + factors1 + '\n' + factors2 + '\n' + gcf;
+  var divisibleByAll = commonMultiples.map(value => {
+    var divisible = sequence.map(div => {
+      return value % div === 0;
+    });
+    divisible = !divisible.includes(false);
+    return [value, divisible];
+  });
 
-  var leastDivisors = filter[0].concat(filter[1]);
-  var leastProduct = productOfArray(leastDivisors);
+  var smallest = divisibleByAll.filter(arr => {
+    return arr[1] === true;
+  });
 
-  return leastProduct * gcf;
+  smallest = smallest[smallest.length - 1][0];
+
+  return smallest;
 }
 
 function findDivisors(num) {
@@ -104,7 +94,8 @@ function findDenominators(num) {
   var division = [];
   var denominators = [];
   if (num == 1) {
-    return "The number 1 has no lowest common denominators."
+    // return "The number 1 has no lowest common denominators."
+    return null;
   }
   while (dividend > 1) {
     divisors = findLCD(dividend);
@@ -119,7 +110,8 @@ function findDenominators(num) {
         }
       }
     } else {
-      return "The number " + num + " is a prime number.";
+      // return "The number " + num + " is a prime number.";
+      return null;
     }
     if (!findLCD(dividend)) {
       if (dividend == 1) {
@@ -191,4 +183,4 @@ function primeNumbers(num) {
   return primes;
 }
 
-console.log(smallestCommons([1,144]));
+console.log(smallestCommons([1,5]));
