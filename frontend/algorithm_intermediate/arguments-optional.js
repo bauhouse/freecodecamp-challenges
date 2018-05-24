@@ -29,7 +29,7 @@ function isNumber(n) {
   if (typeof n !== "number") {
     return false;
   } else {
-    return Number(n);
+    return n;
   }
 }
 
