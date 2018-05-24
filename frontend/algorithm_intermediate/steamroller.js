@@ -10,10 +10,11 @@ function steamrollArray(arr) {
   return nested;
 }
 
-function findArrays(arr, level, nested, isArr = false) {
-  var isArr = Array.isArray(arr);
+function findArrays(obj, level, nested, isArr = false) {
+  var isArr = Array.isArray(obj);
   if (isArr) {
     level++;
+    var arr = obj;
     for (var i = 0; i < arr.length; i++) {
       nested.push([level, arr[i], isArr]);
       findArrays(arr[i], level, nested, isArr);
