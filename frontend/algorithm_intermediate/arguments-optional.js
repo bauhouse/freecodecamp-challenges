@@ -1,23 +1,36 @@
 
 function addTogether() {
   const args = Array.from(arguments);
-  var not = args.some(num => {
-    return typeof num !== "number";
-  });
-  if (not) {
-    return undefined;
-  } else {
-    var x = args[0]
+  var x = isNumber(args[0]);
+  if (x) {
     if (args.length > 1) {
-      var y = args[1];
-      return x + y;
+      var y = isNumber(args[1]);
+      if (y) {
+        return x + y;
+      } else {
+        return undefined;
+      }
     } else {
       return function(y) {
-        return x + y;
-      }
+        y = isNumber(y);
+        if (y) {
+          return x + y;
+        } else {
+          return undefined;
+        }
+      };
     }
+  } else {
+    return undefined;
   }
-  return y;
+}
+
+function isNumber(n) {
+  if (typeof n !== "number") {
+    return false;
+  } else {
+    return Number(n);
+  }
 }
 
 console.log(addTogether(2)([3]));
