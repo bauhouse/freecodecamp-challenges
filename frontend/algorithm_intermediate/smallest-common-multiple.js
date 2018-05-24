@@ -28,11 +28,18 @@ function smallestCommons(arr) {
   var filter = lcd.map( (value, index) => {
     var x = denominators1.filter( a => a === value );
     var y = denominators2.filter( a => a === value );
-    var greatest = Math.max(x.length,y.length);
-    return [value, x, y, greatest];
+    var least = Math.min(x.length,y.length);
+    var arr = [value, x, y, least];
+    var common = [];
+    if (x.length < y.length) {
+      common.push(x[0]);
+    } else {
+      common.push(y[0]);
+    }
+    return common;
   });
 
-  filter = filterArrays(denominators2, denominators1);
+  // filter = filterArrays(denominators2, denominators1);
 
   var factors1 = factors(24);
   var factors2 = factors(36);
@@ -43,7 +50,11 @@ function smallestCommons(arr) {
 
   // return commonDenominators + '\n' + denominators1 + '\n' + denominators2;
   // return commonFactors + '\n' + factors1 + '\n' + factors2 + '\n' + gcf;
-  return filter;
+
+  var leastDivisors = filter[0].concat(filter[1]);
+  var leastProduct = productOfArray(leastDivisors);
+
+  return leastProduct * gcf;
 }
 
 function findDivisors(num) {
