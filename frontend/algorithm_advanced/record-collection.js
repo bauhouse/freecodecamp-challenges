@@ -30,6 +30,9 @@ var collectionCopy = JSON.parse(JSON.stringify(collection));
 
 // Only change code below this line
 function updateRecords(id, prop, value) {
+  // console.log("id: " + id);
+  // console.log("prop: " + prop);
+  // console.log("value: " + value);
   var record = collection[id];
   var keys = [];
   for (var key in record) {
@@ -41,20 +44,32 @@ function updateRecords(id, prop, value) {
   properties.map((property, index, array) => {
     if (property === prop) {
       if (!keys.includes(prop)) {
+        // console.log(keys.includes(prop));
         var emptyArr = [];
         record[property] = emptyArr;
-      } else {
-        if (record[property].length) {
+        // console.log("create");
           record[property].push(value);
+      } else {
+        // console.log("retrieve");
+        // console.log("id: " + id);
+        // console.log("prop: " + prop);
+        // console.log("value: " + value);
+        // console.log("record: " + record);
+        // console.log("property: " + property);
+        // console.log("record[property]: " + record[property]);
+        if (record[property] === []) {
+          record[property].push(value);
+          // console.log("update");
         } else {
           delete record[property];
+          // console.log("delete");
         }
       }
     }
   });
 
-  return collection;
+  return record;
 }
 
 // Alter values below to test your code
-updateRecords(5439, "artist", "ABBA");
+console.log(updateRecords(5439, "artist", "ABBA"));
