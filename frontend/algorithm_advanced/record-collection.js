@@ -42,14 +42,22 @@ function updateRecords(id, prop, value) {
     var property = properties[i];
     if (property === prop) {
       if (!keys.includes(prop)) {
-        var emptyArr = [];
-        record[property] = emptyArr;
-        record[property] = value;
-      } else {
-        if (record[property] === []) {
+        if (prop === "tracks") {
+          var emptyArr = [];
+          record[property] = emptyArr;
           record[property].push(value);
         } else {
+          record[property] = value;
+        }
+      } else {
+        if (value === "") {
           delete record[property];
+        } else {
+         if (prop === "tracks") {
+           record[prop].push(value);
+          } else {
+            record[prop] = value;
+          }
         }
       }
     }
