@@ -1,9 +1,10 @@
 
 function sym(args) {
   var arr = Array.prototype.slice.call(arguments);
-  var arr1 = arr[0];
-  var arr2 = arr[1];
-  var diff = compareArrays(arr1, arr2);
+  var diff = arr[0];
+  for (var i = 0; i < arr.length - 1; i++) {
+    diff = compareArrays(diff, arr[i + 1], "diff");
+  }
   return diff;
 }
 
@@ -22,6 +23,10 @@ function compareArrays(arr1, arr2, type = "diff") {
   } else {
     return intersection;
   }
+}
+
+function uniqueValues(value, index, arr) {
+  return arr.indexOf(value) === index;
 }
 
 sym([1, 2, 3], [5, 2, 1, 4]);
