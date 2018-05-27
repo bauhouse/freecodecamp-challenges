@@ -36,12 +36,12 @@ function checkCashRegister(price, cash, cid) {
   });
 
   var change = cash - price;
-  if (sumCash === change) {
+  if (change === sumCash) {
     return "Closed";
-  } else if (sumCash > change) {
-    return inventory;
-  } else {
+  } else if (change > sumCash) {
     return "Insufficient Funds";
+  } else {
+    return inventory;
   }
 }
 
