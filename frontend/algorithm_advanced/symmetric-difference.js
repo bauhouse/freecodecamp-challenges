@@ -9,14 +9,14 @@ function sym(args) {
 }
 
 function compareArrays(arr1, arr2) {
-  var diff = arr1.concat(arr2);
+  var diff = arr1.concat(arr2).filter(uniqueValues).sort();
   var intersection = arr1.filter(value => {
     return arr2.includes(value);
   }).filter(uniqueValues).sort();
   intersection.map(item => {
     diff = diff.filter(value => {
       return value !== item;
-    }).filter(uniqueValues).sort();
+    });
   });
   return diff;
 }
