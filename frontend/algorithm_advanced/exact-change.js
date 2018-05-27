@@ -1,8 +1,5 @@
 
 function checkCashRegister(price, cash, cid) {
-  var change;
-  var diff = cash - price;
-
   var currency = {
     "ONE HUNDRED": 100,
     "TWENTY": 20,
@@ -15,7 +12,6 @@ function checkCashRegister(price, cash, cid) {
   };
 
   var denominations = [];
-
   for (var key in currency) {
     var denomination = key;
     var value = currency[key];
@@ -23,7 +19,6 @@ function checkCashRegister(price, cash, cid) {
   }
 
   var inventory = denominations;
-
   inventory = inventory.map((item, index, array) => {
     var denom = array[index][0];
     var val = array[index][1];
@@ -35,8 +30,19 @@ function checkCashRegister(price, cash, cid) {
     return [denom, val, amount, num];
   });
 
-  // Here is your change, ma'am.
-  return inventory;
+  var sumCash = 0;
+  inventory.map(arr => {
+    sumCash += arr[2];
+  });
+
+  var change = cash - price;
+  if (sumCash === change) {
+    return "Closed";
+  } else if (sumCash > change) {
+    return inventory;
+  } else {
+    return "Insufficient Funds";
+  }
 }
 
 // Example cash-in-drawer array:
