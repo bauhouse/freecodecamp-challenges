@@ -3,6 +3,7 @@ function checkCashRegister(price, cash, cid) {
   var currency = {
     "ONE HUNDRED": 100,
     "TWENTY": 20,
+    "TEN": 10,
     "FIVE": 5,
     "ONE": 1,
     "QUARTER": 0.25,
@@ -61,19 +62,22 @@ function checkCashRegister(price, cash, cid) {
 }
 
 function makeChange(change, inventory) {
-  var changeInDenominations = [];
+  var cash = [];
   for (var i = 0; i < inventory.length; i++) {
+//   for (var i = 0; i < inventory.length; i++) {
     var denomination = inventory[i][0];
     var value = inventory[i][1];
     var amount = inventory[i][2];
-    if (change > value && change < amount ) {
-      var num = Math.floor(change / value);
-      var cashValue = value * num;
-      change -= cashValue;
-      changeInDenominations.push([denomination, cashValue]);
+    var num = inventory[i][3];
+    if (change >= value) {
+      var required = Math.floor(change / value);
+      var available = Math.min(required, num);
+      var cashValue = (value * available).toFixed(2);
+      change = (change - cashValue).toFixed(2);
+      cash.push([denomination, cashValue]);
     }
   }
-  return changeInDenominations;
+  return cash;
 }
 
 // Example cash-in-drawer array:
