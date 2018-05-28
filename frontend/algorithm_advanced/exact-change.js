@@ -26,7 +26,6 @@ function checkCashRegister(price, cash, cid) {
       return arr[0] == denom;
     })[0][1];
     var num = Math.round(amount / val);
-    // amount = amount[1];
     return [denom, val, amount, num];
   });
 
@@ -43,7 +42,6 @@ function checkCashRegister(price, cash, cid) {
   });
   sumCoins = sumCoins.toFixed(2);
 
-
   var change = cash - price;
   var changeInCoins = change - (Math.floor(change));
 
@@ -52,14 +50,30 @@ function checkCashRegister(price, cash, cid) {
   if (changeInCoins > sumCoins) {
     return "Insufficient Funds";
   }
-
   if (change > sumCash) {
     return "Insufficient Funds";
   } else if (change === sumCash) {
     return "Closed";
   } else {
-    return inventory;
+    change = makeChange(change, inventory);
+    return change;
   }
+}
+
+function makeChange(change, inventory) {
+  var changeInDenominations = [];
+  for (var i = 0; i < inventory.length; i++) {
+    var denomination = inventory[i][0];
+    var value = inventory[i][1];
+    var amount = inventory[i][2];
+    if (change > value && change < amount ) {
+      var num = Math.floor(change / value);
+      var cashValue = value * num;
+      change -= cashValue;
+      changeInDenominations.push([denomination, cashValue]);
+    }
+  }
+  return changeInDenominations;
 }
 
 // Example cash-in-drawer array:
