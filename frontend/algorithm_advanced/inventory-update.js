@@ -17,7 +17,27 @@ function updateInventory(arr1, arr2) {
     }
   }
 
+  arr1 = sortArray(arr1, 1);
+
   return arr1;
+}
+
+function sortArray(array, column) {
+  var keys = array.map((value, index) => {
+    return array[index][column];
+  }).sort();
+
+  array = keys.map((value, index) => {
+    var quantity = 0;
+    array.map(val => {
+      if (val[column] === value) {
+        quantity = val[0];
+      }
+    });
+    return [quantity, value];
+  });
+
+  return array;
 }
 
 // Example inventory lists
