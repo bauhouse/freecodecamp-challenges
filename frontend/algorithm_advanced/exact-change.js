@@ -46,8 +46,6 @@ function checkCashRegister(price, cash, cid) {
   var change = cash - price;
   var changeInCoins = change - (Math.floor(change));
 
-  // return [change, sumCash, sumCoins, changeInCoins, inventory];
-
   if (changeInCoins > sumCoins) {
     return "Insufficient Funds";
   }
@@ -64,7 +62,6 @@ function checkCashRegister(price, cash, cid) {
 function makeChange(change, inventory) {
   var cash = [];
   for (var i = 0; i < inventory.length; i++) {
-//   for (var i = 0; i < inventory.length; i++) {
     var denomination = inventory[i][0];
     var value = inventory[i][1];
     var amount = inventory[i][2];
@@ -72,7 +69,7 @@ function makeChange(change, inventory) {
     if (change >= value) {
       var required = Math.floor(change / value);
       var available = Math.min(required, num);
-      var cashValue = (value * available).toFixed(2);
+      var cashValue = Number((value * available).toFixed(2));
       change = (change - cashValue).toFixed(2);
       cash.push([denomination, cashValue]);
     }
