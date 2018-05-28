@@ -35,11 +35,28 @@ function checkCashRegister(price, cash, cid) {
     sumCash += arr[2];
   });
 
+  var sumCoins = 0;
+  inventory.map(arr => {
+    if (arr[1] < 1) {
+      sumCoins += arr[2];
+    }
+  });
+  sumCoins = sumCoins.toFixed(2);
+
+
   var change = cash - price;
-  if (change === sumCash) {
-    return "Closed";
-  } else if (change > sumCash) {
+  var changeInCoins = change - (Math.floor(change));
+
+  // return [change, sumCash, sumCoins, changeInCoins, inventory];
+
+  if (changeInCoins > sumCoins) {
     return "Insufficient Funds";
+  }
+
+  if (change > sumCash) {
+    return "Insufficient Funds";
+  } else if (change === sumCash) {
+    return "Closed";
   } else {
     return inventory;
   }
