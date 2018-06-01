@@ -1,5 +1,4 @@
 
-
 function permAlone(str) {
   var letters = str.split('');
   result = permutations(letters);
@@ -18,7 +17,7 @@ function permutations(items) {
     var perm = [];
     for (var i = 0; i < positions; i++) {
       perm.push(i + 1);
-}
+    }
     
     perms.push([count, perm]);
     count++;
