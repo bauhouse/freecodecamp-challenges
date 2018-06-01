@@ -30,7 +30,7 @@ A designer with 30 years of experience.
 
 This Git repository is public on GitHub.
 
-- Repository: [bauhouse/freecodecamp](https://github.com/bauhouse/freecodecamp)
+- Repository: [bauhouse/freecodecamp-challenges](https://github.com/bauhouse/freecodecamp-challenges)
 
 ## Front End Development Certification
 
