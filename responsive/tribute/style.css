@@ -1,0 +1,121 @@
+/* https://codepen.io/bauhouse/pen/bKVaLJ */
+
+body {
+  font: 1rem/1.5rem 'Open Sans', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background: #ffffff url('https://source.unsplash.com/ypVM8PnygUo/1920x1280') no-repeat center center;
+  background-color: rgba(255, 255, 255, 0.80);
+  background-blend-mode: color;
+  background-size: cover;
+}
+
+a:active,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: #00f;
+}
+a:hover {
+  color: #000;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 2em;
+  line-height: 1.3em;
+  color: #131313;
+  margin-bottom: 21px;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: .7rem;
+  line-height: 1.3rem;
+  padding: .5rem 0;
+}
+
+#image {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+#img-caption {
+  padding: .5rem 1rem;
+}
+
+.inset img {
+  width: 100%;
+}
+
+.content {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border-bottom: 12px solid #131313;
+}
+
+.text {
+  padding: 10px 50px 30px;
+  box-sizing: border-box;
+}
+
+h3 {
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  margin-top: 2em;
+}
+
+aside p {
+  font-size: .9em;
+  border-top: 1px solid #eee;
+  padding: .5em 0 .6em;
+  margin: 0;
+}
+
+aside {
+  border-bottom: 1px solid #eee;
+}
+
+@media (min-width: 800px) {
+
+  h1 {
+    font-size: 3em;
+  }
+
+  .text h1 {
+    margin-top: 0;
+  }
+
+  figure.inset {
+    float: left;
+    width: 45%;
+    display: inline;
+    margin-right: 5%;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: 100px auto;
+    box-shadow: 0 0 10px #888;
+  }
+
+  .content:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .text {
+    padding: 50px 95px 95px;
+  }
+
+}
