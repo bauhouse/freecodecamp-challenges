@@ -21,6 +21,10 @@ a:hover {
   color: #000;
 }
 
+div {
+  box-sizing: border-box;
+}
+
 h1 {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
@@ -70,8 +74,17 @@ figcaption {
 }
 
 .text {
-  padding: 10px 50px 30px;
+  padding: 10px 30px 40px;
   box-sizing: border-box;
+}
+
+.note {
+  font-size: .9em;
+  font-style: italic;
+}
+
+.required {
+  color: #f00;
 }
 
 aside p {
@@ -85,7 +98,14 @@ aside {
   border-bottom: 1px solid #eee;
 }
 
-textarea, input {
+::placeholder {
+  color: #ccc;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="number"] {
   color: black;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -93,21 +113,86 @@ textarea, input {
   box-sizing: border-box;
   padding: .75rem;
   margin: .5rem 0 1rem;
+  border: 1px solid #ccc;
 }
 
 select {
+  background: #fff;
   width: 100%;
+  font-size: 1em;
   margin: .5rem 0 1rem;
+  padding: 1em .75rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-overflow: '';
 }
 
-label {
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-options::after {
+  color: #464646;
+  font-family: "Octicons";
+  content: "\f0a3";
+  font-size: 21px;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 30%;
+}
+
+label.field {
   font-weight: 700;
+  display: block;
+  margin-top: .75em;
+}
+
+input:valid,
+select:valid,
+textarea:valid {
+  border: 1px solid #ccc;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 1px solid #f00;
+}
+
+.checkboxes,
+.radio-buttons {
+  margin: .5em 0 1.5em;
+}
+
+.checkboxes label,
+.radio-buttons label {
+  margin: 0 1em 0 0;
 }
 
 button {
   font-size: 1rem;
+  text-transform: uppercase;
+  color: #fff;
+  background: #444;
+  width: 100%;
+  margin: .5rem 0 1rem;
+  padding: 1em .75rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
+button:hover {
+  background: #000;
+}
+
+button:active {
+  background: #0ac;
+}
 
 @media (min-width: 800px) {
 
@@ -140,7 +225,7 @@ button {
   }
 
   .text {
-    padding: 50px 95px 95px;
+    padding: 85px 95px 95px;
   }
 
 }
