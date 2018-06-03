@@ -32,7 +32,7 @@ h1 {
 
 h2 {
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 1em;
   text-transform: uppercase;
   letter-spacing: .1em;
   margin-top: .5em;
@@ -43,9 +43,9 @@ figure {
 }
 
 figcaption {
-  font-size: .7rem;
-  line-height: 1.3rem;
-  padding: .5rem 0;
+  font-size: .7em;
+  line-height: 1.3em;
+  padding: .5em 0;
 }
 
 #image {
@@ -55,7 +55,7 @@ figcaption {
 }
 
 #img-caption {
-  padding: .5rem 1rem;
+  padding: .5em 1em;
 }
 
 .inset img {
@@ -66,11 +66,10 @@ figcaption {
   padding: 0;
   margin: 0;
   background: #fff;
-  border-bottom: 12px solid #131313;
 }
 
 .text {
-  padding: 10px 30px 40px;
+  padding: .5em 2em 1.5em;
   box-sizing: border-box;
 }
 
@@ -103,12 +102,12 @@ input[type="text"],
 input[type="email"],
 input[type="number"] {
   color: black;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1em;
+  line-height: 1.5em;
   width: 100%;
   box-sizing: border-box;
-  padding: .75rem;
-  margin: .5rem 0 1rem;
+  padding: .75em;
+  margin: .5em 0 1em;
   border: 1px solid #ccc;
 }
 
@@ -116,8 +115,8 @@ select {
   background: #fff;
   width: 100%;
   font-size: 1em;
-  margin: .5rem 0 1rem;
-  padding: 1em .75rem;
+  margin: .5em 0 1em;
+  padding: 1em .75em;
   border: 1px solid #ccc;
   border-radius: 0;
   -webkit-appearance: none;
@@ -133,10 +132,10 @@ select {
   color: #464646;
   font-family: "Octicons";
   content: "\f0a3";
-  font-size: 21px;
+  font-size: 1.3em;
   pointer-events: none;
   position: absolute;
-  right: 12px;
+  right: .5em;
   top: 30%;
 }
 
@@ -169,13 +168,13 @@ form.submitted textarea:invalid {
 }
 
 button {
-  font-size: 1rem;
+  font-size: 1em;
   text-transform: uppercase;
   color: #fff;
   background: #444;
   width: 100%;
-  margin: .5rem 0 1rem;
-  padding: 1em .75rem;
+  margin: .5em 0 1em;
+  padding: 1em .75em;
   border: 1px solid #ccc;
   border-radius: 0;
   -webkit-appearance: none;
@@ -212,13 +211,14 @@ button:active {
     width: 45%;
     display: inline;
     margin-right: 5%;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
   }
 
   .content {
     max-width: 800px;
     margin: 100px auto;
     box-shadow: 0 0 10px #888;
+    border-bottom: 12px solid #131313;
   }
 
   .content:after {
@@ -228,7 +228,7 @@ button:active {
   }
 
   .text {
-    padding: 85px 95px 95px;
+    padding: 5em 6em 6em;
   }
 
 }
