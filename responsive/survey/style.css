@@ -97,6 +97,12 @@ aside {
   color: #ccc;
 }
 
+input,
+select,
+textarea {
+  box-sizing: padding-box;
+}
+
 textarea,
 input[type="text"],
 input[type="email"],
@@ -233,6 +239,12 @@ button:active {
 
   .text {
     padding: 5em 6em 6em;
+  }
+
+  .checkboxes label,
+  .radio-buttons label {
+    margin: 0 1em .5em 0;
+    display: inline;
   }
 
 }
