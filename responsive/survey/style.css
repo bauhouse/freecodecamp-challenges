@@ -129,7 +129,7 @@ select {
 }
 
 .dropdown .dropdown-options::after {
-  color: #464646;
+  color: #999;
   display: block;
   background: white;
   padding: .5em .3em .4em .8em;
