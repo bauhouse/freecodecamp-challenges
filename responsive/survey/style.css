@@ -5,10 +5,6 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
-  background: #ffffff url('http://images.fanpop.com/images/image_uploads/Bridge-of-Death-monty-python-and-the-holy-grail-591679_800_441.jpg') no-repeat center center;
-  background-color: rgba(255, 255, 255, 0.50);
-  background-blend-mode: color;
-  background-size: cover;
 }
 
 a:active,
@@ -195,6 +191,13 @@ button:active {
 }
 
 @media (min-width: 800px) {
+
+  body {
+    background: #ccc url('http://images.fanpop.com/images/image_uploads/Bridge-of-Death-monty-python-and-the-holy-grail-591679_800_441.jpg') no-repeat center center;
+    background-color: rgba(255, 255, 255, 0.50);
+    background-blend-mode: color;
+    background-size: cover;
+  }
 
   h1 {
     font-size: 3em;
