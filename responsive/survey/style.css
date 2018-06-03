@@ -144,8 +144,8 @@ select {
   font-size: 1.3em;
   pointer-events: none;
   position: absolute;
-  right: .2em;
   top: .2em;
+  right: .2em;
   border-left: 1px solid #eee;
 }
 
@@ -158,13 +158,14 @@ label.field {
 form.submitted input:valid,
 form.submitted select:valid,
 form.submitted textarea:valid {
-  border: 1px solid #333;
+  border: 1px solid #ccc;
 }
 
 form.submitted input:invalid,
 form.submitted select:invalid,
 form.submitted textarea:invalid {
   border: 1px solid #f00;
+  box-shadow: 0 0 0 2px #f00;
 }
 
 .checkboxes,
@@ -174,7 +175,8 @@ form.submitted textarea:invalid {
 
 .checkboxes label,
 .radio-buttons label {
-  margin: 0 1em 0 0;
+  margin-bottom: .5em;
+  display: block;
 }
 
 button {
