@@ -14,7 +14,7 @@
   header .profile-name {
     display: flex;
     flex-direction: column;
-
+    justify-content: flex-start;
     margin-left: 10px;
   }
   header .follow-btn {
