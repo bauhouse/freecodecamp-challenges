@@ -3,7 +3,7 @@
     background: gray;
     display: flex;
     height: 100%;
-
+    flex-wrap: wrap;
   }
   #box-1 {
     background-color: dodgerblue;
