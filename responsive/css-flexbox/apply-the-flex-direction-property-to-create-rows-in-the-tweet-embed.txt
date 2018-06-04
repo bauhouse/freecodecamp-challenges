@@ -4,7 +4,7 @@
   }
   header {
     display: flex;
-
+    flex-direction: row;
   }
   header .profile-thumbnail {
     width: 50px;
@@ -39,7 +39,7 @@
   }
   footer {
     display: flex;
-
+    flex-direction: row;
   }
   footer .stats {
     display: flex;
