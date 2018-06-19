@@ -114,22 +114,23 @@ button:active {
 }
 
 #add {
-  top: 0;
+  top: 60%;
   left: 75%;
+  height: 40%;
 }
 
 #subtract {
-  top: 20%;
-  left: 75%;
-}
-
-#multiply {
   top: 40%;
   left: 75%;
 }
 
+#multiply {
+  top: 20%;
+  left: 75%;
+}
+
 #divide {
-  top: 60%;
+  top: 0;
   left: 75%;
 }
 
@@ -141,23 +142,31 @@ button:active {
 #equals {
   top: 80%;
   left: 25%;
-  width: 75%;
+  width: 50%;
 }
 
 .operator {
-  background: DarkOrange;
+  background: DodgerBlue;
 }
 
 .operator:hover {
+  background: Blue;
+}
+
+.calculate {
+  background: DarkOrange;
+}
+
+.calculate:hover {
   background: Chocolate;
 }
 
 .function {
-  background: #900;
+  background: Red;
 }
 
 .function:hover {
-  background: #600;
+  background: DarkRed;
 }
 
 
