@@ -126,7 +126,6 @@ function setMode(calculator, button) {
   var c = calculator;
   var id = button.id;
   var classes = button.classList;
-  var value = button.value;
 
   // Set mode
   if (id === "clear") {
@@ -137,7 +136,6 @@ function setMode(calculator, button) {
     c.mode = "decimal";
   } else if (classes.contains("digit")) {
     c.mode = "digit";
-    updateDisplay(value);
   } else if (classes.contains("operator")) {
     c.mode = "operator";
   }
