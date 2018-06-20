@@ -11,6 +11,7 @@ var calculator = {
   mode:"input",
   input: [],
   tape: [],
+  expression: "",
   str: "",
   x: null,
   y: null,
@@ -18,6 +19,8 @@ var calculator = {
   float: false,
   result: 0
 }
+
+init(calculator);
 
 function initCalculator() {
   var mode = "input";
@@ -86,11 +89,69 @@ function initCalculator() {
   }
 }
 
+function init(calculator) {
+  var c = calculator;
+
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i];
+    button.addEventListener("click", function( event ) {
+      var value = this.value;
+
+      // Set mode
+      c = setMode(c, this);
+
+      // Get input
+      switch (c.mode) {
+        case "clear":
+          c = clear(c);
+          break;
+        case "calculate":
+          c = enterEquals(c, value);
+          break;
+        case "decimal":
+          c = enterDecimal(c, value);
+          break;
+        case "digit":
+          c = enterDigit(c, value);
+          break;
+        case "operator":
+          c = enterOperator(c, value);
+      }
+
+    });
+  }
+}
+
+function setMode(calculator, button) {
+  var c = calculator;
+  var id = button.id;
+  var classes = button.classList;
+  var value = button.value;
+
+  // Set mode
+  if (id === "clear") {
+    c.mode = "clear";
+  } else if (id === "equals") {
+    c.mode = "calculate";
+  } else if (id === "decimal") {
+    c.mode = "decimal";
+  } else if (classes.contains("digit")) {
+    c.mode = "digit";
+    updateDisplay(value);
+  } else if (classes.contains("operator")) {
+    c.mode = "operator";
+  }
+
+  return c;
+}
+
 function clear(calculator) {
   var c = calculator;
   c.mode = "input";
   c.input = [];
   c.tape = [];
+  c.expression = "";
+  c.str = "";
   c.x = null;
   c.y = null;
   c.operator = "";
@@ -100,39 +161,56 @@ function clear(calculator) {
   return c;
 }
 
-function setMode(calculator) {
+function enterDigit(calculator, value) {
   var c = calculator;
+  c.input.push(value);
+  c.str = c.input.join('');
+  updateDisplay(c.str);
+  return c;
+}
 
-  for (var i = 0; i < buttons.length; i++) {
-    var button = buttons[i];
-    button.addEventListener("click", function( event ) {
-      var id = this.id;
-      var classes = this.classList;
-      var value = this.value;
-
-      // Set mode
-      if (id === "clear") {
-        c.mode = "clear";
-      } else if (id === "equals") {
-        c.mode = "calculate";
-      } else if (id === "decimal") {
-        c.mode = "decimal";
-      } else if (classes.contains("digit")) {
-        c.mode = "digit";
-      } else if (classes.contains("operator")) {
-        c.mode = "operator";
-      }
-    });
+function enterDecimal(calculator, value) {
+  var c = calculator;
+  if (!c.float) {
+    c.input.push(value);
+    c.float = true;
+    c.str = c.input.join('');
   }
+  updateDisplay(c.str);
+  return c;
 }
 
-function enterNum() {
-  num = "";
-  float = false;
-  input = [];
+function enterOperator(calculator, value) {
+  var c = calculator;
+  c.expression = parse(c.tape.join(' '));
+  console.log(c.expression);
+  var num = Number(c.str);
+  console.log(num);
+  c.tape.push(value);
+  updateDisplay(c.str);
+  return c;
 }
 
-function calculate(x,y,operator) {
+function enterEquals(calculator, value) {
+  var c = calculator;
+  c.str = parse(c.str);
+  console.log(c.str);
+  c.tape.push(value);
+  updateDisplay(c.str);
+  return c;
+}
+
+function enterNumber(calculator, str) {
+  var c = calculator;
+  var num = Number(str);
+  console.log(num);
+  c.input.push(value);
+  c.str = c.input.join('');
+  updateDisplay(c.str);
+  return c;
+}
+
+function calculate(x, y, operator) {
   switch (operator) {
     case "+":
       return x + y;
@@ -148,4 +226,8 @@ function calculate(x,y,operator) {
 function updateDisplay(result) {
   display.innerText = result;
   return(result);
+}
+
+function parse(str) {
+  return str.replace('*','×').replace('/', '÷');
 }
