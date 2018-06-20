@@ -88,3 +88,16 @@ function enterNum() {
   float = false;
   input = [];
 }
+
+function calculate(x,y,operator) {
+  switch (operator) {
+    case "+":
+      return x + y;
+    case "-":
+      return x - y;
+    case "*":
+      return x * y;
+    case "/":
+      return x / y;
+  }
+}
