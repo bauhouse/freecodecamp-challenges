@@ -19,69 +19,71 @@ var calculator = {
   result: 0
 }
 
-var mode = "input";
-var input = [];
-var tape = [];
-var num = "";
-var operator = "";
-var float = false;
-var result = 0;
+function initCalculator() {
+  var mode = "input";
+  var input = [];
+  var tape = [];
+  var num = "";
+  var operator = "";
+  var float = false;
+  var result = 0;
 
-for (var i = 0; i < buttons.length; i++) {
-  var button = buttons[i];
-  button.addEventListener("click", function( event ) {
-    var id = this.id;
-    var classes = this.classList;
-    var value = this.value;
-    var str = value;
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i];
+    button.addEventListener("click", function( event ) {
+      var id = this.id;
+      var classes = this.classList;
+      var value = this.value;
+      var str = value;
 
-    // Input type
-    if (id === "clear") {
-      clear();
-    }
-    if (id === "decimal") {
-     if (!float) {
-        input.push(value);
-        float = true;
-        str = input.join('');
-        display.innerText = str;
+      // Input type
+      if (id === "clear") {
+        clear();
       }
-      mode = "input";
-    }
-    if (classes.contains("digit")) {
-      input.push(value);
-      str = input.join('');
-      num = Number(str);
-      display.innerText = str;
-      mode = "input";
-    }
-    if (classes.contains("operator")) {
-      str = str.replace('*','×').replace('/', '÷');
-      if (mode === "input") {
+      if (id === "decimal") {
+       if (!float) {
+          input.push(value);
+          float = true;
+          str = input.join('');
+          display.innerText = str;
+        }
+        mode = "input";
+      }
+      if (classes.contains("digit")) {
+        input.push(value);
+        str = input.join('');
+        num = Number(str);
+        display.innerText = str;
+        mode = "input";
+      }
+      if (classes.contains("operator")) {
+        str = str.replace('*','×').replace('/', '÷');
+        if (mode === "input") {
+          console.log(num);
+          tape.push(num);
+        }
+        console.log(str);
+        tape.push(value);
+        enterNum();
+        mode = "operator";
+      }
+      if (id === "equals") {
+        mode = "calculate";
         console.log(num);
         tape.push(num);
+        var expression = tape.join(' ');
+        console.log(expression);
+        result = eval(expression);
+        var str = expression.replace('*','×').replace('/', '÷');
+        console.log(str);
+        console.log(value + ' ' + result);
+        if (result.toString().length > 12) {
+          result = Number(result.toFixed(9));
+        }
+        display.innerText = result;
       }
-      console.log(str);
-      tape.push(value);
-      enterNum();
-      mode = "operator";
-    }
-    if (id === "equals") {
-      mode = "calculate";
-      console.log(num);
-      tape.push(num);
-      var expression = tape.join(' ');
-      console.log(expression);
-      result = eval(expression);
-      var str = expression.replace('*','×').replace('/', '÷');
-      console.log(str);
-      console.log(value + ' ' + result);
-      if (result.toString().length > 12) {
-        result = Number(result.toFixed(9));
-      }
-      display.innerText = result;
-    }
-  });
+    });
+  }
 }
 
 function clear(calculator) {
