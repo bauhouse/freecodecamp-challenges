@@ -7,6 +7,18 @@
 var display = document.getElementById("display");
 var buttons = document.getElementsByClassName("button");
 
+var calculator = {
+  mode:"input",
+  input: [],
+  tape: [],
+  str: "",
+  x: null,
+  y: null,
+  operator: "",
+  float: false,
+  result: 0
+}
+
 var mode = "input";
 var input = [];
 var tape = [];
@@ -19,22 +31,22 @@ for (var i = 0; i < buttons.length; i++) {
   var button = buttons[i];
   button.addEventListener("click", function( event ) {
     var id = this.id;
+    var classes = this.classList;
     var value = this.value;
     var str = value;
-    var classes = this.classList;
 
     // Input type
     if (id === "clear") {
       clear();
     }
     if (id === "decimal") {
-      mode = "input";
-      if (!float) {
+     if (!float) {
         input.push(value);
         float = true;
         str = input.join('');
         display.innerText = str;
       }
+      mode = "input";
     }
     if (classes.contains("digit")) {
       input.push(value);
@@ -72,15 +84,43 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-function clear() {
-  mode = "input";
-  input = [];
-  tape = [];
-  num = "";
-  float = false;
-  result = 0;
-  display.innerText = result;
-  return result;
+function clear(calculator) {
+  var c = calculator;
+  c.mode = "input";
+  c.input = [];
+  c.tape = [];
+  c.x = null;
+  c.y = null;
+  c.operator = "";
+  c.float = false;
+  c.result = 0;
+  updateDisplay(c.result);
+  return c;
+}
+
+function setMode(calculator) {
+  var c = calculator;
+  
+  for (var i = 0; i < buttons.length; i++) {
+  var button = buttons[i];
+  button.addEventListener("click", function( event ) {
+    var id = this.id;
+    var classes = this.classList;
+    var value = this.value;
+
+    // Set mode
+    if (id === "clear") {
+      c.mode = "clear";
+    } else if (id === "equals") {
+      c.mode = "calculate";
+    } else if (id === "decimal") {
+      c.mode = "decimal";
+    } else if (classes.contains("digit")) {
+      c.mode = "digit";
+    } else if (classes.contains("operator")) {
+      c.mode = "operator";
+    }
+  });
 }
 
 function enterNum() {
@@ -100,4 +140,9 @@ function calculate(x,y,operator) {
     case "/":
       return x / y;
   }
+}
+
+function updateDisplay(result) {
+  display.innerText = result;
+  return(result);
 }
