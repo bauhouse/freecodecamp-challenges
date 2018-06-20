@@ -41,16 +41,22 @@ button {
   margin: 0;
   padding: .5em .75em;
   border-radius: 0;
+  border: 1px solid #000;
+  box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 button:hover {
-  background: #222;
+  background: #333;
 }
 
 button:active {
-  background: #0ac;
+  background: #222;
+}
+
+button:focus {
+  outline: 0;
 }
 
 .button {
@@ -145,12 +151,22 @@ button:active {
   width: 50%;
 }
 
+.operator,
+.calculate {
+  font-size: 4.5em;
+  padding-top: .3em;
+}
+
 .operator {
   background: DodgerBlue;
 }
 
 .operator:hover {
-  background: Blue;
+  background: #06c;
+}
+
+.operator:active {
+  background: #004d99;
 }
 
 .calculate {
@@ -158,7 +174,11 @@ button:active {
 }
 
 .calculate:hover {
-  background: Chocolate;
+  background: #cc7000;
+}
+
+.calculate:active {
+  background: #995400;
 }
 
 .function {
@@ -166,9 +186,12 @@ button:active {
 }
 
 .function:hover {
-  background: DarkRed;
+  background: #c00;
 }
 
+.function:active {
+  background: #900;
+}
 
 
 /*
@@ -183,7 +206,7 @@ Display
   background: #000;
   text-align: right;
   margin: 0;
-  padding: .5em 1em;
+  padding: 1em 1em;
   position: absolute;
   width: 100%;
   height: 20%;
