@@ -100,27 +100,28 @@ function clear(calculator) {
 
 function setMode(calculator) {
   var c = calculator;
-  
-  for (var i = 0; i < buttons.length; i++) {
-  var button = buttons[i];
-  button.addEventListener("click", function( event ) {
-    var id = this.id;
-    var classes = this.classList;
-    var value = this.value;
 
-    // Set mode
-    if (id === "clear") {
-      c.mode = "clear";
-    } else if (id === "equals") {
-      c.mode = "calculate";
-    } else if (id === "decimal") {
-      c.mode = "decimal";
-    } else if (classes.contains("digit")) {
-      c.mode = "digit";
-    } else if (classes.contains("operator")) {
-      c.mode = "operator";
-    }
-  });
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i];
+    button.addEventListener("click", function( event ) {
+      var id = this.id;
+      var classes = this.classList;
+      var value = this.value;
+
+      // Set mode
+      if (id === "clear") {
+        c.mode = "clear";
+      } else if (id === "equals") {
+        c.mode = "calculate";
+      } else if (id === "decimal") {
+        c.mode = "decimal";
+      } else if (classes.contains("digit")) {
+        c.mode = "digit";
+      } else if (classes.contains("operator")) {
+        c.mode = "operator";
+      }
+    });
+  }
 }
 
 function enterNum() {
