@@ -31,7 +31,7 @@ Buttons
 }
 
 button {
-  font-size: 3em;
+  font-size: 2em;
   color: #fff;
   background: #444;
   display: block;
@@ -153,7 +153,7 @@ button:focus {
 
 .operator,
 .calculate {
-  font-size: 4.5em;
+  font-size: 2em;
   padding-top: .3em;
 }
 
@@ -201,7 +201,7 @@ Display
 
 #display {
   font-weight: normal;
-  font-size: 5em;
+  font-size: 2em;
   color: #fff;
   background: #000;
   text-align: right;
@@ -213,4 +213,23 @@ Display
   top: 0;
   right: 0;
   box-sizing: border-box;
+}
+
+
+@media (min-width: 750px) {
+
+  #display {
+    font-size: 5em;
+  }
+
+  button {
+    font-size: 3em;
+  }
+
+  .operator,
+  .calculate {
+    font-size: 4.5em;
+  }
+
+
 }
