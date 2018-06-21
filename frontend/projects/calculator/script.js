@@ -207,7 +207,7 @@ function resetOperator() {
   operator = "";
 }
 
-function printTape(c) {
+function printTape() {
   expression = tape.join(' ');
   expression = translate(expression);
   console.log(expression);
@@ -228,7 +228,7 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
-function debugCalculator(c) {
+function debugCalculator() {
   console.log("mode: " + mode);
   console.log("type: " + type);
   console.log("input: " + input);
