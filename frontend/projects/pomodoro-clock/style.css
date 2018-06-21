@@ -1,0 +1,158 @@
+/*
+====================================
+
+Pomodoro Clock CSS
+
+====================================
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  font-family: Helvetica, sans-serif;
+  vertical-align: baseline;
+}
+
+
+/*
+------------------------------------
+Buttons
+------------------------------------ */
+
+#panel {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 80%;
+}
+
+button {
+  font-size: 2em;
+  color: #fff;
+  background: #444;
+  display: block;
+  width: 25%;
+  height: 20%;
+  float: left;
+  margin: 0;
+  padding: .5em .75em;
+  border-radius: 0;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover {
+  background: #333;
+}
+
+button:active {
+  background: #222;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.button {
+  position: absolute;
+}
+
+#zero {
+  top: 60%;
+  left: 0;
+  width: 50%;
+}
+
+#one {
+  top: 40%;
+  left: 0;
+}
+
+.operator,
+.calculate {
+  font-size: 2em;
+  padding-top: .3em;
+}
+
+.operator {
+  background: DodgerBlue;
+}
+
+.operator:hover {
+  background: #06c;
+}
+
+.operator:active {
+  background: #004d99;
+}
+
+.calculate {
+  background: DarkOrange;
+}
+
+.calculate:hover {
+  background: #cc7000;
+}
+
+.calculate:active {
+  background: #995400;
+}
+
+.function {
+  background: Red;
+}
+
+.function:hover {
+  background: #c00;
+}
+
+.function:active {
+  background: #900;
+}
+
+
+/*
+------------------------------------
+Display
+------------------------------------ */
+
+#display {
+  font-weight: normal;
+  font-size: 2em;
+  color: #fff;
+  background: #000;
+  text-align: right;
+  margin: 0;
+  padding: 1em 1em;
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+
+@media (min-width: 600px) {
+
+  #display {
+    font-size: 5em;
+  }
+
+  button {
+    font-size: 3em;
+  }
+
+  .operator,
+  .calculate {
+    font-size: 4.5em;
+  }
+
+
+}

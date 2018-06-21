@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Pomodoro Clock</title>
+    <meta name="description" content="A Pomodoro Clock" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="style.css" media="screen" />
+  </head>
+  <body>
+    <main id="clock" class="content">
+      <h1 id="display">25:00</h1>
+      <div id="panel" class="buttons">
+        <div id="session">
+          <button id="decrement-session" class="increment button" value="-1"></button>
+          <span id="session-length">25</span>
+          <button id="increment-session" class="increment button" value="1">+</button>
+        </div>
+        <div id="break">
+          <button id="decrement-break" class="increment button" value="-1"></button>
+          <span id="break-length">5</span>
+          <button id="increment-break" class="increment button" value="1">+</button>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
