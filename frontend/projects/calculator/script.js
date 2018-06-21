@@ -208,10 +208,6 @@ function resetInput() {
   float = false;
 }
 
-function resetOperator() {
-  operator = "";
-}
-
 function printTape() {
   expression = tape.join(' ');
   expression = translate(expression);
