@@ -32,7 +32,6 @@ Buttons
 
 button,
 .duration {
-  font-size: 1.5em;
   text-align: center;
   color: #fff;
   background: #444;
@@ -101,7 +100,6 @@ button:focus {
 }
 
 .addition {
-  font-size: 2em;
   padding-top: .3em;
 }
 
@@ -137,7 +135,6 @@ label {
   top: 0;
   left: 25%;
   width: 50%;
-  font-size: 2em;
   padding-top: .7em;
 }
 
@@ -193,7 +190,7 @@ Display
 
 #display {
   font-weight: normal;
-  font-size: 6em;
+  font-size: 2em;
   color: #fff;
   background: #000;
   text-align: center;
@@ -210,14 +207,15 @@ Display
   justify-content: center;
 }
 
-@media (min-width: 600px) {
+@media (min-height: 480px) and (min-width: 600px) {
 
   #display {
-    font-size: 8em;
+    font-size: 4em;
   }
 
-  button {
-    font-size: 3em;
+  .duration,
+  .button {
+    font-size: 1.5em;
   }
 
 }
