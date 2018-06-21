@@ -117,6 +117,12 @@ label {
   box-sizing: border-box;
 }
 
+#timer-label {
+  top: 3%;
+  z-index: 2;
+  background: none;
+}
+
 #break-label {
   top: 37.5%;
 }
