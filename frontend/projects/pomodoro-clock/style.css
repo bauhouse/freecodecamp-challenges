@@ -135,7 +135,6 @@ label {
   top: 0;
   left: 25%;
   width: 50%;
-  padding-top: .7em;
 }
 
 #session-length {
@@ -207,7 +206,7 @@ Display
   justify-content: center;
 }
 
-@media (min-height: 480px) and (min-width: 600px) {
+@media (min-width: 600px) and (orientation: portrait) {
 
   #display {
     font-size: 4em;
@@ -216,6 +215,19 @@ Display
   .duration,
   .button {
     font-size: 1.5em;
+  }
+
+}
+
+@media (min-width: 750px) {
+
+  #display {
+    font-size: 8em;
+  }
+
+  .duration,
+  .button {
+    font-size: 3em;
   }
 
 }
