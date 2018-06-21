@@ -179,10 +179,9 @@ function enterOperator(value, c) {
   enterNumber(c);
   c.tape.push(value);
   resetInput(c);
-  calculateResult(c);
-  displayResult(c.result);
-  c.x = c.result;
-  resetOperator(c);
+  // calculateResult(c);
+  // displayResult(c.result);
+  // c.x = c.result;
   return c;
 }
 
