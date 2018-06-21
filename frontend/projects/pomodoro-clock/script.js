@@ -117,6 +117,9 @@ function formatSeconds(num) {
 }
 
 function reset() {
+  if (status == 1) {
+    timerSwitch(0);
+  }
   minutes = sessionLength;
   seconds = 0;
   updateDisplay();
