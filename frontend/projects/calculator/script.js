@@ -85,7 +85,6 @@ function clear() {
   float = false;
   result = 0;
   displayResult(result);
-  return c;
 }
 
 function enterDigit(value) {
@@ -106,6 +105,7 @@ function enterDecimal(value) {
     input.push(value);
     float = true;
     str = input.join('');
+    console.log('got to here');
   }
   displayResult(str);
   mode = "input";
