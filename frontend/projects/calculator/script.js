@@ -8,7 +8,8 @@ var display = document.getElementById("display");
 var buttons = document.getElementsByClassName("button");
 
 var calculator = {
-  mode:"input",
+  mode: "",
+  type: "",
   input: [],
   tape: [],
   expression: "",
@@ -19,7 +20,6 @@ var calculator = {
   float: false,
   result: 0
 }
-
 init(calculator);
 
 function initCalculator() {
@@ -89,63 +89,60 @@ function initCalculator() {
   }
 }
 
-function init(calculator) {
-  var c = calculator;
-
+function init(c) {
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     button.addEventListener("click", function( event ) {
       var value = this.value;
 
-      // Set mode
-      c = setMode(c, this);
+      // Get input type
+      c = inputType(this, c);
 
       // Get input
-      switch (c.mode) {
+      switch (c.type) {
         case "clear":
           c = clear(c);
           break;
         case "calculate":
-          c = enterEquals(c, value);
+          c = enterEquals(value, c);
           break;
         case "decimal":
-          c = enterDecimal(c, value);
+          c = enterDecimal(value, c);
           break;
         case "digit":
-          c = enterDigit(c, value);
+          c = enterDigit(value, c);
           break;
         case "operator":
-          c = enterOperator(c, value);
+          c = enterOperator(value, c);
       }
 
     });
   }
 }
 
-function setMode(calculator, button) {
-  var c = calculator;
+function inputType(button, c) {
   var id = button.id;
   var classes = button.classList;
 
-  // Set mode
+  // Get input type
   if (id === "clear") {
-    c.mode = "clear";
+    c.type = "clear";
   } else if (id === "equals") {
-    c.mode = "calculate";
+    c.type = "calculate";
   } else if (id === "decimal") {
-    c.mode = "decimal";
+    c.type = "decimal";
   } else if (classes.contains("digit")) {
-    c.mode = "digit";
+    c.type = "digit";
   } else if (classes.contains("operator")) {
-    c.mode = "operator";
+    c.type = "operator";
   }
 
   return c;
 }
 
-function clear(calculator) {
-  var c = calculator;
-  c.mode = "input";
+function clear(c) {
+  c.mode = "";
+  c.type = "";
   c.input = [];
   c.tape = [];
   c.expression = "";
@@ -155,77 +152,131 @@ function clear(calculator) {
   c.operator = "";
   c.float = false;
   c.result = 0;
-  updateDisplay(c.result);
+  displayResult(c.result);
   return c;
 }
 
-function enterDigit(calculator, value) {
-  var c = calculator;
+function enterDigit(value, c) {
+  c.mode = "input";
   c.input.push(value);
   c.str = c.input.join('');
-  updateDisplay(c.str);
+  displayResult(c.str);
   return c;
 }
 
-function enterDecimal(calculator, value) {
-  var c = calculator;
+function enterDecimal(value, c) {
   if (!c.float) {
     c.input.push(value);
     c.float = true;
     c.str = c.input.join('');
   }
-  updateDisplay(c.str);
+  displayResult(c.str);
   return c;
 }
 
-function enterOperator(calculator, value) {
-  var c = calculator;
-  c.expression = parse(c.tape.join(' '));
-  console.log(c.expression);
+function enterOperator(value, c) {
+  c.operator = value;
+  enterNumber(c);
+  c.tape.push(value);
+  resetInput(c);
+  calculateResult(c);
+  displayResult(c.result);
+  c.x = c.result;
+  resetOperator(c);
+  return c;
+}
+
+function enterEquals(value, c) {
+  enterNumber(c);
+  calculateResult(c);
+  displayResult(c.result);
+  c.x = c.result;
+  printTape(c);
+  debugCalculator(c);
+  return c;
+}
+
+function enterNumber(c) {
   var num = Number(c.str);
-  console.log(num);
-  c.tape.push(value);
-  updateDisplay(c.str);
+  c.tape.push(num);
+  if (c.x) {
+    c.y = num;
+  } else {
+    c.x = num;
+  }
   return c;
 }
 
-function enterEquals(calculator, value) {
-  var c = calculator;
-  c.str = parse(c.str);
-  console.log(c.str);
-  c.tape.push(value);
-  updateDisplay(c.str);
-  return c;
-}
-
-function enterNumber(calculator, str) {
-  var c = calculator;
-  var num = Number(str);
-  console.log(num);
-  c.input.push(value);
-  c.str = c.input.join('');
-  updateDisplay(c.str);
-  return c;
+function calculateResult(c) {
+  if (c.y) {
+    if (c.operator) {
+      c.result = calculate(c.x, c.y, c.operator);
+    }
+  } else if (c.x) {
+    c.result = c.x;
+  }
+  return c.result;
 }
 
 function calculate(x, y, operator) {
+  var result = null;
   switch (operator) {
     case "+":
-      return x + y;
+      result = x + y;
+      break;
     case "-":
-      return x - y;
+      result = x - y;
+      break;
     case "*":
-      return x * y;
+      result = x * y;
+      break;
     case "/":
-      return x / y;
+      result = x / y;
   }
+  return displayResult(result);
 }
 
-function updateDisplay(result) {
+function displayResult(result) {
+  if (result.toString().length > 13) {
+    result = Number(result.toString().slice(0,13));
+  }
   display.innerText = result;
-  return(result);
+  return result;
 }
 
-function parse(str) {
+function translate(str) {
   return str.replace('*','×').replace('/', '÷');
+}
+
+function resetInput(c) {
+  c.input = [];
+  c.float = false;
+  return c;
+}
+
+function resetOperator(c) {
+  c.operator = "";
+  return c;
+}
+
+function printTape(c) {
+  c.expression = c.tape.join(' ');
+  c.expression = translate(c.expression);
+  console.log(c.expression);
+  console.log("= " + c.result);
+  return c.expression;
+}
+
+function debugCalculator(c) {
+  console.log("mode: " + c.mode);
+  console.log("type: " + c.type);
+  console.log("input: " + c.input);
+  console.log("tape: " + c.tape);
+  console.log("expression: " + c.expression);
+  console.log("str: " + c.str);
+  console.log("x: " + c.x);
+  console.log("y: " + c.y);
+  console.log("operator: " + c.operator);
+  console.log("float: " + c.float);
+  console.log("result: " + c.result);
 }
