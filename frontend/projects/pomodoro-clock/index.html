@@ -10,17 +10,22 @@
   </head>
   <body>
     <main id="clock" class="content">
-      <h1 id="display">25:00</h1>
+      <h1 id="display"><span id="time-left">25:00</span></h1>
       <div id="panel" class="buttons">
         <div id="session">
-          <button id="decrement-session" class="increment button" value="-1"></button>
-          <span id="session-length">25</span>
-          <button id="increment-session" class="increment button" value="1">+</button>
+          <label id="session-label">Session Length</label>
+          <button id="session-decrement" class="addition button" value="-1">–</button>
+          <span id="session-length" class="duration">25</span>
+          <button id="session-increment" class="addition button" value="1">+</button>
         </div>
         <div id="break">
-          <button id="decrement-break" class="increment button" value="-1"></button>
-          <span id="break-length">5</span>
-          <button id="increment-break" class="increment button" value="1">+</button>
+          <label id="break-label">Break Length</label>          <button id="break-decrement" class="addition button" value="-1">–</button>
+          <span id="break-length" class="duration">5</span>
+          <button id="break-increment" class="addition button" value="1">+</button>
+        </div>
+        <div id="timer">
+          <button id="start_stop" class="start button" value="start">Start</button>
+          <button id="reset" class="reset button" value="reset">Reset</button>
         </div>
       </div>
     </main>
