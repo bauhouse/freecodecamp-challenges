@@ -188,11 +188,16 @@ function calculate(x, y, operator) {
 }
 
 function displayResult(result) {
-  if (result.toString().length > 13) {
-    result = Number(result.toString().slice(0,13));
+  var resultStr = result.toString();
+
+  if (resultStr.length > 13) {
+    result = Number(resultStr.slice(0,13));
   }
-  if (result.toString()[0] == '.') {
-    result = '0' + result.toString();
+  if (resultStr[0] == '0') {
+    result = Number(resultStr).toString();
+  }
+  if (resultStr[0] == '.') {
+    result = '0' + resultStr;
   }
   display.innerText = result;
   return result;
