@@ -30,26 +30,20 @@ function init() {
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     button.addEventListener("click", function( event ) {
-      var value = this.value;
-
-      // Get input type
-      inputType(this);
-
-      // Get input
-      getInput();
+      getInput(this);
     });
   }
+  keyboard();
 }
 
 function inputType(button) {
   var id = button.id;
   type = id;
-  console.log(id);
   return type;
 }
 
-function getInput() {
-  switch (type) {
+function getInput(button) {
+  switch (inputType(button)) {
     case "start_stop":
       startStop();
       break;
@@ -67,6 +61,37 @@ function getInput() {
       break;
     case "break-decrement":
       changeBreak(-1);
+  }
+}
+
+function keyboard() {
+  keyboardEvents("keydown");
+  keyboardEvents("keyup");
+}
+
+function keyboardEvents(keyEvent) {
+  document.addEventListener(keyEvent, function (event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+    var key = event.key || event.keyCode;
+
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      if (button.dataset.key == key) {
+        handleKeyboardEvent(button, keyEvent);
+      }
+    }
+  });
+}
+
+function handleKeyboardEvent(button, keyEvent) {
+  if (keyEvent == "keydown") {
+    button.classList.add("select");
+    getInput(button);
+  }
+  if (keyEvent == "keyup") {
+    button.classList.remove("select");
   }
 }
 
