@@ -24,11 +24,13 @@ function init() {
 
 function getInput(pad) {
   key = pad.id;
-  playSound(key);
+  playSound(pad);
 }
 
-function playSound(key) {
-  console.log("Play sound " + key);
+function playSound(pad) {
+  sound = pad.querySelector("audio");
+  display.innerText = sound.id;
+  sound.play();
 }
 
 function keyboard() {
