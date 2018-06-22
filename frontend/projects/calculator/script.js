@@ -26,20 +26,13 @@ function init() {
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     button.addEventListener("click", function( event ) {
-      var value = this.value;
-
-      // Get input type
-      inputType(this);
-
-      // Enter value
-      enter(value);
-
+      getInput(this);
     });
   }
   keyboard();
 }
 
-function inputType(button) {
+function getInput(button) {
   var id = button.id;
   var classes = button.classList;
 
@@ -55,6 +48,9 @@ function inputType(button) {
   } else if (classes.contains("operator")) {
     type = "operator";
   }
+
+  // Enter value
+  enter(button.value);
 }
 
 function enter(value) {
@@ -101,8 +97,7 @@ function keyboard() {
       var button = buttons[i];
       if (button.value == key || key == "Enter" && button.value == "=") {
         button.classList.remove("select");
-        inputType(button);
-        enter(button.value);
+        getInput(button);
       }
     }
   });
