@@ -157,27 +157,39 @@ label {
   background: #004d99;
 }
 
-.calculate {
+#reset {
   background: DarkOrange;
 }
 
-.calculate:hover {
+#reset:hover {
   background: #cc7000;
 }
 
-.calculate:active {
+#reset:active {
   background: #995400;
 }
 
-.function {
+.start {
+  background: #00b300;
+}
+
+.start:hover {
+  background: #090;
+}
+
+.start:active {
+  background: #008000;
+}
+
+.stop {
   background: Red;
 }
 
-.function:hover {
+.stop:hover {
   background: #c00;
 }
 
-.function:active {
+.stop:active {
   background: #900;
 }
 
