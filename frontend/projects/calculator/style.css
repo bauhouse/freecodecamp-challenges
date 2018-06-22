@@ -126,7 +126,6 @@ button:focus {
 #add {
   top: 60%;
   left: 75%;
-  height: 40%;
 }
 
 #subtract {
@@ -152,7 +151,7 @@ button:focus {
 #equals {
   top: 80%;
   left: 25%;
-  width: 50%;
+  width: 75%;
 }
 
 .operator,
@@ -325,7 +324,6 @@ button {
 #add {
   top: 75%;
   left: 60%;
-  height: 25%;
 }
 
 #subtract {
