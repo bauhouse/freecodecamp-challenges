@@ -245,15 +245,6 @@ Media Queries
 
 @media (orientation: portrait) {
 
-  #display {
-    height: 20%;
-  }
-
-  #panel {
-    top: 20%;
-    height: 80%;
-  }
-
   .button {
     position: absolute;
     width: 25%;
