@@ -51,6 +51,7 @@ button:hover {
   background: #333;
 }
 
+button.select,
 button:active {
   background: #222;
 }
@@ -165,6 +166,7 @@ button:focus {
   background: #06c;
 }
 
+.operator.select,
 .operator:active {
   background: #004d99;
 }
@@ -177,6 +179,7 @@ button:focus {
   background: #cc7000;
 }
 
+.calculate.select,
 .calculate:active {
   background: #995400;
 }
@@ -189,6 +192,7 @@ button:focus {
   background: #c00;
 }
 
+.function.select,
 .function:active {
   background: #900;
 }

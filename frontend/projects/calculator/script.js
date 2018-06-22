@@ -31,26 +31,12 @@ function init() {
       // Get input type
       inputType(this);
 
-      // Get input
-      switch (type) {
-        case "clear":
-          clear();
-          break;
-        case "calculate":
-          enterEquals(value);
-          break;
-        case "decimal":
-          enterDecimal(value);
-          break;
-        case "digit":
-          enterDigit(value);
-          break;
-        case "operator":
-          enterOperator(value);
-      }
+      // Enter value
+      enter(value);
 
     });
   }
+  keyboard();
 }
 
 function inputType(button) {
@@ -69,6 +55,58 @@ function inputType(button) {
   } else if (classes.contains("operator")) {
     type = "operator";
   }
+}
+
+function enter(value) {
+  switch (type) {
+    case "clear":
+      clear();
+      break;
+    case "calculate":
+      enterEquals(value);
+      break;
+    case "decimal":
+      enterDecimal(value);
+      break;
+    case "digit":
+      enterDigit(value);
+      break;
+    case "operator":
+      enterOperator(value);
+  }
+}
+
+function keyboard() {
+  document.addEventListener('keydown', function (event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+    var key = event.key || event.keyCode;
+
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      if (button.value == key || key == "Enter" && button.value == "=") {
+        button.classList.add("select");
+      }
+    }
+  });
+
+  document.addEventListener('keyup', function (event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+    var key = event.key || event.keyCode;
+
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      if (button.value == key || key == "Enter" && button.value == "=") {
+        button.classList.remove("select");
+        inputType(button);
+        enter(button.value);
+      }
+    }
+  });
+
 }
 
 function clear() {
@@ -105,7 +143,6 @@ function enterDecimal(value) {
     input.push(value);
     float = true;
     str = input.join('');
-    console.log('got to here');
   }
   displayResult(str);
   mode = "input";
