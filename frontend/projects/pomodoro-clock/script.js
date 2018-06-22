@@ -12,6 +12,7 @@ var displayBreak = document.getElementById("break-length");
 var startStopButton = document.getElementById("start_stop");
 var resetButton = document.getElementById("reset");
 var buttons = document.getElementsByClassName("button");
+var alarm = document.getElementById("beep");
 
 var mode = "session";
 var sessionLength = 25;
@@ -112,6 +113,7 @@ function timer() {
 }
 
 function zero() {
+  beep.play();
   modeSwitch();
 }
 
