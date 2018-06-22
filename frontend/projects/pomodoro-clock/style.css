@@ -187,15 +187,16 @@ button,
   border: 1px solid #000;
 }
 
-.operator {
+.addition {
   background: DodgerBlue;
 }
 
-.operator:hover {
+.addition:hover {
   background: #06c;
 }
 
-.operator:active {
+.addition.select,
+.addition:active {
   background: #004d99;
 }
 
@@ -207,6 +208,7 @@ button,
   background: #cc7000;
 }
 
+#reset.select,
 #reset:active {
   background: #995400;
 }
@@ -219,6 +221,7 @@ button,
   background: #090;
 }
 
+.start.select,
 .start:active {
   background: #008000;
 }
@@ -231,6 +234,7 @@ button,
   background: #c00;
 }
 
+.stop.select,
 .stop:active {
   background: #900;
 }
