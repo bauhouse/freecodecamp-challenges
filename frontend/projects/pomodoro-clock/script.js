@@ -96,7 +96,6 @@ function timerSwitch(on) {
 
 function timer() {
   if (minutes == 0 && seconds == 0) {
-    timerSwitch(0);
     updateDisplay();
     return zero();
   }
@@ -163,8 +162,11 @@ function reset() {
 function changeSession(value) {
   if (sessionLength + value > 0 && sessionLength + value <= 60) {
     sessionLength += value;
+    if (mode == "session") {
+      minutes = sessionLength;
+      updateDisplay();
+    }
     displaySession.innerText = sessionLength;
-    reset();
   }
   return sessionLength;
 }
@@ -172,6 +174,10 @@ function changeSession(value) {
 function changeBreak(value) {
   if (breakLength + value > 0 && breakLength + value <= 60) {
     breakLength += value;
+    if (mode == "break") {
+      minutes = breakLength;
+      updateDisplay();
+    }
     displayBreak.innerText = breakLength;
   }
   return breakLength;
