@@ -19,6 +19,29 @@ body {
 
 /*
 ------------------------------------
+Display
+------------------------------------ */
+
+#display {
+  font-weight: normal;
+  font-size: 2em;
+  text-align: center;
+  margin: 0;
+  padding: .5em;
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+------------------------------------
 Buttons
 ------------------------------------ */
 
@@ -32,9 +55,8 @@ Buttons
 
 button,
 .duration {
+  font-size: 1.2em;
   text-align: center;
-  color: #fff;
-  background: #444;
   display: block;
   width: 25%;
   height: 25%;
@@ -42,7 +64,6 @@ button,
   margin: 0;
   padding: .5em .75em;
   border-radius: 0;
-  border: 1px solid #000;
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -107,8 +128,6 @@ label {
   font-size: .9em;
   text-align: center;
   text-transform: uppercase;
-  color: #666;
-  background: #222;
   width: 100%;
   height: 12.5%;
   position: absolute;
@@ -143,6 +162,29 @@ label {
 
 #break-length {
   top: 50%;
+}
+
+
+/*
+------------------------------------
+Color
+------------------------------------ */
+
+#display {
+  color: #fff;
+  background: #000;
+}
+
+label {
+  color: #666;
+  background: #222;
+}
+
+button,
+.duration {
+  color: #fff;
+  background: #444;
+  border: 1px solid #000;
 }
 
 .operator {
@@ -196,27 +238,8 @@ label {
 
 /*
 ------------------------------------
-Display
+Media Queries
 ------------------------------------ */
-
-#display {
-  font-weight: normal;
-  font-size: 2em;
-  color: #fff;
-  background: #000;
-  text-align: center;
-  margin: 0;
-  padding: .5em;
-  position: absolute;
-  width: 100%;
-  height: 40%;
-  top: 0;
-  right: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 @media (min-width: 600px) and (orientation: portrait) {
 
@@ -226,7 +249,7 @@ Display
 
   .duration,
   .button {
-    font-size: 1.5em;
+    font-size: 2em;
   }
 
 }
