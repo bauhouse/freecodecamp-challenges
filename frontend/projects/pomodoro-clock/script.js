@@ -6,6 +6,7 @@
 
 var display = document.getElementById("display");
 var displayTime = document.getElementById("time-left");
+var timerLabel = document.getElementById("timer-label");
 var displaySession = document.getElementById("session-length");
 var displayBreak = document.getElementById("break-length");
 var startStopButton = document.getElementById("start_stop");
@@ -73,18 +74,28 @@ function startStop() {
 }
 
 function timerSwitch(on) {
+  if (minutes == 0 && seconds == 0) {
+    return;
+  }
   if (on == 1) {
     countdown = setInterval(timer, 1000);
     status = 1;
+    startStopButton.innerText = "Stop";
     console.log("Timer started");
   } else {
     clearInterval(countdown);
     status = 0;
+    startStopButton.innerText = "Start";
     console.log("Timer stopped");
   }
 }
 
 function timer() {
+  if (minutes == 0 && seconds == 0) {
+    timerSwitch(0);
+    updateDisplay();
+    return zero();
+  }
   if (minutes >= 0) {
     if (seconds > 0) {
       seconds -= 1;
@@ -95,15 +106,33 @@ function timer() {
       updateDisplay()
     }
   }
-  if (minutes == 0 && seconds == 0) {
-    timerSwitch(0);
-    return console.log("Countdown completed");
+}
+
+function zero() {
+  modeSwitch();
+}
+
+function modeSwitch() {
+  if (mode == "session") {
+    console.log("Session finished");
+    timerLabel.innerText = "Break";
+    minutes = breakLength;
+    updateDisplay();
+    mode = "break";
+    return;
+  } else {
+    console.log("Break finished");
+    timerLabel.innerText = "Session";
+    minutes = sessionLength;
+    updateDisplay();
+    mode = "session";
+    return;
   }
 }
 
 function updateDisplay() {
   display = minutes + ":" + formatSeconds(seconds);
-  displayTime.innerHTML = display;
+  displayTime.innerText = display;
   console.log(display);
   return display;
 }
@@ -120,13 +149,15 @@ function reset() {
   if (status == 1) {
     timerSwitch(0);
   }
+  mode = "session";
+  timerLabel.innerText = "Session";
   minutes = sessionLength;
   seconds = 0;
   updateDisplay();
 }
 
 function changeSession(value) {
-  if (sessionLength + value >= 0) {
+  if (sessionLength + value > 0 && sessionLength + value <= 60) {
     sessionLength += value;
     displaySession.innerText = sessionLength;
     reset();
@@ -135,7 +166,7 @@ function changeSession(value) {
 }
 
 function changeBreak(value) {
-  if (breakLength + value >= 0) {
+  if (breakLength + value > 0 && breakLength + value <= 60) {
     breakLength += value;
     displayBreak.innerText = breakLength;
   }
