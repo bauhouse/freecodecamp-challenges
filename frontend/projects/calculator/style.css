@@ -235,5 +235,114 @@ Display
     font-size: 4.5em;
   }
 
+}
+
+@media (orientation: landscape) {
+
+#display,
+.operator,
+.calculate {
+  font-size: 2em;
+}
+
+#display {
+  height: 20%;
+  padding: .3em 1em;
+}
+
+button {
+  width: 20%;
+  height: 25%;
+  font-size: 1.6em;
+}
+
+#zero {
+  top: 75%;
+  left: 0;
+  width: 40%;
+}
+
+#one {
+  top: 50%;
+  left: 0;
+}
+
+#two {
+  top: 50%;
+  left: 20%;
+}
+
+#three {
+  top: 50%;
+  left: 40%;
+}
+
+#four {
+  top: 25%;
+  left: 0;
+}
+
+#five {
+  top: 25%;
+  left: 20%;
+}
+
+#six {
+  top: 25%;
+  left: 40%;
+}
+
+#seven {
+  top: 0;
+  left: 0;
+}
+
+#eight {
+  top: 0;
+  left: 20%;
+}
+
+#nine {
+  top: 0;
+  left: 40%;
+}
+
+#decimal {
+  top: 75%;
+  left: 40%;
+}
+
+#add {
+  top: 75%;
+  left: 60%;
+  height: 25%;
+}
+
+#subtract {
+  top: 50%;
+  left: 60%;
+}
+
+#multiply {
+  top: 25%;
+  left: 60%;
+}
+
+#divide {
+  top: 0;
+  left: 60%;
+}
+
+#clear {
+  top: 0;
+  left: 80%;
+}
+
+#equals {
+  top: 25%;
+  left: 80%;
+  width: 20%;
+  height: 75%;
+}
 
 }
