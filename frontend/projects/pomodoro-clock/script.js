@@ -81,11 +81,15 @@ function timerSwitch(on) {
     countdown = setInterval(timer, 1000);
     status = 1;
     startStopButton.innerText = "Stop";
+    startStopButton.classList.remove('start');
+    startStopButton.classList.add('stop');
     console.log("Timer started");
   } else {
     clearInterval(countdown);
     status = 0;
     startStopButton.innerText = "Start";
+    startStopButton.classList.remove('stop');
+    startStopButton.classList.add('start');
     console.log("Timer stopped");
   }
 }
