@@ -36,25 +36,7 @@ function init() {
       inputType(this);
 
       // Get input
-      switch (type) {
-        case "start_stop":
-          startStop();
-          break;
-        case "reset":
-          reset();
-          break;
-        case "session-increment":
-          changeSession(1);
-          break;
-        case "session-decrement":
-          changeSession(-1);
-          break;
-        case "break-increment":
-          changeBreak(1);
-          break;
-        case "break-decrement":
-          changeBreak(-1);
-      }
+      getInput();
     });
   }
 }
@@ -64,6 +46,28 @@ function inputType(button) {
   type = id;
   console.log(id);
   return type;
+}
+
+function getInput() {
+  switch (type) {
+    case "start_stop":
+      startStop();
+      break;
+    case "reset":
+      reset();
+      break;
+    case "session-increment":
+      changeSession(1);
+      break;
+    case "session-decrement":
+      changeSession(-1);
+      break;
+    case "break-increment":
+      changeBreak(1);
+      break;
+    case "break-decrement":
+      changeBreak(-1);
+  }
 }
 
 function startStop() {
