@@ -73,7 +73,12 @@ function enter(value) {
 }
 
 function keyboard() {
-  document.addEventListener('keydown', function (event) {
+  keyboardEvents("keydown");
+  keyboardEvents("keyup");
+}
+
+function keyboardEvents(keyEvent) {
+  document.addEventListener(keyEvent, function (event) {
     if (event.defaultPrevented) {
       return;
     }
@@ -82,26 +87,16 @@ function keyboard() {
     for (var i = 0; i < buttons.length; i++) {
       var button = buttons[i];
       if (button.value == key || key == "Enter" && button.value == "=") {
-        button.classList.add("select");
+        if (keyEvent == "keydown") {
+          button.classList.add("select");
+          getInput(button);
+        }
+        if (keyEvent == "keyup") {
+          button.classList.remove("select");
+        }
       }
     }
   });
-
-  document.addEventListener('keyup', function (event) {
-    if (event.defaultPrevented) {
-      return;
-    }
-    var key = event.key || event.keyCode;
-
-    for (var i = 0; i < buttons.length; i++) {
-      var button = buttons[i];
-      if (button.value == key || key == "Enter" && button.value == "=") {
-        button.classList.remove("select");
-        getInput(button);
-      }
-    }
-  });
-
 }
 
 function clear() {
