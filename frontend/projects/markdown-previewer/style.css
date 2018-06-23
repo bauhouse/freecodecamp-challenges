@@ -286,6 +286,8 @@ textarea {
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
+  -webkit-border-radius:0;
+  border-radius:0;
 }
 
 /*
