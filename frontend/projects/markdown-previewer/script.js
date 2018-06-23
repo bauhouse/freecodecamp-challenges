@@ -5,8 +5,9 @@
 /*--------------------------------*/
 
 var panel = document.getElementById("panel");
-var markdown = document.getElementById('editor').value;
-var preview = document.getElementById('preview').innerHTML = marked(markdown);
+var editor = document.getElementById('editor');
+var markdown = editor.value;
+var preview = document.getElementById('preview');
 var buttons = document.getElementsByClassName("button");
 
 var mode = "both";
@@ -20,7 +21,9 @@ function init() {
       switchMode(this);
     });
   }
-  keyboard();
+  // keyboard();
+  updatePreview(markdown);
+  editorInput();
 }
 
 function switchMode(button) {
@@ -80,4 +83,16 @@ function keyboardEvents(keyEvent) {
       }
     }
   });
+}
+
+function editorInput() {
+  if (editor.addEventListener) {
+    editor.addEventListener('input', function() {
+      updatePreview(editor.value);
+    }, false);
+  }
+}
+
+function updatePreview(markdown) {
+  preview.innerHTML = marked(markdown);
 }
