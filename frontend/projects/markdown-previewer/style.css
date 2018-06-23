@@ -17,20 +17,20 @@ Table of Contents
 --------------------------------------------------
 
 
-      BASE STYLES
-      --------------------------------------------
+BASE STYLES
+--------------------------------------------
 
-         1  ELEMENTS
-             1.1  Root Element
-         2  TYPOGRAPHY
-             2.1  Fonts
-         3  LAYOUT
-             3.1  Default Page Structure
-         4  CONTENT
-             4.1  Images
-         5  COLORS
-             5.1  Anchors
-         6  MEDIA QUERIES
+   1  ELEMENTS
+       1.1  Root Element
+   2  TYPOGRAPHY
+       2.1  Fonts
+   3  LAYOUT
+       3.1  Default Page Structure
+   4  CONTENT
+       4.1  Images
+   5  COLORS
+       5.1  Anchors
+   6  MEDIA QUERIES
 
 
 --------------------------------------------------
@@ -124,14 +124,6 @@ body {
 --------------------------------------------------
 3.4   Code
 -------------------------------------------------- */
-#editor {
-  padding: 15px;
-}
-
-textarea {
-  width: 100%;
-  box-sizing: border-box;
-}
 
 
 /*
@@ -139,7 +131,7 @@ textarea {
 3.6   Preview Panel
 -------------------------------------------------- */
 #preview {
-  padding: 15px;
+
 }
 
 
@@ -156,10 +148,57 @@ textarea {
 --------------------------------------------------
 4.1   Buttons
 -------------------------------------------------- */
-.buttons {
-  float: left;
+button {
+  font-size: 2em;
+  font-weight: normal;
   display: block;
-  margin-right: 10px;
+  float: left;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 10%;
+  font-size: 1.6em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+#btn-markdown {
+
+}
+
+#btn-preview {
+  left: 50%;
+}
+
+
+#editor,
+.preview-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50%;
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+.preview-pane {
+  top: 50%;
+  overflow: scroll;
 }
 
 
@@ -183,52 +222,71 @@ a {
 }
 
 
+#panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  overflow: hidden;
+}
+
 /*
 --------------------------------------------------
 5.4   Buttons
 -------------------------------------------------- */
+button {
+  color: #fff;
+  background: #444;
+  border: 1px solid #000;
+}
 
+button:hover {
+  background: #333;
+}
+
+button:active {
+  background: #222;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button.select:hover {
+  background: #06c;
+}
+
+button.select,
+button.select:active {
+  background: DodgerBlue;
+}
 
 /*
 --------------------------------------------------
-5.5   Editors
+5.5   Editor
 -------------------------------------------------- */
-.markdown-only div.markdown {
-  width: 100%;
-  left: 0%;
+
+#editor,
+.preview-pane {
+  border: 1px solid #000;
 }
 
-.markdown-only div.preview {
-  display: none;
-  left: 100%;
-  width: 100%;
+textarea {
+  margin: 0;
+  font-family: Menlo, Monaco, consolas, monospace;
+  color: LimeGreen;
+  font-size: .9em;
+  line-height: 1.8em;
+  background: black;
+  border: 0;
+  resize: none;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
 }
-
-.label .show {
-  display: none;
-}
-
-.markdown-only .label .hide,
-.preview-only .label .hide {
-  display: none;
-}
-
-.markdown-only .label .show,
-.preview-only .label .show {
-  display: inline;
-}
-
-.preview-only div.markdown {
-  left: -50%;
-  display: none;
-}
-
-.preview-only div.preview {
-  left: 0%;
-  width: 100%;
-}
-
-
 
 /*
 ==================================================
@@ -239,73 +297,55 @@ a {
 */
 
 
+.preview .preview-pane {
+  height: 100%;
+  top: 0;
+  background: white;
+}
+
+.markdown #editor {
+  height: 100%;
+  top: 0;
+  z-index: 2;
+}
+
 /*
 --------------------------------------------------
 6.1   Large Screens
 -------------------------------------------------- */
 @media screen and (min-width: 768px) {
 
-  #editor {
-    top: 92px;
-    width: 100%;
-    padding: 0;
+  #panel {
+    top: 10%;
+    bottom: 0;
   }
-  #preview {
-    padding: 10px 30px 30px;
-    overflow: scroll;
+
+  .button {
+    top: 0;
+    bottom: auto;
   }
-  div.preview {
+
+  #editor,
+  .preview-pane {
+    width: 50%;
+    height: 100%;
+  }
+
+  .preview-pane {
+    top: 0;
     left: 50%;
   }
-  div.code {
-    width: 50%;
-  }
-  div.result {
+
+  .preview .preview-pane {
     width: 100%;
-  }
-  textarea {
-    margin: 0;
-    padding: 30px;
-    font-family: Menlo, Monaco, consolas, monospace;
-    color: LimeGreen;
-    margin-top: 60px;
-    font-size: .9em;
-    line-height: 1.8em;
-    position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: black;
-    border: 0;
-    resize: none;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  div.markdown {
-    border-right: 1px solid #ccc;
-  }
-  .code .label {
-    padding: 15px;
-    background: rgba(200, 200, 200, 0.1);
-    border-bottom: 1px solid #eee;
+    background: white;
   }
 
-}
+  .markdown #editor {
+    width: 100%;
+    left: 0;
+    z-index: 2;
+  }
 
-textarea {
-  margin: 0;
-  padding: 30px;
-  font-family: Menlo, Monaco, consolas, monospace;
-  color: LimeGreen;
-  margin-top: 60px;
-  font-size: .9em;
-  line-height: 1.8em;
-  background: black;
-  border: 0;
-  resize: none;
-  outline: none;
-  -webkit-appearance: none;
-  -webkit-border-radius:0;
-  border-radius:0;
 }
