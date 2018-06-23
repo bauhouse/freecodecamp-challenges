@@ -151,14 +151,14 @@ if (helpOpen == true) {
 }
 
 $(window).bind('togglehelp', function () {
-  var s = 100, right = helpOpen ? 0 : 300;
+  var s = 100, right = helpOpen ? 0 : 320;
 
   $('#help').css('display', 'block');
 
   $('#control').animate({ marginRight: right }, { duration: s });
   editor.find('> div').animate({ right: right }, { duration: s });
 
-  $('#help').animate({ right: helpOpen ? -300 : 0 }, { duration: s});
+  $('#help').animate({ right: helpOpen ? -320 : 0 }, { duration: s});
 
   $('#btn-about').toggleClass('current');
 
