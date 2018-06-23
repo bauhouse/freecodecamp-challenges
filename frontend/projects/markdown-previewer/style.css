@@ -118,87 +118,6 @@ body {
 }
 
 
-/*
---------------------------------------------------
-3.2   Page Header
--------------------------------------------------- */
-#header {
-  height: 36px;
-}
-
-#header h1 {
-  font-size: 1.5em;
-  margin: 0;
-  padding: .4em 1em;
-  float: left;
-}
-
-#header h1 a {
-  color: #fff;
-}
-
-.help {
-  float: right;
-}
-
-.help ul {
-  margin: 0;
-  padding: 0;
-  float: right;
-}
-
-.help ul li {
-  list-style: none;
-  float: left;
-}
-.help ul li a {
-  padding: 0 1em;
-  height: 36px;
-  line-height: 36px;
-  display: block;
-  color: #bbb;
-}
-.help ul li a:hover {
-  background: #333;
-  color: #fff;
-}
-.help ul li a:active {
-  background: #000;
-  color: #fff;
-}
-.help ul li.current a {
-  background: #444;
-  color: #fff;
-}
-.help ul li#btn-about.current a {
-  background: #eee;
-  color: #000;
-}
-
-
-/*
---------------------------------------------------
-3.3   Controls
--------------------------------------------------- */
-#control {
-  box-shadow: 0 1px 3px #999;
-  height: 56px;
-  min-width: 100%;
-}
-
-.control {
-  padding: 15px;
-  white-space: nowrap;
-}
-
-.actions input {
-  margin-top: 3px;
-}
-
-.actions span {
-  display: block;
-  padding: 3px 8px;
-}
 
 
 /*
@@ -222,136 +141,6 @@ textarea {
 #preview {
   padding: 15px;
 }
-
-
-/*
---------------------------------------------------
-3.6   Help Panel
--------------------------------------------------- */
-#help pre {
-  padding: 10px;
-  background: #eee;
-  overflow-x: auto;
-}
-
-#help {
-  position: absolute;
-  right: -300px;
-  width: 279px;
-  top: 36px;
-  bottom: 0;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
-  padding: 20px;
-  overflow: auto;
-}
-
-#help p {
-  margin: 14px 0;
-}
-
-#help ol, #help ul {
-  padding-left: 20px;
-}
-
-#help li {
-  margin: 10px 0;
-}
-
-
-/*
---------------------------------------------------
-3.7   Meta Data
--------------------------------------------------- */
-#meta {
-}
-#meta > div {
-  margin-bottom: 1em;
-}
-#meta #user a {
-  display: block;
-  overflow: hidden;
-  padding: 6px;
-  background: #ddd;
-}
-#meta #user a:hover {
-  background: #ccc;
-}
-#meta #user img {
-  width: 30px;
-  float: left;
-  margin-right: 10px;
-  border: 2px solid #fff;
-}
-#meta #user span {
-  display: block;
-  height: 20px;
-  padding: 7px;
-  font-weight: bold;
-  color: #000;
-}
-#meta h4 {
-  font-size: 1.2em;
-  text-transform: uppercase;
-}
-#help ul.menu {
-  margin: 1em 0 0 0;
-  padding: 0;
-}
-#help ul.menu li {
-  list-style: none;
-  margin: 0 0 2px 0;
-}
-.menu li a {
-  display: block;
-  background: #e9e9e9;
-  color: #666;
-  padding: .5em 1em;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-.menu li a:hover {
-  background: #ddd;
-  color: #000;
-}
-.menu li.current a {
-  background: #ccc;
-  color: #000;
-  font-weight: bold;
-}
-
-
-
-
-/*
---------------------------------------------------
-3.8   Clearing
--------------------------------------------------- */
-
-/*
-http://www.positioniseverything.net/easyclearing.html
-*/
-
-#header:after,
-.control:after,
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-#header,
-.control,
-.clearfix {
-  zoom: 1;
-  display: block;
-}
-
-
 
 
 /*
@@ -396,124 +185,8 @@ a {
 
 /*
 --------------------------------------------------
-5.2   Header
--------------------------------------------------- */
-#header {
-  background: #333;
-  color: #fff;
-  font-weight: normal;
-}
-
-#header h1 a {
-  color: #fff;
-}
-.help a {
-  color: #fff;
-}
-
-
-/*
---------------------------------------------------
-5.3   Controls
--------------------------------------------------- */
-#control {
-  background: #ddd;
-}
-
-.control a {
-  color: #232323;
-  font-weight: normal;
-}
-
-.control a:hover {
-}
-
-
-/*
---------------------------------------------------
 5.4   Buttons
 -------------------------------------------------- */
-a.button {
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  height: 12px;
-  line-height: 12px;
-  padding: 6px 10px;
-  display: block;
-  float: left;
-  text-decoration: none;
-  margin: 0px 0px;
-  background: #fff;
-}
-
-a.gap {
-  margin-right: 10px;
-}
-
-.button:hover {
-  color: #fff;
-  background: #666;
-}
-
-.button:active {
-  color: #fff;
-  background: #000;
-}
-
-.button:focus {
-  outline: 0;
-}
-
-.buttons a.current,
-body.show-markdown a#btn-markdown,
-body.show-preview a#btn-preview,
-body.show-result a#btn-result {
-  color: #fff;
-  background: DodgerBlue;
-}
-
-.buttons a.current:active,
-body.show-markdown a#btn-markdown:active,
-body.show-preview a#btn-preview:active,
-body.show-result a#btn-result:active {
-  color: #fff;
-  background: #000;
-}
-
-.buttons a#btn-preview.current,
-body.show-preview a#btn-preview,
-body.show-result a#btn-result {
-  border-left: 0;
-}
-
-a.group {
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  border-left: 0;
-}
-
-a.left {
-  border-left: 1px solid #ccc;
-  -moz-border-radius-topleft: 3px;
-  -webkit-border-top-left-radius: 3px;
-  border-top-left-radius: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-a.right {
-  border-right: 1px solid #ccc;
-  -moz-border-radius-topright: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
 
 
 /*
@@ -556,34 +229,6 @@ a.right {
 }
 
 
-/*
---------------------------------------------------
-5.6   Toggle Links
--------------------------------------------------- */
-.code .label {
-  padding: 15px 0;
-}
-.code .label p {
-  font-weight: bold;
-  margin: 0;
-}
-.code .label label {
-  margin-top: 10px;
-}
-.code .label p > span {
-  float: right;
-  font-weight: normal;
-  color: #999;
-}
-.code .label p > span a {
-  color: #999;
-}
-.code .label p > span a:hover {
-  color: #000;
-}
-
-
-
 
 /*
 ==================================================
@@ -600,20 +245,6 @@ a.right {
 -------------------------------------------------- */
 @media screen and (min-width: 768px) {
 
-  body {
-    overflow: hidden;
-  }
-
-  .stretch {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  .actions {
-    float: right;
-  }
   #editor {
     top: 92px;
     width: 100%;
@@ -650,8 +281,6 @@ a.right {
     resize: none;
     outline: none;
     -webkit-appearance: none;
-    -webkit-border-radius:0;
-    border-radius:0;
   }
   div.markdown {
     border-right: 1px solid #ccc;
@@ -662,4 +291,21 @@ a.right {
     border-bottom: 1px solid #eee;
   }
 
+}
+
+textarea {
+  margin: 0;
+  padding: 30px;
+  font-family: Menlo, Monaco, consolas, monospace;
+  color: LimeGreen;
+  margin-top: 60px;
+  font-size: .9em;
+  line-height: 1.8em;
+  background: black;
+  border: 0;
+  resize: none;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-border-radius:0;
+  border-radius:0;
 }
