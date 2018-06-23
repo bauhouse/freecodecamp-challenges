@@ -63,7 +63,6 @@ function resetButtons() {
 }
 
 function keyboard() {
-  keyboardEvents("keydown");
   keyboardEvents("keyup");
 }
 
@@ -76,14 +75,8 @@ function keyboardEvents(keyEvent) {
 
     for (var i = 0; i < buttons.length; i++) {
       var button = buttons[i];
-      if (button.value == key || key == "Enter" && button.value == "=") {
-        if (keyEvent == "keydown") {
-          button.classList.add("select");
-          getInput(button);
-        }
-        if (keyEvent == "keyup") {
-          button.classList.remove("select");
-        }
+      if (button.dataset.key == key) {
+        switchMode(button);
       }
     }
   });
