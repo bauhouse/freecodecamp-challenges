@@ -243,7 +243,7 @@ textarea {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   background: #eee;
-  padding: 10px;
+  padding: 20px;
   overflow: auto;
 }
 
@@ -257,39 +257,6 @@ textarea {
 
 #help li {
   margin: 10px 0;
-}
-
-#help dl.shortcuts {
-  margin-bottom: 1em;
-  margin-left: 26px;
-}
-#help dl.shortcuts * {
-  margin: 0;
-  line-height: 2.25;
-  font-weight: normal;
-}
-#help .shortcuts dt {
-  float: left;
-  display: block;
-  width: 7em;
-  clear: both;
-}
-#help kbd {
-  background-color: #000;
-  color: #fff;
-  font-family: monospace;
-  font-size: 90%;
-  padding: 1ex;
-  letter-spacing: 0.2ex;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-}
-#help .shortcuts.a dt {
-  width: 7em;
-}
-#help .shortcuts.b dt {
-  width: 10em;
 }
 
 
@@ -683,6 +650,8 @@ a.right {
     resize: none;
     outline: none;
     -webkit-appearance: none;
+    -webkit-border-radius:0;
+    border-radius:0;
   }
   div.markdown {
     border-right: 1px solid #ccc;
