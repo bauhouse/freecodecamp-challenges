@@ -94,5 +94,23 @@ function editorInput() {
 }
 
 function updatePreview(markdown) {
-  preview.innerHTML = marked(markdown);
+  // Create reference instance
+  var markedOptions = marked;
+
+  // Set options
+  markedOptions.setOptions({
+    renderer: new markedOptions.Renderer(),
+    highlight: null,
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: true,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+  });
+
+  preview.innerHTML = markedOptions(markdown);
+
 }
