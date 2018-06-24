@@ -39,6 +39,30 @@ Display
   justify-content: center;
 }
 
+#quote {
+  position: relative;
+  top: -3em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+#quote::before {
+  content: '‘‘';
+  font-size: 6em;
+  font-weight: bold;
+  letter-spacing: -0.07em;
+  color: #333;
+  position: relative;
+  top: .5em;
+}
+
+#author {
+  font-size: .5em;
+  text-transform: uppercase;
+  margin-top: 2em;
+  color: #999;
+}
 
 /*
 ------------------------------------
@@ -88,7 +112,7 @@ button:focus {
   left: 50%;
 }
 
-#tweet {
+#tweet-quote {
   top: 0;
   left: 0;
 }
@@ -109,16 +133,16 @@ button {
   border: 1px solid #000;
 }
 
-#tweet {
+#tweet-quote {
   background: DodgerBlue;
 }
 
-#tweet:hover {
+#tweet-quote:hover {
   background: #06c;
 }
 
-#tweet.select,
-#tweet:active {
+#tweet-quote.select,
+#tweet-quote:active {
   background: #004d99;
 }
 
@@ -144,12 +168,12 @@ Media Queries
 @media (min-width: 600px) and (orientation: portrait) {
 
   #display {
-    font-size: 4em;
+    font-size: 2em;
   }
 
   .duration,
   .button {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
 }
@@ -157,12 +181,12 @@ Media Queries
 @media (min-width: 750px) {
 
   #display {
-    font-size: 8em;
+    font-size: 2.4em;
   }
 
   .duration,
   .button {
-    font-size: 3em;
+    font-size: 2em;
   }
 
 }
