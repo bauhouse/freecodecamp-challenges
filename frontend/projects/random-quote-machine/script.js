@@ -5,7 +5,7 @@
 /*--------------------------------*/
 
 var display = document.getElementById("display");
-var pads = document.getElementsByClassName("buttons");
+var buttons = document.getElementsByClassName("buttons");
 
 var key = null;
 var sound = null;
