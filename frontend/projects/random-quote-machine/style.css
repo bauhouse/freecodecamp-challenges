@@ -1,0 +1,168 @@
+/*
+====================================
+
+Random Quote Machine CSS
+
+====================================
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  font-family: Helvetica, sans-serif;
+  vertical-align: baseline;
+}
+
+
+/*
+------------------------------------
+Display
+------------------------------------ */
+
+#display {
+  font-weight: normal;
+  font-size: 2em;
+  text-align: center;
+  margin: 0;
+  padding: .5em;
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+------------------------------------
+Buttons
+------------------------------------ */
+
+#panel {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 10%;
+}
+
+button {
+  font-size: 1.2em;
+  text-align: center;
+  display: block;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  padding: .5em .75em;
+  border-radius: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  background: #333;
+}
+
+button:active {
+  background: #222;
+}
+
+button:focus {
+  outline: 0;
+}
+
+#new-quote {
+  top: 0;
+  left: 50%;
+}
+
+#tweet {
+  top: 0;
+  left: 0;
+}
+
+/*
+------------------------------------
+Color
+------------------------------------ */
+
+#display {
+  color: #fff;
+  background: #000;
+}
+
+button {
+  color: #fff;
+  background: #444;
+  border: 1px solid #000;
+}
+
+#tweet {
+  background: DodgerBlue;
+}
+
+#tweet:hover {
+  background: #06c;
+}
+
+#tweet.select,
+#tweet:active {
+  background: #004d99;
+}
+
+#new-quote {
+  background: #00b300;
+}
+
+#new-quote:hover {
+  background: #090;
+}
+
+#new-quote.select,
+#new-quote:active {
+  background: #008000;
+}
+
+
+/*
+------------------------------------
+Media Queries
+------------------------------------ */
+
+@media (min-width: 600px) and (orientation: portrait) {
+
+  #display {
+    font-size: 4em;
+  }
+
+  .duration,
+  .button {
+    font-size: 2em;
+  }
+
+}
+
+@media (min-width: 750px) {
+
+  #display {
+    font-size: 8em;
+  }
+
+  .duration,
+  .button {
+    font-size: 3em;
+  }
+
+}
