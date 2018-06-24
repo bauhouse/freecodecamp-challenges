@@ -149,7 +149,7 @@ body {
 4.1   Buttons
 -------------------------------------------------- */
 button {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: normal;
   display: block;
   float: left;
@@ -159,6 +159,9 @@ button {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,10 +172,6 @@ button {
   bottom: 0;
   width: 50%;
   height: 10%;
-  font-size: 1.6em;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
 }
 
 #btn-markdown {
@@ -315,19 +314,9 @@ textarea {
 --------------------------------------------------
 6.1   Large Screens
 -------------------------------------------------- */
-@media screen and (min-width: 768px) {
+@media (orientation: landscape) {
 
-  #panel {
-    top: 10%;
-    bottom: 0;
-  }
-
-  .button {
-    top: 0;
-    bottom: auto;
-  }
-
-  #editor,
+ #editor,
   .preview-pane {
     width: 50%;
     height: 100%;
@@ -351,3 +340,22 @@ textarea {
   }
 
 }
+
+@media (min-width: 768px) {
+
+  button {
+    font-size: 1.6em;
+  }
+
+  #panel {
+    top: 10%;
+    bottom: 0;
+  }
+
+  .button {
+    top: 0;
+    bottom: auto;
+  }
+
+}
+
