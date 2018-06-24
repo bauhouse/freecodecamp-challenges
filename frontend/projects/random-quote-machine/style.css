@@ -24,7 +24,7 @@ Display
 
 #display {
   font-weight: normal;
-  font-size: 2em;
+  font-size: 1.4em;
   text-align: center;
   margin: 0;
   padding: .5em;
@@ -58,8 +58,9 @@ Display
 }
 
 #author {
-  font-size: .5em;
+  font-size: .6em;
   text-transform: uppercase;
+  letter-spacing: .1em;
   margin-top: 2em;
   color: #999;
 }
@@ -171,7 +172,6 @@ Media Queries
     font-size: 2em;
   }
 
-  .duration,
   .button {
     font-size: 1.6em;
   }
@@ -184,7 +184,6 @@ Media Queries
     font-size: 2.4em;
   }
 
-  .duration,
   .button {
     font-size: 2em;
   }
