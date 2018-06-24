@@ -91,6 +91,9 @@ Buttons
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
   display: flex;
   align-items: center;
   justify-content: center;
