@@ -182,7 +182,7 @@ Media Queries
 
 }
 
-@media (orientation: landscape) {
+@media (max-width: 750px) and (orientation: landscape) {
 
   #panel {
     top: 80%;
@@ -195,6 +195,11 @@ Media Queries
 
   #display {
     font-size: 2.4em;
+  }
+
+  #quote {
+    max-width: 750px;
+    margin: 0 auto;
   }
 
   .button {
