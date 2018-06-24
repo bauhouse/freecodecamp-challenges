@@ -5,9 +5,9 @@
 /*--------------------------------*/
 
 var display = document.getElementById("display");
-var buttons = document.getElementsByClassName("buttons");
+var buttons = document.getElementsByClassName("button");
 
-var key = null;
+var key = {id: null, name: null, code: null};
 var sound = null;
 
 init();
@@ -23,7 +23,9 @@ function init() {
 }
 
 function getInput(button) {
-  key = pad.id;
+  key.id = button.id;
+  key.name = button.dataset.key;
+  key.code = button.dataset.keycode;
 }
 
 function keyboard() {
@@ -36,14 +38,12 @@ function keyboardEvents(keyEvent) {
     if (event.defaultPrevented) {
       return;
     }
-    var key = event.key || event.keyCode;
-
     for (var i = 0; i < buttons.length; i++) {
       var button = buttons[i];
-      if (button.id == key || button.id == key.toUpperCase() || button.value == key) {
+      if (button.dataset.key == event.key || button.dataset.keycode == event.keyCode) {
         if (keyEvent == "keydown") {
           button.classList.add("select");
-          getInput(pad);
+          getInput(button);
         }
         if (keyEvent == "keyup") {
           button.classList.remove("select");
