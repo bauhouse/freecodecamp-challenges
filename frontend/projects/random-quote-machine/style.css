@@ -78,7 +78,7 @@ Buttons
   height: 10%;
 }
 
-button {
+.button {
   font-size: 1.2em;
   text-align: center;
   display: block;
@@ -94,18 +94,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-button:hover {
-  background: #333;
-}
-
-button:active {
-  background: #222;
-}
-
-button:focus {
-  outline: 0;
 }
 
 #new-quote {
@@ -128,10 +116,22 @@ Color
   background: #000;
 }
 
-button {
+.button {
   color: #fff;
   background: #444;
   border: 1px solid #000;
+}
+
+.button:hover {
+  background: #333;
+}
+
+.button:active {
+  background: #222;
+}
+
+.button:focus {
+  outline: 0;
 }
 
 #tweet-quote {
