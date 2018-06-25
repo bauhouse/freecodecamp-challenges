@@ -10,7 +10,6 @@ var dataURL = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c3
 var quotes = null;
 
 var key = {id: null, name: null, code: null};
-var sound = null;
 
 init();
 
