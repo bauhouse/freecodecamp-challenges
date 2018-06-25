@@ -9,11 +9,15 @@ var buttons = document.getElementsByClassName("button");
 var dataURL = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
 var quotesJSON = null;
 var quotes = [];
-var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
 var quote = {
   num: 1,
   text: null,
   author: null
+};
+var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+var color = {
+  id: 0,
+  hex: colors[0]
 };
 var displayText = document.getElementById("text");
 var displayAuthor = document.getElementById("author");
@@ -49,11 +53,19 @@ function getCurrentQuote(num) {
   quote.text = quotes[num].quote;
   quote.author = quotes[num].author;
   displayCurrentQuote();
+  changeBackground();
 }
 
 function displayCurrentQuote() {
   displayText.innerText = quote.text;
   displayAuthor.innerText = "— " + quote.author;
+}
+
+function changeBackground() {
+  color.id = randomNumber(color, colors.length);
+  color.hex = colors[color.id];
+  console.log(color.hex);
+  display.style.background = color.hex;
 }
 
 function getInput(button) {
