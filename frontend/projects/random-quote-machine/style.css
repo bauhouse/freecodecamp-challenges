@@ -52,7 +52,8 @@ Display
   font-size: 6em;
   font-weight: bold;
   letter-spacing: -0.07em;
-  color: #333;
+  color: #fff;
+  color: rgba(255,255,255,.15);
   position: relative;
   top: .5em;
 }
@@ -62,7 +63,8 @@ Display
   text-transform: uppercase;
   letter-spacing: .1em;
   margin-top: 2em;
-  color: #999;
+  color: #fff;
+  color: rgba(255,255,255,.5);
 }
 
 /*
