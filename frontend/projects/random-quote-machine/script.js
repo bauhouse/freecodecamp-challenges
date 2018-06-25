@@ -43,7 +43,7 @@ function init() {
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     button.addEventListener("click", function( event ) {
-      getInput(this);
+      getInput(this, "click");
     });
   }
   keyboard();
@@ -94,7 +94,7 @@ function openTweetURL() {
   window.open(tweetURL);
 }
 
-function getInput(button) {
+function getInput(button, eventType) {
   key.id = button.id;
   key.name = button.dataset.key;
   key.code = button.dataset.keycode;
@@ -103,8 +103,7 @@ function getInput(button) {
     getRandomQuote();
   }
 
-  if (key.id == "tweet-quote") {
-    console.log(tweetURL);
+  if (key.id == "tweet-quote" && eventType == "keyboard") {
     openTweetURL();
   }
 }
@@ -124,7 +123,7 @@ function keyboardEvents(keyEvent) {
       if (button.dataset.key == event.key || button.dataset.keycode == event.keyCode) {
         if (keyEvent == "keydown") {
           button.classList.add("select");
-          getInput(button);
+          getInput(button, "keyboard");
         }
         if (keyEvent == "keyup") {
           button.classList.remove("select");
