@@ -20,14 +20,6 @@ body {
 Content
 ------------------------------------ */
 .content {
-/*
-  background-image: url('https://source.unsplash.com/hZIuMF2E2-g/1920x1280');
-  height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  */
   background: #eee;
 }
 
@@ -92,6 +84,8 @@ Buttons
 }
 
 .menu-button {
+  background: #eee;
+  background: rgba(255,255,255,.85);
   position: fixed;
   width: 100%;
   z-index: 5;
@@ -132,12 +126,12 @@ Buttons
 }
 
 .open .menu-button {
-  color: #ccc;
+  color: #bbb;
   cursor: default;
 }
 
 .open .menu-button .icon {
-  fill: #ccc;
+  fill: #bbb;
 }
 
 
