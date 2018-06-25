@@ -1,0 +1,113 @@
+body {
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  font-family: Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.menu {
+  background: #222;
+  left: -320px;
+  height: 100%;
+  position: fixed;
+  width: 320px;
+}
+
+.content {
+/*
+  background-image: url('https://source.unsplash.com/hZIuMF2E2-g/1920x1280');
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  */
+  background: #eee;
+}
+
+.menu ul {
+  border-top: 1px solid #636366;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  border-bottom: 1px solid #636366;
+  line-height: 45px;
+}
+
+.menu a {
+  color: #999;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+  padding: 0 25px;
+}
+
+.menu a:hover {
+  color: #fff;
+  background: #333;
+}
+
+.menu a:active {
+  color: #fff;
+  background: DodgerBlue;
+}
+
+.close-button,
+.menu-button {
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 25px 25px 25px 65px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.close-button {
+  color: #666;
+}
+
+.close-button:hover {
+  color: #fff;
+}
+
+.close-button .icon {
+  font-size: 30px;
+  position: absolute;
+  top: 14px;
+  left: 25px;
+}
+
+.close-button:hover .icon {
+  color: DodgerBlue;
+}
+
+.menu-button .icon {
+  fill: #999;
+  position: absolute;
+  top: 23px;
+  left: 25px;
+}
+
+.menu-button:hover {
+  color: #000;
+}
+
+.menu-button:hover .icon {
+  fill: DodgerBlue;
+}
+
+.open .menu-button {
+  color: #ccc;
+  cursor: default;
+}
+
+.open .menu-button .icon {
+  fill: #ccc;
+}
