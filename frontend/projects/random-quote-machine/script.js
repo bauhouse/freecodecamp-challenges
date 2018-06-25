@@ -6,6 +6,8 @@
 
 var display = document.getElementById("display");
 var buttons = document.getElementsByClassName("button");
+var tweetButton = document.getElementById("tweet-quote");
+var quoteButton = document.getElementById("new-quote");
 var dataURL = "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json";
 var quotesJSON = null;
 var quotes = [];
@@ -19,6 +21,16 @@ var color = {
   id: 0,
   hex: colors[0]
 };
+var tweet = {
+  root: "https://twitter.com/",
+  path: "intent/tweet",
+  query: {
+    hashtags: "quotes",
+    related: "freecodecamp",
+    text: ""
+  }
+}
+var tweetURL = "";
 var displayText = document.getElementById("text");
 var displayAuthor = document.getElementById("author");
 
@@ -54,6 +66,7 @@ function getCurrentQuote(num) {
   quote.author = quotes[num].author;
   displayCurrentQuote();
   changeBackground();
+  setTweetQuoteURL();
 }
 
 function displayCurrentQuote() {
@@ -64,19 +77,36 @@ function displayCurrentQuote() {
 function changeBackground() {
   color.id = randomNumber(color, colors.length);
   color.hex = colors[color.id];
-  console.log(color.hex);
   display.style.background = color.hex;
+}
+
+function setTweetQuoteURL() {
+  var tweetTextURI = encodeURIComponent('"' + quote.text + '" — ' + quote.author);
+  tweetURL = tweet.root
+    + tweet.path
+    + "?" + "hashtags=" + tweet.query.hashtags
+    + "&" + "related=" + tweet.query.related
+    + "&" + "text=" + tweetTextURI;
+  tweetButton.setAttribute('href', tweetURL);
+}
+
+function openTweetURL() {
+  window.open(tweetURL);
 }
 
 function getInput(button) {
   key.id = button.id;
   key.name = button.dataset.key;
   key.code = button.dataset.keycode;
-  eventCallback();
-}
 
-function eventCallback() {
-  getRandomQuote();
+  if (key.id == "new-quote") {
+    getRandomQuote();
+  }
+
+  if (key.id == "tweet-quote") {
+    console.log(tweetURL);
+    openTweetURL();
+  }
 }
 
 function keyboard() {
