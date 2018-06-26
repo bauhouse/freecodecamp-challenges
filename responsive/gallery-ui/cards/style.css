@@ -192,6 +192,20 @@ https://tympanus.net/codrops/2012/04/09/direction-aware-hover-effect-with-css3-a
 
 /*
 ------------------------------------
+Images (Lazy Loading)
+------------------------------------ */
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+img[data-src] {
+  opacity: 0;
+  min-height: 150px;
+}
+
+/*
+------------------------------------
 Media Queries
 ------------------------------------ */
 @media (min-width: 750px) {
