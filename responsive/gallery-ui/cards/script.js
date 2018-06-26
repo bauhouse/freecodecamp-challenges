@@ -315,9 +315,8 @@ var main = function() {
   }
 
   function loadCards() {
-    count = 0;
     cards.each(function(index, value) {
-      var delayValue = (index * 40);
+      var delayValue = (index * 10);
       $(this).delay(delayValue).animate({top: 0, opacity: 1}, 500);
     });
   }
@@ -326,14 +325,15 @@ var main = function() {
     cards.each(function(index, value) {
       var reverse = Math.abs(index - cards.length);
       var topValue = ((index + 3) * 100) + 1000 + "px";
-      var delayValue = (reverse * 20);
-      $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", cardsUnloaded);
+      var delayValue = (reverse * 10);
+      $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", countingCards);
     });
   }
 
-  function cardsUnloaded() {
+  function countingCards() {
     count++;
     if (count >= cards.length) {
+      count = 0;
       loadCards();
     }
   }
