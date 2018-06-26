@@ -226,14 +226,21 @@
 
 
 /* main */
-
-
 var main = function() {
 
   var mQuery = Modernizr.mq('(min-width: 750px)');
-  var cards = $('.gallery li');
+  var gallery = $('#da-thumbs');
+  var galleryItems = $('#da-thumbs li');
+  var cards = shuffle(galleryItems);
   var count = 0;
+  var windowResize = 0;
+  var menuClick = 0;
+  var closeClick = 0;
+  var navClick = 0;
+  var resizeTimer;
+  var unloadTimer;
 
+  replaceGallery(cards);
   lazyLoad();
   addClickEvents();
 
@@ -242,8 +249,6 @@ var main = function() {
     loadCards();
   }
 
-  var resizeTimer;
-
   $(window).on('resize', function(e) {
 
     removeClickEvents();
@@ -251,6 +256,8 @@ var main = function() {
 
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
+      windowResize++;
+      console.log("Window resized: " + windowResize);
       addClickEvents();
     }, 200);
   });
@@ -275,6 +282,8 @@ var main = function() {
     testQuery();
 
     $('.menu-button').on('click', function(e) {
+      menuClick++;
+      console.log("Menu clicked: " + menuClick);
       $('.menu').animate({left: 0}, 200);
       if (mQuery) {
         $('body').animate({marginLeft: '320px'}, 250).addClass('open');
@@ -283,6 +292,8 @@ var main = function() {
       }
     });
     $('.close-button').on('click', function(e) {
+      closeClick++;
+      console.log("Close clicked: " + closeClick);
       $('.menu').animate({left: '-320px'}, 200);
       if (mQuery) {
         $('body').animate({marginLeft: 0}, 200).removeClass('open');
@@ -292,6 +303,8 @@ var main = function() {
     });
 
      $('.nav a').on('click', function(e) {
+       navClick++;
+       console.log("Nav clicked: " + navClick);
        unloadCards();
      });
 
@@ -305,36 +318,76 @@ var main = function() {
   function removeClickEvents() {
     $('.menu-button').off('click');
     $('.close-button').off('click');
+    $('.nav a').off('click');
   }
 
   function positionCards() {
     cards.each(function(index, value) {
-      var topValue = ((index + 3) * 100) + 1000 + "px";
+      var topValue = ((index + 3) * 200) + 1000 + "px";
       $(this).css({top: topValue, opacity: 0});
     });
   }
 
   function loadCards() {
+    console.log("===================================");
+    console.log("Loading");
+    console.log("-----------------------------------");
     cards.each(function(index, value) {
-      var delayValue = (index * 10);
-      $(this).delay(delayValue).animate({top: 0, opacity: 1}, 500);
+      var delayValue = (index * 150);
+      $(this).delay(delayValue).animate({top: 0, opacity: 1}, 500, "swing", countingCards(loadCompleted));
     });
+  }
+
+  function loadCompleted() {
+    console.log("Load Completed");
   }
 
   function unloadCards() {
+    console.log("===================================");
+    console.log("Unloading");
+    console.log("-----------------------------------");
     cards.each(function(index, value) {
       var reverse = Math.abs(index - cards.length);
-      var topValue = ((index + 3) * 100) + 1000 + "px";
-      var delayValue = (reverse * 10);
-      $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", countingCards);
+      var topValue = ((index + 3) * 200) + 1000 + "px";
+      var delayValue = (reverse * 30);
+      $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", countingCards(unloading));
     });
   }
 
-  function countingCards() {
+  function unloading() {
+    unloadTimer = setTimeout(function() {
+      shuffleAndLoadCards();
+    }, 1000);
+  }
+
+  function shuffleAndLoadCards() {
+    clearTimeout(unloadTimer);
+    console.log("Shuffle and load cards");
+    cards = shuffle(cards);
+    replaceGallery(cards);
+    positionCards();
+    loadCards();
+  }
+
+  function replaceGallery(items) {
+    gallery.empty();
+    for( var i = 0; i < items.length; i++) {
+      gallery = gallery.append(items[i]);
+    }
+  }
+
+  function shuffle(items) {
+    return items.slice().sort(function() { return 0.5 - Math.random() });
+  }
+
+  function countingCards(func = null) {
     count++;
+    console.log("image " + count);
     if (count >= cards.length) {
       count = 0;
-      loadCards();
+      if (func) {
+        func();
+      }
     }
   }
 
