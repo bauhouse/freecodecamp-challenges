@@ -231,13 +231,15 @@
 var main = function() {
 
   var mQuery = Modernizr.mq('(min-width: 750px)');
+  var cards = $('.gallery li');
+  var count = 0;
 
   lazyLoad();
   addClickEvents();
 
   if (mQuery) {
     positionCards();
-    animateCards();
+    loadCards();
   }
 
   var resizeTimer;
@@ -288,6 +290,11 @@ var main = function() {
         $('body').removeClass('open');
       }
     });
+
+     $('.nav a').on('click', function(e) {
+       unloadCards();
+     });
+
   }
 
   function resetMenu() {
@@ -301,17 +308,34 @@ var main = function() {
   }
 
   function positionCards() {
-    $('.gallery li').each(function(index, value) {
-      var topValue = ((index + 3) * 300) + "px";
+    cards.each(function(index, value) {
+      var topValue = ((index + 3) * 100) + 1000 + "px";
       $(this).css({top: topValue, opacity: 0});
     });
   }
 
-  function animateCards() {
-    $('.gallery li').each(function(index, value) {
+  function loadCards() {
+    count = 0;
+    cards.each(function(index, value) {
       var delayValue = (index * 40);
-      $(this).delay(delayValue).animate({top: 0, opacity: 1}, 400);
+      $(this).delay(delayValue).animate({top: 0, opacity: 1}, 500);
     });
+  }
+
+  function unloadCards() {
+    cards.each(function(index, value) {
+      var reverse = Math.abs(index - cards.length);
+      var topValue = ((index + 3) * 100) + 1000 + "px";
+      var delayValue = (reverse * 20);
+      $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", cardsUnloaded);
+    });
+  }
+
+  function cardsUnloaded() {
+    count++;
+    if (count >= cards.length) {
+      loadCards();
+    }
   }
 
 };
