@@ -91,6 +91,10 @@ Buttons
   z-index: 5;
 }
 
+.menu-button:hover {
+  background: #fff;
+}
+
 .close-button {
   color: #666;
 }
@@ -119,6 +123,7 @@ Buttons
 
 .menu-button:hover {
   color: #000;
+  background: rgba(255,255,255,.85);
 }
 
 .menu-button:hover .icon {
