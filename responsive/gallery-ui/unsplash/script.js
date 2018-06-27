@@ -240,11 +240,11 @@ var main = function() {
   var navClick = 0;
   var resizeTimer;
   var unloadTimer;
-  var fetchTimer = {
+  var imageFetch = {
     on: false,
-    clock: null
+    timer: null,
+    timeout: 1000
   };
-  var fetchTimeout = 2000;
   var numItemsToGenerate = 24; //how many gallery items you want on the screen
   var numImagesAvailable = 1000; //the number of images available in the collection
   var imageWidth = 800; //desired image width in pixels
@@ -256,10 +256,12 @@ var main = function() {
   var gallery = $('.cards');
   var galleryItems = $('.cards li');
   var cards = galleryItems;
-  var unsplashImages = getUnsplashImages(true, true);
 
-  // Hide cards on load
-  cards.css({opacity: 0});
+  // Generate random image gallery on page load
+  // var unsplashImages = getUnsplashImages(true, true);
+
+  // Hide cards on page load
+  // cards.css({opacity: 0});
 
   addClickEvents();
 
@@ -446,16 +448,16 @@ var main = function() {
       getImage(randomImageIndex, unique);
     }
 
-    function startFetchTimer (time = fetchTimeout) {
-      fetchTimer.on = true;
-      fetchTimer.clock = setTimeout(function() {
+    function startFetchTimer (time = imageFetch.timeout) {
+      imageFetch.on = true;
+      imageFetch.timer = setTimeout(function() {
         stopFetchTimer();
       }, time);
     }
 
     function stopFetchTimer() {
-      clearTimeout(fetchTimer.clock);
-      fetchTimer.on = false;
+      clearTimeout(imageFetch.timer);
+      imageFetch.on = false;
       renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
       return images;
     }
@@ -477,8 +479,8 @@ var main = function() {
           renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
           return images;
         } else {
-          if (!fetchTimer.on) {
-            startFetchTimer(fetchTimeout);
+          if (!imageFetch.on) {
+            startFetchTimer(imageFetch.timeout);
           }
         }
       });
