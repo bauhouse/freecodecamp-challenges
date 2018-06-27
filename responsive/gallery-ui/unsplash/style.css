@@ -219,6 +219,7 @@ Media Queries
   }
 
   .cards {
+    min-height: 1600px;
     overflow: hidden;
   }
 
