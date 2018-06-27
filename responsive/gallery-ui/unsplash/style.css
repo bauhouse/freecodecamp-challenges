@@ -62,6 +62,7 @@ Menu
   background: #333;
 }
 
+.menu a.selected,
 .menu a:active {
   color: #fff;
   background: DodgerBlue;
