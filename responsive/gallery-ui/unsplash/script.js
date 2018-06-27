@@ -230,17 +230,36 @@ var main = function() {
 
   var count = 0;
   var windowResize = 0;
+  var body = $('body');
+  var menu = $('.menu');
+  var menuButton = $('.menu-button');
+  var closeButton = $('.close-button');
+  var navItems = $('.nav a');
   var menuClick = 0;
   var closeClick = 0;
   var navClick = 0;
   var resizeTimer;
   var unloadTimer;
-  var fetchTimer;
+  var fetchTimer = {
+    on: false,
+    clock: null
+  };
+  var fetchTimeout = 2000;
+  var numItemsToGenerate = 24; //how many gallery items you want on the screen
+  var numImagesAvailable = 1000; //the number of images available in the collection
+  var imageWidth = 800; //desired image width in pixels
+  var imageHeight = 640; //desired image height in pixels
+  var collectionID = 1163637; //the collection ID from the original url
+  var collectionTitle = "Architectural Lines"; //the collection ID from the original url
+  var collectionDesc = "Metal and glass, concrete and wood, straight lines and curves.";
   var mQuery = Modernizr.mq('(min-width: 750px)');
   var gallery = $('.cards');
   var galleryItems = $('.cards li');
   var cards = galleryItems;
-  var unsplashImages = getUnsplashImages(true);
+  var unsplashImages = getUnsplashImages(true, true);
+
+  // Hide cards on load
+  cards.css({opacity: 0});
 
   addClickEvents();
 
@@ -276,44 +295,45 @@ var main = function() {
 
     testQuery();
 
-    $('.menu-button').on('click', function(e) {
+    menuButton.on('click', function(e) {
       menuClick++;
       // console.log("Menu clicked: " + menuClick);
-      $('.menu').animate({left: 0}, 200);
+      menu.animate({left: 0}, 200);
       if (mQuery) {
-        $('body').animate({marginLeft: '320px'}, 250).addClass('open');
+        body.animate({marginLeft: '320px'}, 250).addClass('open');
       } else {
-        $('body').addClass('open');
+        body.addClass('open');
       }
     });
-    $('.close-button').on('click', function(e) {
+    closeButton.on('click', function(e) {
       closeClick++;
       // console.log("Close clicked: " + closeClick);
-      $('.menu').animate({left: '-320px'}, 200);
+      menu.animate({left: '-320px'}, 200);
       if (mQuery) {
-        $('body').animate({marginLeft: 0}, 200).removeClass('open');
+        body.animate({marginLeft: 0}, 200).removeClass('open');
       } else {
-        $('body').removeClass('open');
+        body.removeClass('open');
       }
     });
 
-     $('.nav a').on('click', function(e) {
+     navItems.on('click', function(e) {
        navClick++;
        // console.log("Nav clicked: " + navClick);
+       clickGalleryMenu(this);
        unloadCards();
      });
 
   }
 
   function resetMenu() {
-    $('body').css({marginLeft: 0}).removeClass('open');
-    $('.menu').css({left: -320});
+    body.css({marginLeft: 0}).removeClass('open');
+    menu.css({left: -320});
   }
 
   function removeClickEvents() {
-    $('.menu-button').off('click');
-    $('.close-button').off('click');
-    $('.nav a').off('click');
+    menuButton.off('click');
+    closeButton.off('click');
+    navItems.off('click');
   }
 
   function positionCards() {
@@ -357,8 +377,13 @@ var main = function() {
 
   function unloading() {
     unloadTimer = setTimeout(function() {
-      shuffleAndLoadCards();
+      getNewImageCollection();
     }, 1000);
+  }
+
+  function getNewImageCollection() {
+    clearTimeout(unloadTimer);
+    getUnsplashImages(true, true);
   }
 
   function shuffleAndLoadCards() {
@@ -391,33 +416,48 @@ var main = function() {
     }
   }
 
-  function getUnsplashImages(render = false, timer = false) {
+  function clickGalleryMenu(item) {
+    collectionID = item.dataset.cid;
+    collectionTitle = item.dataset.ctitle;
+    collectionDesc = item.dataset.cdesc;
+    numImagesAvailable = item.dataset.cavail;
+
+    navItems.removeClass('selected');
+    $(item).addClass('selected');
+  }
+
+  function getUnsplashImages(render = false, unique = false, timer = false) {
     // https://medium.com/quick-code/how-to-quickly-generate-a-random-gallery-of-images-from-an-unsplash-collection-in-javascript-4ddb2a6a4faf
-    const numItemsToGenerate = 24; //how many gallery items you want on the screen
-    const numImagesAvailable = 1000; //the number of images available in the collection
-    const imageWidth = 800; //desired image width in pixels
-    const imageHeight = 640; //desired image height in pixels
-    const collectionID = 1163637; //the collection ID from the original url
-    const collectionTitle = "Architectural Lines"; //the collection ID from the original url
-    const collectionDesc = "Metal and glass, concrete and wood, straight lines and curves.";
+
+    // console.log("collectionID: " + collectionID);
+    // console.log("collectionTitle: " + collectionTitle);
+    // console.log("collectionDesc: " + collectionDesc);
+    // console.log("numImagesAvailable: " + numImagesAvailable);
+
     var imageCount = 0;
     let images = [];
 
     if (timer) {
-      fetchTimer = setTimeout(function() {
-        stopFetch();
-      }, 3000);
-
-      function stopFetch() {
-        clearTimeout(fetchTimer);
-        renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
-        return images;
-      }
+      startFetchTimer();
     }
 
     for(let i = 0; i < numItemsToGenerate; i++){
       let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
-      getImage(randomImageIndex);
+      getImage(randomImageIndex, unique);
+    }
+
+    function startFetchTimer (time = fetchTimeout) {
+      fetchTimer.on = true;
+      fetchTimer.clock = setTimeout(function() {
+        stopFetchTimer();
+      }, time);
+    }
+
+    function stopFetchTimer() {
+      clearTimeout(fetchTimer.clock);
+      fetchTimer.on = false;
+      renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
+      return images;
     }
 
     function getImage(randomNumber, unique = false){
@@ -433,9 +473,13 @@ var main = function() {
           imageCount++;
         }
         // console.log("image " + imageCount);
-        if (imageCount >= numItemsToGenerate && render) {
+        if (!unique && imageCount >= numItemsToGenerate && render) {
           renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
           return images;
+        } else {
+          if (!fetchTimer.on) {
+            startFetchTimer(fetchTimeout);
+          }
         }
       });
     }
@@ -444,7 +488,6 @@ var main = function() {
 
   function renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc) {
     var newGallery = $('<ul />').addClass('cards');
-    // console.log(newGallery);
     for(let i = 0; i < images.length; i++){
       var galleryItem = document.createElement('li');
       var html = `
