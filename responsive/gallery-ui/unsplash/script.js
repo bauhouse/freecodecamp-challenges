@@ -21,13 +21,15 @@ var main = function() {
   var menuClick = 0;
   var closeClick = 0;
   var navClick = 0;
+  var loadCount = 0;
   var resizeTimer;
   var unloadTimer;
   var imageFetch = {
     on: false,
     timer: null,
-    timeout: 1000
+    timeout: 250
   };
+  var unique = true;
   var numItemsToGenerate = 24; //how many gallery items you want on the screen
   var numImagesAvailable = 1000; //the number of images available in the collection
   var imageWidth = 800; //desired image width in pixels
@@ -39,9 +41,10 @@ var main = function() {
   var gallery = $('.cards');
   var galleryItems = $('.cards li');
   var cards = galleryItems;
+  var galleryLoaded = true;
 
   // Generate random image gallery on page load
-  // var unsplashImages = getUnsplashImages(true, true);
+  // var unsplashImages = getUnsplashImages(true);
 
   // Hide cards on page load
   // cards.css({opacity: 0});
@@ -131,31 +134,44 @@ var main = function() {
   }
 
   function loadCards() {
-    // console.log("===================================");
-    // console.log("Loading");
-    // console.log("-----------------------------------");
+    loadCount++;
+    console.log("===================================");
+    console.log("Loading");
+    console.log("-----------------------------------");
+    console.log("loadCount: " + loadCount);
+    if (galleryLoaded) {
+      console.log("Cards already loaded");
+      animateCards();
+    } else {
+      animateCards();
+    }
+  }
+
+  function animateCards() {
     if (cards instanceof jQuery) {
       cards.each(function(index, value) {
         var delayValue = (index * 150);
-        $(this).delay(delayValue).animate({top: 0, opacity: 1}, 500, "swing", countingCards);
+        $(this).delay(delayValue).animate({top: 0, opacity: 1}, 400, "swing", countingCards(loadCompleted));
       });
     }
   }
 
   function loadCompleted() {
+    galleryLoaded = true;
     console.log("Load Completed");
   }
 
   function unloadCards() {
-    // console.log("===================================");
-    // console.log("Unloading");
-    // console.log("-----------------------------------");
+    console.log("===================================");
+    console.log("Unloading");
+    console.log("-----------------------------------");
+    galleryLoaded = false;
     if (cards instanceof jQuery) {
       cards.each(function(index, value) {
         var reverse = Math.abs(index - cards.length);
         var topValue = ((index + 3) * 200) + 1000 + "px";
         var delayValue = (reverse * 30);
-        $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 500, "swing", countingCards(unloading));
+        $(this).delay(delayValue).animate({top: topValue, opacity: 0}, 400, "swing", countingCards(unloading));
       });
     }
   }
@@ -168,7 +184,18 @@ var main = function() {
 
   function getNewImageCollection() {
     clearTimeout(unloadTimer);
-    getUnsplashImages(true, true);
+    if (collectionID) {
+      getUnsplashImages(true);
+    } else {
+      loadOriginalImageCollection();
+    }
+  }
+
+  function loadOriginalImageCollection() {
+    cards = galleryItems;
+    replaceGallery(cards);
+    positionCards();
+    loadCards();
   }
 
   function shuffleAndLoadCards() {
@@ -211,20 +238,20 @@ var main = function() {
     $(item).addClass('selected');
   }
 
-  function getUnsplashImages(render = false, unique = false, timer = false) {
+  function getUnsplashImages(render = false) {
     // https://medium.com/quick-code/how-to-quickly-generate-a-random-gallery-of-images-from-an-unsplash-collection-in-javascript-4ddb2a6a4faf
 
-    // console.log("collectionID: " + collectionID);
-    // console.log("collectionTitle: " + collectionTitle);
-    // console.log("collectionDesc: " + collectionDesc);
-    // console.log("numImagesAvailable: " + numImagesAvailable);
+    console.log("===================================");
+    console.log(collectionTitle);
+    console.log("-----------------------------------");
+    console.log("collectionID: " + collectionID);
+    console.log("collectionTitle: " + collectionTitle);
+    console.log("collectionDesc: " + collectionDesc);
+    console.log("numImagesAvailable: " + numImagesAvailable);
+    console.log("-----------------------------------");
 
     var imageCount = 0;
     let images = [];
-
-    if (timer) {
-      startFetchTimer();
-    }
 
     for(let i = 0; i < numItemsToGenerate; i++){
       let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
@@ -234,39 +261,57 @@ var main = function() {
     function startFetchTimer (time = imageFetch.timeout) {
       imageFetch.on = true;
       imageFetch.timer = setTimeout(function() {
-        stopFetchTimer();
+        stopFetchTimer(renderImages);
       }, time);
     }
 
-    function stopFetchTimer() {
+    function stopFetchTimer(callback = null) {
       clearTimeout(imageFetch.timer);
       imageFetch.on = false;
-      renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
-      return images;
+      if (callback) {
+        console.log("Fetch timer timed out");
+        callback();
+      }
     }
 
-    function getImage(randomNumber, unique = false){
+    function getImage(randomNumber){
       fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`)
       .then((response)=> {
-        if (unique) {
-          if (isUnique(images, response.url)) {
+        if (!galleryLoaded) {
+          if (unique) {
+            if (isUnique(images, response.url)) {
+              images.push(response.url);
+              imageCount++;
+              console.log("image " + imageCount);
+              stopFetchTimer();
+              startFetchTimer();
+            }
+          } else {
             images.push(response.url);
             imageCount++;
+            // console.log("image " + imageCount);
           }
         } else {
-          images.push(response.url);
-          imageCount++;
+          // console.log("Gallery already loaded");
+          // console.log("image " + imageCount);
+          // console.log("Number of images: " + images.length);
+          return;
         }
-        // console.log("image " + imageCount);
-        if (!unique && imageCount >= numItemsToGenerate && render) {
-          renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
-          return images;
-        } else {
-          if (!imageFetch.on) {
-            startFetchTimer(imageFetch.timeout);
-          }
-        }
+        // if (!unique && imageCount >= numItemsToGenerate && render) {
+        //   renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
+        //   return images;
+        // } else {
+        //   if (!imageFetch.on) {
+        //     startFetchTimer(imageFetch.timeout);
+        //   }
+        // }
       });
+    }
+
+    function renderImages() {
+      console.log("Render Images");
+      renderUnsplashGallery(images, collectionID, collectionTitle, collectionDesc);
+      return images;
     }
 
   }
@@ -277,7 +322,7 @@ var main = function() {
       var galleryItem = document.createElement('li');
       var html = `
         <a href="https://unsplash.com/collections/${collectionID}">
-          <img src="${images[i]}" alt="Photo from Unsplash" />
+          <img data-src="${images[i]}" alt="Photo from Unsplash" />
           <div class="caption"><span class="caption-title">${collectionTitle}</span><span class="caption-desc">${collectionDesc}</span></div>
         </a>
       `;
@@ -290,7 +335,7 @@ var main = function() {
     lazyLoad();
     positionCards();
     loadCards();
-    // console.log("Unsplash images loaded");
+    console.log("Unsplash images loaded");
   }
 
   function isUnique(array, value) {
