@@ -6,7 +6,7 @@ const LOCAL_FORECAST = {
 function getMaxOfTmrw(forecast) {
   "use strict";
   // change code below this line
-  const maxOfTomorrow = undefined; // change this line
+  const { tomorrow: { max: maxOfTomorrow } } = forecast; // change this line
   // change code above this line
   return maxOfTomorrow;
 }
