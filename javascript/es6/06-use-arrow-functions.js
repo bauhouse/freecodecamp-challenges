@@ -1,5 +1,2 @@
-const magic = () => {
-  "use strict";
-  return new Date();
-};
+const magic = () => new Date();
 console.log(magic());
