@@ -10,9 +10,9 @@ const half = (function() {
   "use strict"; // do not change this line
 
   // change code below this line
-  return function half(stats) {
+  return function half({max, min}) {
     // use function argument destructuring
-    return (stats.max + stats.min) / 2.0;
+    return (max + min) / 2.0;
   };
   // change code above this line
 
