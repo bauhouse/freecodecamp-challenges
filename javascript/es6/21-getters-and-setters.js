@@ -4,15 +4,7 @@ function makeClass() {
   class Thermostat {
     constructor(fahrenheit) {
       this._fahrenheit = fahrenheit;
-      this._celsius = calculateCelsius(fahrenheit);
-    }
-
-    static calculateCelsius(F) {
-      return 5/9 * (F - 32);
-    }
-
-    static calculateFahrenheit(C) {
-      return C * 9.0 / 5 + 32;
+      this._celsius = Number((5/9 * (fahrenheit - 32)).toFixed(2));
     }
 
     // getter
@@ -21,7 +13,7 @@ function makeClass() {
     }
     // setter
     set temperature(celsius){
-      this._fahrenheit = calculateFahrenheit(celsius);
+      this._fahrenheit = Number((celsius * 9.0 / 5 + 32).toFixed(2));
       this._celsius = celsius;
     }
 
