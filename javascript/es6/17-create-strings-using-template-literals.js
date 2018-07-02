@@ -7,7 +7,7 @@ function makeList(arr) {
   "use strict";
 
   // change code below this line
-  const resultDisplayArray = null;
+  const resultDisplayArray = arr.map(value => `<li class="text-warning">${value}</li>`);
   // change code above this line
 
   return resultDisplayArray;
@@ -19,3 +19,4 @@ function makeList(arr) {
  *   <li class="text-warning">linebreak</li> ]
  **/
 const resultDisplayArray = makeList(result.failure);
+console.log(resultDisplayArray);
