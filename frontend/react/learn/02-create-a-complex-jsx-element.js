@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-
 const JSX = (
   <div>
     <h1>A Complex JSX Element</h1>
@@ -15,5 +12,3 @@ const JSX = (
     </ul>
   </div>
 );
-
-ReactDOM.render(JSX, document.getElementById('root'));
