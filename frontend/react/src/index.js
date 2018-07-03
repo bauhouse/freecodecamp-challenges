@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 
 const JSX = (
   <div>
-    {/* a comment goes here */}
-    <h1>This is a block of JSX</h1>
-    <p>Here's a subtitle</p>
+    <h1>Hello World</h1>
+    <p>Lets render this to the DOM</p>
   </div>
 );
+// change code below this line
 
 ReactDOM.render(JSX, document.getElementById('root'));
