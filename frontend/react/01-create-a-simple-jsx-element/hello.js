@@ -1,2 +1,0 @@
-
-const JSX = <div></div>;
