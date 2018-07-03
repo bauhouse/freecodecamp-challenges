@@ -1,7 +1,5 @@
 const MyComponent = function() {
-  // change code below this line
-
-
-
-  // change code above this line
+  return (
+    <div>MyComponent is a stateless functional component.</div>
+  );
 }

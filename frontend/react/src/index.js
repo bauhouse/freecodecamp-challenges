@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-const JSX = (
-  <div>
-    <h2>Welcome to React!</h2> <br />
-    <p>Be sure to close all tags!</p>
-    <hr />
-  </div>
-);
+const MyComponent = function() {
+  return (
+    <div>MyComponent is a stateless functional component.</div>
+  );
+}
 
-ReactDOM.render(JSX, document.getElementById('challenge-node'));
+ReactDOM.render(MyComponent(), document.getElementById('root'));
