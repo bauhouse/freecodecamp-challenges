@@ -1,77 +1,17 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-const Citrus = () => {
-  return (
-    <div>
-      <h2>Citrus:</h2>
-      <ul>
-        <li>Lemon</li>
-        <li>Lime</li>
-        <li>Orange</li>
-        <li>Grapefruit</li>
-      </ul>
-    </div>
-  );
-};
-
-const NonCitrus = () => {
-  return (
-    <div>
-      <h2>Non-Citrus:</h2>
-      <ul>
-        <li>Apple</li>
-        <li>Blueberry</li>
-        <li>Strawberry</li>
-        <li>Banana</li>
-      </ul>
-    </div>
-  );
-};
-
-const Vegetables = () => {
-  return (
-    <div>
-      <h2>Vegetables:</h2>
-      <ul>
-        <li>Brussel Sprouts</li>
-        <li>Broccoli</li>
-        <li>Squash</li>
-      </ul>
-    </div>
-  );
-};
-
-class Fruits extends React.Component {
-  constructor(props) {
+class MyComponent extends React.Component {
+  constructor (props) {
     super(props);
   }
   render() {
     return (
       <div>
-        <h2>Fruits:</h2>
-        <Citrus />
-        <NonCitrus />
+        <h1>My First React Component!</h1>
       </div>
     );
   }
-};
+}
 
-
-class TypesOfFood extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <h1>Types of Food:</h1>
-        <Fruits />
-        <Vegetables />
-      </div>
-    );
-  }
-};
-
-// change code below this line
-ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+ReactDOM.render(<MyComponent />, document.getElementById('challenge-node'));
