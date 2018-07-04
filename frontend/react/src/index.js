@@ -1,38 +1,72 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-const TypesOfFruit = () => {
+const Citrus = () => {
   return (
     <div>
-      <h2>Fruits:</h2>
+      <h2>Citrus:</h2>
       <ul>
-        <li>Apples</li>
-        <li>Blueberries</li>
-        <li>Strawberries</li>
-        <li>Bananas</li>
+        <li>Lemon</li>
+        <li>Lime</li>
+        <li>Orange</li>
+        <li>Grapefruit</li>
       </ul>
     </div>
   );
 };
 
-const Fruits = () => {
+const NonCitrus = () => {
   return (
     <div>
-      <TypesOfFruit />
+      <h2>Non-Citrus:</h2>
+      <ul>
+        <li>Apple</li>
+        <li>Blueberry</li>
+        <li>Strawberry</li>
+        <li>Banana</li>
+      </ul>
     </div>
   );
 };
 
-class TypesOfFood extends React.Component {
+const Vegetables = () => {
+  return (
+    <div>
+      <h2>Vegetables:</h2>
+      <ul>
+        <li>Brussel Sprouts</li>
+        <li>Broccoli</li>
+        <li>Squash</li>
+      </ul>
+    </div>
+  );
+};
+
+class Fruits extends React.Component {
   constructor(props) {
     super(props);
   }
+  render() {
+    return (
+      <div>
+        <h2>Fruits:</h2>
+        <Citrus />
+        <NonCitrus />
+      </div>
+    );
+  }
+};
 
+class TypesOfFood extends React.Component {
+  constructor(props) {
+     super(props);
+  }
   render() {
     return (
       <div>
         <h1>Types of Food:</h1>
         <Fruits />
+        <Vegetables />
       </div>
     );
   }
