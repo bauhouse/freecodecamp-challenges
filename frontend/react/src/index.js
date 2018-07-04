@@ -57,9 +57,10 @@ class Fruits extends React.Component {
   }
 };
 
+
 class TypesOfFood extends React.Component {
   constructor(props) {
-     super(props);
+    super(props);
   }
   render() {
     return (
@@ -72,4 +73,5 @@ class TypesOfFood extends React.Component {
   }
 };
 
-ReactDOM.render(<TypesOfFood />, document.getElementById('root'));
+// change code below this line
+ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
