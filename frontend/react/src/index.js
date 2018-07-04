@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-class MyComponent extends React.Component {
-  constructor (props) {
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date}</p>
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
     super(props);
   }
   render() {
     return (
       <div>
-        <h1>My First React Component!</h1>
+        <h3>What date is it?</h3>
+        <CurrentDate date={Date()} />
       </div>
     );
   }
-}
+};
 
-ReactDOM.render(<MyComponent />, document.getElementById('challenge-node'));
+ReactDOM.render(<Calendar />, document.getElementById('challenge-node'));
