@@ -12,7 +12,7 @@ class ShoppingCart extends React.Component {
   }
   render() {
     { /* change code below this line */ }
-    return <Items />
+    return <Items quantity={10} />
     { /* change code above this line */ }
   }
 };
