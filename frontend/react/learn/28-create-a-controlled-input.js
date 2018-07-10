@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
-
 class ControlledInput extends React.Component {
   constructor(props) {
     super(props);
@@ -27,5 +23,3 @@ class ControlledInput extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<ControlledInput />, document.getElementById('root'));
