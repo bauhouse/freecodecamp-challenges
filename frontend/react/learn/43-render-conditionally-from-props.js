@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -43,5 +39,3 @@ class GameOfChance extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<GameOfChance />, document.getElementById('root'));
