@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-
 const inputStyle = {
   width: 235,
   margin: 5
@@ -74,5 +70,3 @@ class MagicEightBall extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<MagicEightBall />, document.getElementById('root'));
