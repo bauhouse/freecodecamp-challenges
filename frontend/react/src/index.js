@@ -2,21 +2,22 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 
-class StatefulComponent extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
     super(props);
-    // initialize state here
     this.state = {
-      name: "Stephen"
+      name: 'freeCodeCamp'
     }
   }
   render() {
     return (
       <div>
+        { /* change code below this line */ }
         <h1>{this.state.name}</h1>
+        { /* change code above this line */ }
       </div>
     );
   }
 };
 
-ReactDOM.render(<StatefulComponent />, document.getElementById('challenge-node'));
+ReactDOM.render(<MyComponent />, document.getElementById('root'));
