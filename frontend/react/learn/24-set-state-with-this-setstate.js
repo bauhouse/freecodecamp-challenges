@@ -8,7 +8,9 @@ class MyComponent extends React.Component {
   }
   handleClick() {
     // change code below this line
-
+    this.setState({
+      name: 'React Rocks!'
+    });
     // change code above this line
   }
   render() {
