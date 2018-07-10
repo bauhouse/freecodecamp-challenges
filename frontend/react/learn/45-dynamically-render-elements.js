@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-
 const textAreaStyles = {
   width: 235,
   margin: 5
@@ -45,5 +41,3 @@ class MyToDoList extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<MyToDoList />, document.getElementById('root'));
