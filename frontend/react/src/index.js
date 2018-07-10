@@ -1,39 +1,37 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 
-class ReturnTempPassword extends React.Component {
+class CampSite extends React.Component {
   constructor(props) {
     super(props);
-
   }
   render() {
     return (
-        <div>
-            { /* change code below this line */ }
-            <p>Your temporary password is: <strong>{this.props.tempPassword}</strong></p>
-            { /* change code above this line */ }
-        </div>
+      <div>
+        <Camper/>
+      </div>
     );
   }
 };
-
-class ResetPassword extends React.Component {
+// change code below this line
+class Camper extends React.Component {
   constructor(props) {
     super(props);
-
   }
   render() {
     return (
-        <div>
-          <h2>Reset Password</h2>
-          <h3>We've generated a new temporary password for you.</h3>
-          <h3>Please reset this password from your account settings ASAP.</h3>
-          { /* change code below this line */ }
-          <ReturnTempPassword tempPassword={"g4h8yj92"} />
-          { /* change code above this line */ }
-        </div>
+      <p>{this.props.name}</p>
     );
   }
-};
+}
 
-ReactDOM.render(<ResetPassword />, document.getElementById('challenge-node'));
+Camper.defaultProps = {
+  name: 'CamperBot'
+}
+
+Camper.propTypes = {
+  name: PropTypes.string.isRequired
+}
+
+ReactDOM.render(<CampSite />, document.getElementById('challenge-node'));
