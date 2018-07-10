@@ -2,36 +2,21 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 
-class CampSite extends React.Component {
+class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
+    // initialize state here
+    this.state = {
+      name: "Stephen"
+    }
   }
   render() {
     return (
       <div>
-        <Camper/>
+        <h1>{this.state.name}</h1>
       </div>
     );
   }
 };
-// change code below this line
-class Camper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <p>{this.props.name}</p>
-    );
-  }
-}
 
-Camper.defaultProps = {
-  name: 'CamperBot'
-}
-
-Camper.propTypes = {
-  name: PropTypes.string.isRequired
-}
-
-ReactDOM.render(<CampSite />, document.getElementById('challenge-node'));
+ReactDOM.render(<StatefulComponent />, document.getElementById('challenge-node'));
