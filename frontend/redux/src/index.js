@@ -1,8 +1,3 @@
 import * as Redux from 'redux';
 
-const store = Redux.createStore(
-  (state = 5) => state
-);
-
-// change code below this line
-const currentState = store.getState();
+// Define an action here:
