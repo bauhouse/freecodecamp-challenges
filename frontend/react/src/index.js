@@ -9,11 +9,27 @@ class Counter extends React.Component {
       count: 0
     };
     // change code below this line
-
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
     // change code above this line
   }
   // change code below this line
-
+  increment() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+  decrement() {
+    this.setState({
+      count: this.state.count - 1
+    });
+  }
+  reset() {
+    this.setState({
+      count: 0
+    });
+  }
   // change code above this line
   render() {
     return (
@@ -27,4 +43,4 @@ class Counter extends React.Component {
   }
 };
 
-ReactDOM.render(<MyComponent />, document.getElementById('root'));
+ReactDOM.render(<Counter />, document.getElementById('root'));
