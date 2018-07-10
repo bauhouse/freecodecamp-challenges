@@ -5,11 +5,21 @@ class MyComponent extends React.Component {
       visibility: false
     };
     // change code below this line
-
+    this.toggleVisibility = this.toggleVisibility.bind(this);
     // change code above this line
   }
   // change code below this line
-
+  toggleVisibility() {
+    if (this.state.visibility) {
+      this.setState({
+        visibility: false
+      });
+    } else {
+      this.setState({
+        visibility: true
+      });
+    }
+  }
   // change code above this line
   render() {
     if (this.state.visibility) {

@@ -6,26 +6,40 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemCount: 0
+      visibility: false
     };
     // change code below this line
-    this.addItem = this.addItem.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
     // change code above this line
   }
-  addItem() {
-    this.setState({
-      itemCount: this.state.itemCount + 1
-    });
+  // change code below this line
+  toggleVisibility() {
+    if (this.state.visibility) {
+      this.setState({
+        visibility: false
+      });
+    } else {
+      this.setState({
+        visibility: true
+      });
+    }
   }
+  // change code above this line
   render() {
-    return (
-      <div>
-        { /* change code below this line */ }
-        <button onClick={this.addItem}>Click Me</button>
-        { /* change code above this line */ }
-        <h1>Current Item Count: {this.state.itemCount}</h1>
-      </div>
-    );
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
   }
 };
 
