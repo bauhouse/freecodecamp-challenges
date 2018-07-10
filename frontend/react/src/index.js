@@ -6,22 +6,24 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Initial State'
+      itemCount: 0
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
     // change code below this line
-    this.setState({
-      name: 'React Rocks!'
-    });
+    this.addItem = this.addItem.bind(this);
     // change code above this line
+  }
+  addItem() {
+    this.setState({
+      itemCount: this.state.itemCount + 1
+    });
   }
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>Click Me</button>
-        <h1>{this.state.name}</h1>
+        { /* change code below this line */ }
+        <button onClick={this.addItem}>Click Me</button>
+        { /* change code above this line */ }
+        <h1>Current Item Count: {this.state.itemCount}</h1>
       </div>
     );
   }
