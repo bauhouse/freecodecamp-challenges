@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
-
 class Counter extends React.Component {
   constructor(props) {
     super(props);
@@ -26,5 +22,3 @@ class Counter extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<MyComponent />, document.getElementById('root'));
