@@ -1,11 +1,15 @@
 
-// const styles =
+const styles = {
+  color: "purple",
+  fontSize: 40,
+  border: "2px solid purple"
+};
 // change code above this line
 class Colorful extends React.Component {
   render() {
     // change code below this line
     return (
-      <div style={{color: "yellow", fontSize: 24}}>Style Me!</div>
+      <div style={styles}>Style Me!</div>
     );
     // change code above this line
   }
