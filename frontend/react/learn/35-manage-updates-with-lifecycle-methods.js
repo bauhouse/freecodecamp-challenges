@@ -6,7 +6,13 @@ class Dialog extends React.Component {
     console.log('Component is about to update...');
   }
   // change code below this line
-
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props);
+    console.log(nextProps);
+  }
+  componentDidUpdate() {
+    console.log('Component has updated.');
+  }
   // change code above this line
   render() {
     return <h1>{this.props.message}</h1>
