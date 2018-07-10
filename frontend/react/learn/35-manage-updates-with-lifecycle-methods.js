@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
-
 class Dialog extends React.Component {
   constructor(props) {
     super(props);
@@ -39,5 +35,3 @@ class Controller extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<Controller />, document.getElementById('root'));
