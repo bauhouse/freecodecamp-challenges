@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
 
 // const styles =
 // change code above this line
@@ -13,5 +10,3 @@ class Colorful extends React.Component {
     // change code above this line
   }
 };
-
-ReactDOM.render(<Colorful />, document.getElementById('root'));
