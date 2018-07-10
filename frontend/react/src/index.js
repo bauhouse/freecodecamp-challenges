@@ -13,5 +13,6 @@ class App extends React.Component {
 };
 
 // change code below this line
+ReactDOMServer.renderToString(<App />);
 
 ReactDOM.render(<App />, document.getElementById('root'));
