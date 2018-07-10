@@ -1,7 +1,10 @@
-import index from "./js/index";
+import { createStore } from 'redux';
 
-store.subscribe(() => console.log('Look ma, Redux!!'));
+const reducer = (state = 5) => {
+  return state;
+}
 
-store.dispatch( addArticle({ name: 'React Redux Tutorial for Beginners', id: 1 }) );
-
-console.log(store.getState());
+// Redux methods are available from a Redux object
+// For example: Redux.createStore()
+// Define the store here:
+const store = createStore(reducer);
