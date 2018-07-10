@@ -1,14 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import index from "./js/index";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return <div/>
-  }
-};
+store.subscribe(() => console.log('Look ma, Redux!!'));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+store.dispatch( addArticle({ name: 'React Redux Tutorial for Beginners', id: 1 }) );
+
+console.log(store.getState());

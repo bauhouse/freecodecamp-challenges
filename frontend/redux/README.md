@@ -1,3 +1,7 @@
+# React Redux Tutorial for Beginners: The Definitive Guide (2018) 
+
+<https://www.valentinog.com/blog/react-redux-tutorial-beginners/>
+
 # Tutorial: How to set up React, webpack 4, and Babel (2018)
 
 <https://www.valentinog.com/blog/react-webpack-babel/>
