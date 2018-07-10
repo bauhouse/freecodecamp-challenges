@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 const inputStyle = {
   width: 235,
@@ -46,5 +43,3 @@ class CheckUserAge extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<CheckUserAge />, document.getElementById('root'));
