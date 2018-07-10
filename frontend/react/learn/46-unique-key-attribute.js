@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 const frontEndFrameworks = [
   'React',
@@ -22,5 +19,3 @@ function Frameworks() {
     </div>
   );
 };
-
-ReactDOM.render(<Frameworks />, document.getElementById('root'));
