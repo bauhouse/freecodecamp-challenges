@@ -8,9 +8,13 @@ class OnlyEvens extends React.Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     console.log('Should I update?');
-     // change code below this line
-    return true;
-     // change code above this line
+    // change code below this line
+    if (nextProps.value % 2 == 0) {
+      return true;
+    } else {
+      return false;
+    }
+    // change code above this line
   }
   componentWillReceiveProps(nextProps) {
     console.log('Receiving new props...');
