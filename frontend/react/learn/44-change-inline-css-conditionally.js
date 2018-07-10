@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 class GateKeeper extends React.Component {
   constructor(props) {
@@ -32,5 +29,3 @@ class GateKeeper extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<GateKeeper />, document.getElementById('root'));
