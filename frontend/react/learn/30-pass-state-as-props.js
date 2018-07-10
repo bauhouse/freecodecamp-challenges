@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
-
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -30,5 +26,3 @@ class Navbar extends React.Component {
     );
   }
 };
-
-ReactDOM.render(<MyApp />, document.getElementById('root'));
