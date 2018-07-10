@@ -13,10 +13,10 @@ class MyComponent extends React.Component {
   }
   // change code below this line
   componentDidMount() {
-
+    document.addEventListener('keydown', this.handleKeyPress);
   }
   componentWillUnmount() {
-
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
   // change code above this line
   handleEnter() {
