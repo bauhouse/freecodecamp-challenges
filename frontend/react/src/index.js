@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,4 +14,4 @@ class App extends React.Component {
 
 // change code below this line
 
-ReactDOM.render(<MyComponent />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
