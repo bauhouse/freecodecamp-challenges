@@ -17,13 +17,20 @@ class MyComponent extends React.Component {
   }
   render() {
     // change code below this line
-
-    return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         <h1>Displayed!</h1>
-       </div>
-    );
+    if (this.state.display) {
+      return (
+         <div>
+           <button onClick={this.toggleDisplay}>Toggle Display</button>
+           <h1>Displayed!</h1>
+         </div>
+      );
+    } else {
+      return (
+         <div>
+           <button onClick={this.toggleDisplay}>Toggle Display</button>
+         </div>
+      );
+    }
   }
 };
 
