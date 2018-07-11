@@ -3,7 +3,8 @@ const ADD_NOTE = 'ADD_NOTE';
 const notesReducer = (state = 'Initial State', action) => {
   switch(action.type) {
     // change code below this line
-
+    case ADD_NOTE:
+      return state = action.text;
     // change code above this line
     default:
       return state;
@@ -12,7 +13,11 @@ const notesReducer = (state = 'Initial State', action) => {
 
 const addNoteText = (note) => {
   // change code below this line
-
+  const action = {
+    type: ADD_NOTE,
+    text: note
+  };
+  return action;
   // change code above this line
 };
 
