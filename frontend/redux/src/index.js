@@ -10,12 +10,14 @@ const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users}
 const handleAsync = () => {
   return function(dispatch) {
     // dispatch request action here
+    requestingData();
 
     setTimeout(function() {
       let data = {
         users: ['Jeff', 'William', 'Alice']
       }
       // dispatch received data action here
+      receivedData(data);
 
     }, 2500);
   }
