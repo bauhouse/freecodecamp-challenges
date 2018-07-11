@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
 
