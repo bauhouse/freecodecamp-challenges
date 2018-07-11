@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const immutableReducer = (state = ['Do not mutate state!'], action) => {
   switch(action.type) {
     case 'ADD_TO_DO':
