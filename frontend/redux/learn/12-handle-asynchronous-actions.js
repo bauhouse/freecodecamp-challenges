@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const REQUESTING_DATA = 'REQUESTING_DATA'
 const RECEIVED_DATA = 'RECEIVED_DATA'
 
