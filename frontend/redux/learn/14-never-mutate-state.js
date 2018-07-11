@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const ADD_TO_DO = 'ADD_TO_DO';
 
 // A list of strings representing tasks to do:
