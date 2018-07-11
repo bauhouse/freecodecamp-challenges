@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const store = Redux.createStore(
   (state = {login: false}) => state
 );
