@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const defaultState = {
   user: 'CamperBot',
   status: 'offline',
