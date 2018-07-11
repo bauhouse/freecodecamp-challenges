@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const INCREMENT = null; // define a constant for increment action types
 const DECREMENT = null; // define a constant for decrement action types
 
