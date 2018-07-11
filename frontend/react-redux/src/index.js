@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import * as Redux from 'redux';
 
+// define ADD, addMessage(), messageReducer(), and store here:
+
 class DisplayMessages extends React.Component {
   constructor(props) {
     super(props);
