@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const ADD_NOTE = 'ADD_NOTE';
 
 const notesReducer = (state = 'Initial State', action) => {
