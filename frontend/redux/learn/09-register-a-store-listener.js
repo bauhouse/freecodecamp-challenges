@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 const ADD = 'ADD';
 
 const reducer = (state = 0, action) => {
