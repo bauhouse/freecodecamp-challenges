@@ -9,9 +9,7 @@ const immutableReducer = (state = defaultState, action) => {
   switch(action.type) {
     case 'ONLINE':
       // don't mutate state here or the tests will fail
-      let obj = Object.assign({}, state);
-      obj.status = 'online';
-      return state = obj;
+      return state = Object.assign({}, state, {status: 'online'});
     default:
       return state;
   }
