@@ -15,7 +15,11 @@ const store = Redux.createStore(reducer);
 let count = 0;
 
 // change code below this line
+function countActions() {
+  return count = count + 1;
+}
 
+store.subscribe(countActions);
 // change code above this line
 
 store.dispatch({type: ADD});
