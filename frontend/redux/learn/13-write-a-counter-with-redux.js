@@ -1,10 +1,27 @@
-const INCREMENT = null; // define a constant for increment action types
-const DECREMENT = null; // define a constant for decrement action types
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
 
-const counterReducer = null; // define the counter reducer which will increment or decrement the state based on the action it receives
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case INCREMENT:
+      return state = state + 1;
+    case DECREMENT:
+      return state = state - 1;
+    default:
+      return state;
+  }
+};
 
-const incAction = null; // define an action creator for incrementing
+const incAction = () => {
+  return {
+    type: INCREMENT
+  }
+};
 
-const decAction = null; // define an action creator for decrementing
+const decAction = () => {
+  return {
+    type: DECREMENT
+  }
+};
 
-const store = null; // define the Redux store here, passing in your reducers
+const store = Redux.createStore(counterReducer);
