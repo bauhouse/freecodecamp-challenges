@@ -1,5 +1,3 @@
-import * as Redux from 'redux';
-
 // change code below this line
 
 // change code above this line
