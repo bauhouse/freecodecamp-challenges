@@ -1,4 +1,5 @@
 import * as Redux from 'redux';
+import thunk from 'redux-thunk';
 
 const REQUESTING_DATA = 'REQUESTING_DATA'
 const RECEIVED_DATA = 'RECEIVED_DATA'
