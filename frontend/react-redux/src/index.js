@@ -88,3 +88,5 @@ class AppWrapper extends React.Component {
   }
   // change code above this line
 };
+
+ReactDOM.render(<AppWrapper />, document.getElementById('root'));
