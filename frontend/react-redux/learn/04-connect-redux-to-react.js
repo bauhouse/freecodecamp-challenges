@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import * as Redux from 'redux';
-import * as ReactRedux from 'react-redux';
-
 // Redux Code:
 const ADD = 'ADD';
 
