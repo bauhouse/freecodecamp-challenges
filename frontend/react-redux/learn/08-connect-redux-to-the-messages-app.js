@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import * as Redux from 'redux';
-import * as ReactRedux from 'react-redux';
-
 // Redux:
 const ADD = 'ADD';
 
@@ -100,5 +94,3 @@ class AppWrapper extends React.Component {
     return (null);
   }
 };
-
-ReactDOM.render(<AppWrapper />, document.getElementById('root'));
