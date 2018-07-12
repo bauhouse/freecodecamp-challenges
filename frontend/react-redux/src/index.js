@@ -1,48 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import * as Redux from 'redux';
 
 // define ADD, addMessage(), messageReducer(), and store here:
 
-class DisplayMessages extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-      messages: []
-    }
-    this.handleChange = this.handleChange.bind(this);
-    this.submitMessage = this.submitMessage.bind(this);
-  }
+const ADD = 'ADD';
 
-  handleChange(event) {
-    this.setState({
-      input: event.target.value
-    });
+const addMessage = (message) => {
+  const action = {
+    type: ADD,
+    message: message
   }
+  return action;
+}
 
-  submitMessage(event) {
-    this.setState({
-      input: '',
-      messages: [...this.state.messages].concat(this.state.input)
-    });
+const messageReducer = (state = [], action) => {
+  switch (action.type) {
+    case ADD:
+      return state = [...state].concat(action.message);
+    default:
+      return state;
   }
+}
 
-  render() {
-    const items = this.state.messages.map((value, index) => <li key={'item' + index}>{value}</li>);
-    return (
-      <div>
-        <h2>Type in a new Message:</h2>
-        <input value={this.state.input} onChange={this.handleChange} />
-        <button onClick={this.submitMessage}>Add Message</button>
-        <p>{this.state.input}</p>
-        <ul>
-          {items}
-        </ul>
-      </div>
-    );
-  }
-};
-
-ReactDOM.render(<DisplayMessages />, document.getElementById('root'));
+const store = Redux.createStore(messageReducer);
