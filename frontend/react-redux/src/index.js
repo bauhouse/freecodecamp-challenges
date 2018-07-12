@@ -89,7 +89,7 @@ const Provider = ReactRedux.Provider;
 const connect = ReactRedux.connect;
 
 // define the Container component here:
-
+const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 class AppWrapper extends React.Component {
   constructor(props) {
@@ -97,7 +97,11 @@ class AppWrapper extends React.Component {
   }
   render() {
     // complete the return statement:
-    return (null);
+    return (
+      <Provider store={store}>
+        <Container />
+      </Provider>
+    );
   }
 };
 
