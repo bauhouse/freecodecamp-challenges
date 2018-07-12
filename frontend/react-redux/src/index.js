@@ -36,5 +36,6 @@ class Presentational extends React.Component {
 
 const connect = ReactRedux.connect;
 // change code below this line
+const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 ReactDOM.render(<Presentational />, document.getElementById('root'));
