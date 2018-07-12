@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import * as Redux from 'redux';
-import * as ReactRedux from 'react-redux';
-
 const addMessage = (message) => {
   return {
     type: 'ADD',
@@ -36,5 +30,3 @@ class Presentational extends React.Component {
 
 const connect = ReactRedux.connect;
 // change code below this line
-
-ReactDOM.render(<Presentational />, document.getElementById('root'));
