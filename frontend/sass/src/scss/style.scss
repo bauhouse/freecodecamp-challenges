@@ -1,13 +1,6 @@
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  border-radius: $radius;
-}
-
-#awesome {
+#box {
   width: 150px;
   height: 150px;
-  background-color: green;
-  @include border-radius(15px);
+  background-color: red;
+  @include border-stroke(medium);
 }
