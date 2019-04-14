@@ -2,6 +2,7 @@
 	"name": "fcc-learn-npm-package-json",
 	"author": "Stephen Bau",
   "description": "Learning about APIs and Microservices with freeCodeCamp",
+  "keywords": [ "node", "npm", "api", "microservice", "freecodecamp" ],
 	"dependencies": {
 		"express": "^4.14.0"
 	},
