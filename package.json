@@ -4,6 +4,7 @@
   "description": "Learning about APIs and Microservices with freeCodeCamp",
   "keywords": [ "node", "npm", "api", "microservice", "freecodecamp" ],
   "license": "MIT",
+  "version": "1.0",
 	"dependencies": {
 		"express": "^4.14.0"
 	},
