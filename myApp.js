@@ -56,12 +56,16 @@ app.get("/json", function(req, res) {
 app.get('/now', function(req, res, next) {
   req.time = new Date().toString();
   next();
-}, function(req, res) {
+}, function(req, res, next) {
   res.json( {time: req.time} );
+  next();
 });
 
 /** 9)  Get input from client - Route parameters */
-
+app.get("/:word/echo", function(req, res) {
+  let word = req.params.word;
+  res.json( {echo: word} );
+});
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
