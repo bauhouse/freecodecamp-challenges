@@ -11,7 +11,7 @@
 // Add `mongodb` and `mongoose` to the project's `package.json`. Then require 
 // `mongoose`. Store your **mLab** database URI in the private `.env` file 
 // as `MONGO_URI`. Connect to the database using `mongoose.connect(<Your URI>)`
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true});
 
 /** # SCHEMAS and MODELS #
@@ -38,10 +38,27 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true});
 // `default` values. See the [mongoose docs](http://mongoosejs.com/docs/guide.html).
 
 // <Your code here >
+var Schema = mongoose.Schema;
 
-var Person /* = <Your Model> */
+var personSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    min: 0
+  },
+  favoriteFoods: [{
+    type: String,
+    unique: true,
+    default: 'apple'
+  }]  
+});
 
-// **Note**: GoMix is a real server, and in real servers interactions with
+var Person = mongoose.model('Person', personSchema);
+
+// **Note**: Glitch is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
 // (e.g. someone hits an endpoint on your API). We'll follow the same approach
 // in these exercises. The `done()` function is a callback that tells us that
@@ -76,9 +93,24 @@ var Person /* = <Your Model> */
 //    ...do your stuff here...
 // });
 
+var person = new Person({
+  name: "Jane Doe",
+  age: 27,
+  favoriteFoods: [
+    "chocolate",
+    "apple",
+    "sushi"
+  ]
+});
+
 var createAndSavePerson = function(done) {
   
-  done(null /*, data*/);
+  person.save(function(err, data) {
+    if(err){
+      return done(err);
+    }
+    return done(null, data);
+  });
 
 };
 
