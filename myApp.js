@@ -51,7 +51,6 @@ var personSchema = new Schema({
   },
   favoriteFoods: [{
     type: String,
-    unique: true,
     default: 'apple'
   }]  
 });
@@ -138,7 +137,7 @@ var arrayOfPeople = [
     age: 21,
     favoriteFoods: [
       "surf and turf",
-      "pizza",
+      "crackers",
       "hamburger"
     ]
   },
@@ -176,8 +175,13 @@ var createManyPeople = function(arrayOfPeople, done) {
 
 var findPeopleByName = function(personName, done) {
   
-  done(null/*, data*/);
-
+  Person.find({ name: personName}, function(err, data) {
+    if(err) {
+      done(err);
+    }
+    done(null, data);
+  });  
+    
 };
 
 /** 6) Use `Model.findOne()` */
