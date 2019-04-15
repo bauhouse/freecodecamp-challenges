@@ -341,7 +341,6 @@ var queryChain = function(done) {
         done(err);
       }
       done(null, data);
-      console.log(data);
   });  
 
 };
