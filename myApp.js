@@ -331,7 +331,19 @@ var removeManyPeople = function(done) {
 var queryChain = function(done) {
   var foodToSearch = "burrito";
   
-  done(null/*, data*/);
+  Person.
+    find({ favoriteFoods: foodToSearch }).
+    sort({ name: 1 }).
+    limit( 2 ).
+    select( 'name favoriteFoods' ).
+    exec(function(err, data) {
+      if(err) {
+        done(err);
+      }
+      done(null, data);
+      console.log(data);
+  });  
+
 };
 
 /** **Well Done !!**
