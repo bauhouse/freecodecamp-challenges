@@ -11,8 +11,8 @@ var app = express();
 // Basic Configuration 
 var port = process.env.PORT || 3000;
 
-/** this project needs a db !! **/ 
-// mongoose.connect(process.env.MONGOLAB_URI);
+// Connect to Database
+mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true});
 
 app.use(cors());
 
@@ -34,4 +34,11 @@ app.get("/api/hello", function (req, res) {
 
 app.listen(port, function () {
   console.log('Node.js listening ...');
+});
+
+
+// URL shortener
+app.get("/api/shorturl/new", function (req, res) {
+  res.sendFile(process.cwd() + '/views/shorturl.html');
+  // res.json({"error": "Invalid URL"});
 });
