@@ -40,3 +40,17 @@ app.get('/now', function(req, res, next) {
   res.json( {time: req.time} );
   next();
 });
+
+
+// timestamp server
+app.get('/api/timestamp/:date_string', function(req, res, next) {
+  let date_string = req.params.date_string;
+  let date = new Date(date_string);
+  let unix = date.getTime();
+  let utc = date.toUTCString();
+  if (!Date.parse(date_string)) {
+    return res.json({"error": "Invalid Date"});
+  }
+  res.json({ "unix": unix, "utc": utc });
+  next();
+});
