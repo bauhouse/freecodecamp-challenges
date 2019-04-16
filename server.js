@@ -32,3 +32,15 @@ var listener = app.listen(process.env.PORT, function () {
 });
 
 
+// request header parser
+app.get("/api/whoami", function (req, res) {
+  console.log(req.headers);
+  let ip = req.headers['x-forwarded-for'];
+  let language = req.headers['accept-language'];
+  let software = req.headers['user-agent'];
+  res.json({
+    ipaddress: ip,
+    language: language,
+    software: software
+  });
+});
