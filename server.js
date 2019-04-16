@@ -39,7 +39,15 @@ app.listen(port, function () {
 
 
 // URL shortener
+// ==================================================
+
+// Create form to POST URLs
 app.get("/api/shorturl/new", function (req, res) {
   res.sendFile(process.cwd() + '/views/shorturl.html');
+});
+
+// Use body-parser to retrieve POST data
+app.post("/api/shorturl/new", function(req, res) {
+  res.json( {url: req.body.url} );
   // res.json({"error": "Invalid URL"});
 });
