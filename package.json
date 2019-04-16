@@ -1,28 +1,27 @@
 {
-	"name": "fcc-mongo-mongoose-challenges",
+	"name": "fcc-api-projects-boilerplate",
 	"version": "0.0.1",
-	"description": "A boilerplate project",
+	"description": "An FCC Backend Challenge",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js"
 	},
 	"dependencies": {
 		"express": "^4.12.4",
-    "mongodb": "^3.2.3",
-    "mongoose": "^5.5.1",
-		"body-parser": "^1.15.2"
+		"cors": "^2.8.0"
 	},
 	"engines": {
 		"node": "4.4.5"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://hyperdev.com/#!/project/welcome-project"
+		"url": "https://githost.com/camper/repo.git"
 	},
 	"keywords": [
 		"node",
 		"hyperdev",
-		"express"
+		"express",
+		"freecodecamp"
 	],
 	"license": "MIT"
 }
