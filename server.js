@@ -4,6 +4,7 @@ var express = require('express');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var url = require('url');
 var dns = require('dns');
 
 var cors = require('cors');
@@ -49,7 +50,8 @@ app.get("/api/shorturl/new", function (req, res) {
 
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
-  let url = req.body.url;
+  // Parse URL
+  let url = new URL(req.body.url);
   let valid = true;
   let url_lookup = dns.lookup(url, function (err, addresses, family) {
     if (err) {
@@ -60,13 +62,35 @@ app.post("/api/shorturl/new", function(req, res) {
   });
 });
 
-// Test DNS Lookup
-/*
-let uri = 'www.freecodecamp.org'
-let uri_lookup = dns.lookup(uri, function (err, addresses, family) {
-  if (err) {
+// Evaluate and respond to URL input
+try {
+  // Parse URL
+  let url = new URL('https://google.com');
+  console.log("Protocol: " + url.protocol);
+  console.log("Host: " + url.host);
+  console.log("Hostname: " + url.hostname);
+  console.log("Pathname: " + url.pathname);
+  let valid = true;
+  // Test protocol
+  if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
+    console.log( {protocol: 'valid'} );
+  } else {
+    valid = false;
+    console.log( {protocol: 'invalid'} );
+  }
+  // DNS lookup
+  let url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
+    if (err) {
+      valid = false;
+    }
+  });
+  // JSON response
+  if (valid) {
+    console.log( {original_url: url.hostname, short_url: '1'} );
+  } else {
     console.log({"error": "Invalid URL"});
   }
-  console.log( {url: uri} );
-});
-*/
+}
+catch(err) {
+  console.log({"error": "Invalid URL"});
+}
