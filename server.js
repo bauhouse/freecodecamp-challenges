@@ -46,39 +46,31 @@ app.listen(port, function () {
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
 
-  // Declare valid as boolean variable
-  var valid = false;
-
-  // Parse URL
   try {
+    // Parse URL
     var url = new URL(req.body.url);
 
     // Test protocol
     if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
-      valid = true;
-    } else
 
-    // DNS lookup
-    var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
-      if (err) {
-        valid = false;
-        return invalidResponse();
-      }
-    });
-  
-    // JSON response
-    if (valid) {
-      res.json( {original_url: url.hostname, short_url: '1'} );
+      // DNS lookup
+      var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
+        if (err) {
+          invalidResponse();
+        } else {
+          // JSON response
+          res.json( {original_url: url.hostname, short_url: '1'} );
+        }
+      });
+
     } else {
       invalidResponse();
     }
   }
-
-  // Unable to parse URL
   catch(err) {
     invalidResponse();
   }
-  
+
   function invalidResponse() {
     res.json({"error": "Invalid URL"});
   }
@@ -88,7 +80,7 @@ app.post("/api/shorturl/new", function(req, res) {
 // Evaluate and respond to URL input
 try {
   // Parse URL
-  var url = new URL('htt://blah.blah');
+  var url = new URL('http://blah.blah');
   console.log("Protocol: " + url.protocol);
   console.log("Host: " + url.host);
   console.log("Hostname: " + url.hostname);
@@ -102,6 +94,7 @@ try {
     var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
       if (err) {
         console.log({lookup: "error"});
+        invalidResponse();
       } else {
         console.log({lookup: "success"});
 
