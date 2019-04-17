@@ -190,7 +190,8 @@ app.post("/api/shorturl/new", function(req, res) {
     invalidResponse();
   }
 
-  function createShortURL(url_string, url) {
+  // Create short URL entry and JSON response
+  var createShortURL = function(url_string, url) {
     console.log("Create Short URL");
 
     var shortUrl = new ShortURL({
@@ -212,7 +213,8 @@ app.post("/api/shorturl/new", function(req, res) {
     };
   }
   
-  function invalidResponse() {
+  // Invalid URL response
+  var invalidResponse = function() {
     res.json({"error": "Invalid URL"});
   }
   
