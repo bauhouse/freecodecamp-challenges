@@ -175,7 +175,6 @@ app.post("/api/shorturl/new", function(req, res) {
           console.log("url_string: " + url_string);
           console.log("url:");
           console.log(url);
-          console.log("Database: " + db);
           
           // JSON response
           res.json( {original_url: url.hostname, short_url: '1'} );
