@@ -4,6 +4,7 @@ var express = require('express');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var dns = require('dns');
 
 var cors = require('cors');
 
@@ -48,6 +49,24 @@ app.get("/api/shorturl/new", function (req, res) {
 
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
-  res.json( {url: req.body.url} );
-  // res.json({"error": "Invalid URL"});
+  let url = req.body.url;
+  let valid = true;
+  let url_lookup = dns.lookup(url, function (err, addresses, family) {
+    if (err) {
+      valid = false;
+      res.json({"error": "Invalid URL"});
+    }
+    res.json( {url: url, valid: valid} );
+  });
 });
+
+// Test DNS Lookup
+/*
+let uri = 'www.freecodecamp.org'
+let uri_lookup = dns.lookup(uri, function (err, addresses, family) {
+  if (err) {
+    console.log({"error": "Invalid URL"});
+  }
+  console.log( {url: uri} );
+});
+*/
