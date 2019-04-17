@@ -43,54 +43,87 @@ app.listen(port, function () {
 // URL shortener
 // ==================================================
 
-// Create form to POST URLs
-app.get("/api/shorturl/new", function (req, res) {
-  res.sendFile(process.cwd() + '/views/shorturl.html');
-});
-
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
+
+  // Declare valid as boolean variable
+  var valid = false;
+
   // Parse URL
-  let url = new URL(req.body.url);
-  let valid = true;
-  let url_lookup = dns.lookup(url, function (err, addresses, family) {
-    if (err) {
-      valid = false;
-      res.json({"error": "Invalid URL"});
+  try {
+    var url = new URL(req.body.url);
+
+    // Test protocol
+    if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
+      valid = true;
+    } else
+
+    // DNS lookup
+    var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
+      if (err) {
+        valid = false;
+        return invalidResponse();
+      }
+    });
+  
+    // JSON response
+    if (valid) {
+      res.json( {original_url: url.hostname, short_url: '1'} );
+    } else {
+      invalidResponse();
     }
-    res.json( {url: url, valid: valid} );
-  });
+  }
+
+  // Unable to parse URL
+  catch(err) {
+    invalidResponse();
+  }
+  
+  function invalidResponse() {
+    res.json({"error": "Invalid URL"});
+  }
+  
 });
 
 // Evaluate and respond to URL input
 try {
   // Parse URL
-  let url = new URL('https://google.com');
+  var url = new URL('htt://blah.blah');
   console.log("Protocol: " + url.protocol);
   console.log("Host: " + url.host);
   console.log("Hostname: " + url.hostname);
   console.log("Pathname: " + url.pathname);
-  let valid = true;
+  var valid = true;
   // Test protocol
   if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
     console.log( {protocol: 'valid'} );
+
+    // DNS lookup
+    var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
+      if (err) {
+        console.log({lookup: "error"});
+      } else {
+        console.log({lookup: "success"});
+
+        // JSON response
+        if (valid) {
+          console.log( {original_url: url.hostname, short_url: '1'} );
+        } else {
+          invalidResponse();
+        }
+        
+      }
+    });
+  
   } else {
-    valid = false;
     console.log( {protocol: 'invalid'} );
-  }
-  // DNS lookup
-  let url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
-    if (err) {
-      valid = false;
-    }
-  });
-  // JSON response
-  if (valid) {
-    console.log( {original_url: url.hostname, short_url: '1'} );
-  } else {
-    console.log({"error": "Invalid URL"});
+    invalidResponse();
   }
 }
 catch(err) {
+  invalidResponse();
+}
+
+function invalidResponse() {
   console.log({"error": "Invalid URL"});
 }
