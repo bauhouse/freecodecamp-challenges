@@ -141,19 +141,6 @@ var createAndSaveCounter = function(done) {
 
 // createAndSaveCounter(function(err, data) {});
 
-
-/*
-// https://stackoverflow.com/questions/19961387/trying-to-get-a-list-of-collections-from-mongoose
-mongoose.connection.on('open', function (ref) {
-    console.log('Connected to mongo server.');
-    //trying to get collection names
-    mongoose.connection.db.listCollections().toArray(function (err, names) {
-        console.log(names); // [{ name: 'dbname.myCollection' }]
-        module.exports.Collection = names;
-    });
-})
-*/
-
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
 
