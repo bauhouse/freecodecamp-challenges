@@ -46,8 +46,8 @@ var listener = app.listen(process.env.PORT || 3000 , function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-
-// URL shortener
+// ==================================================
+// URL Shortener
 // ==================================================
 
 // Database schemas
@@ -90,7 +90,7 @@ var shortUrl = new ShortURL({
 
 var createAndSaveURL = function(done) {
   url_id = shortUrl._id;
-  console.log(url_id);
+  // console.log(url_id);
   shortUrl.save(function(err, data) {
     if(err){
       return done(err);
@@ -99,7 +99,7 @@ var createAndSaveURL = function(done) {
   });
 };
 
-createAndSaveURL(function(err, data) {});
+// createAndSaveURL(function(err, data) {});
 
 
 var findURLById = function(id, done) {
@@ -119,15 +119,15 @@ var counter = new Counter({
   sequence: count
 });
 
-function getNextSequenceValue(sequenceName){
+var getNextSequenceValue = function(url_id){
 
-   var sequenceDocument = db.counters.findAndModify({
-      query:{_id: sequenceName },
-      update: {$inc:{sequence_value:1}},
-      new:true
+   var sequenceDocument = Counter.findAndModify({
+      query: {url_id: url_id },
+      update: {$inc:{sequence:1}},
+      new: true
    });
 	
-   return sequenceDocument.sequence_value;
+   return sequenceDocument.sequence;
 }
 
 var createAndSaveCounter = function(done) {
@@ -139,7 +139,7 @@ var createAndSaveCounter = function(done) {
   });
 };
 
-createAndSaveCounter(function(err, data) {});
+// createAndSaveCounter(function(err, data) {});
 
 
 /*
@@ -153,7 +153,6 @@ mongoose.connection.on('open', function (ref) {
     });
 })
 */
-
 
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
