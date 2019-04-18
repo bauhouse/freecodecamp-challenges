@@ -24,6 +24,15 @@ var database = mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, 
   }
 });
 
+// List collections
+mongoose.connection.on('open', function (ref) {
+  console.log('Connected to mongo server.');
+  //trying to get collection names
+  mongoose.connection.db.listCollections().toArray(function (err, names) {
+    console.log(names); // [{ name: 'dbname.myCollection' }]
+  });
+})
+
 app.use(cors());
 
 // Mount body-parser
@@ -125,6 +134,38 @@ var findCounter = function(done) {
   });
 }
 
+/*
+database.connection.listCollections({name: 'counters'})
+  .next(function(err, collinfo) {
+    if (collinfo) {
+      console.log("The counters collection exists");
+    }
+  });
+*/
+
+
+
+var initializeCounter = function() {
+  findCounter(function(err, data) {
+    if (err) return err;
+    if (data) {
+      console.log("Counter already exists");
+      console.log(data);
+    }
+    return data;
+  });
+};
+
+initializeCounter();
+
+/*
+initializeCounter(function(err, data) {
+  if (err) return err;
+  console.log("Initialized counter");
+  return data;
+});
+*/
+
 var incrementCounter = function(done) {
   Counter.findOneAndUpdate(
     {_id: 1},
@@ -153,8 +194,7 @@ app.post("/api/shorturl/new", function(req, res) {
         if (err) {
           invalidResponse();
         } else {
-          
-          createShortURL(url_string, url);
+          // createShortURL(url_string, url);
         }
       });
 
@@ -172,15 +212,12 @@ app.post("/api/shorturl/new", function(req, res) {
     incrementCounter(function(err, data){
       if (err) return console.log(err);
 
+      // Save URL and respond with JSON
       var saveURLAndRespond = function() {
         console.log("saveURLAndRespond");
         
+        // Set url_id to incremented number
         var url_id = data.url_id;
-        // console.log("Create Short URL");
-        // console.log("url_id: " + url_id);
-        // console.log("url_string: " + url_string);
-        // console.log("url:");
-        // console.log(url);
 
         // Create short URL
         var shortUrl = new ShortURL({
@@ -189,6 +226,7 @@ app.post("/api/shorturl/new", function(req, res) {
           url: url
         });
       
+        // Save to database and respond with JSON
         createAndSaveURL(shortUrl, function(err, data) {
           if (err) console.log(err);
 
@@ -200,13 +238,6 @@ app.post("/api/shorturl/new", function(req, res) {
       if (data) {
         saveURLAndRespond();
         console.log("Counters collection exists");
-      } else {
-        createAndSaveCounter(function(err, data) {
-          if (err) return err;
-          console.log("createAndSaveCounter");
-          createShortURL(url_string, url);
-          return data;
-        });
       }
       
     });
