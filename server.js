@@ -78,20 +78,9 @@ var shortUrlSchema = new Schema({
 var ShortURL = mongoose.model('ShortURL', shortUrlSchema);
 var Counter = mongoose.model('Counter', counterSchema);
 
-// Declare variables
-var url_id = 1;
-var url_string = "https://google.com";
-var url = new URL(url_string);
-
-// Create a short URL entry
-var shortUrl = new ShortURL({
-  url_id: url_id,
-  url_string: url_string,
-  url: url
-});
-
 // Save the short URL entry
-var createAndSaveURL = function(done) {
+var createAndSaveURL = function(shortUrl, done) {
+
   shortUrl.save(function(err, data) {
     if(err){
       return done(err);
@@ -99,8 +88,6 @@ var createAndSaveURL = function(done) {
     done(null, data);
   });
 };
-
-// createAndSaveURL(function(err, data) {});
 
 
 // Find URL entry
@@ -118,7 +105,7 @@ var findURLById = function(id, done) {
 // Auto increment entry id
 var counter = new Counter({
   _id: 1,
-  url_id: url_id,
+  url_id: 1,
 });
 
 var createAndSaveCounter = function(done) {
@@ -130,34 +117,33 @@ var createAndSaveCounter = function(done) {
   });
 };
 
-// createAndSaveCounter(function(err, data) {});
+var findCounter = function(done) {
+  Counter.find({},
+    function(err, data) {
+      if (err) done(err);
+      done(null, data);
+  });
+}
 
-var incrementCounter = function() {
+var incrementCounter = function(done) {
   Counter.findOneAndUpdate(
     {_id: 1},
     {$inc: {url_id:1}},
     {new: true},
     function(err, data) {
-      if(err) return err;
-      return data;
-  });
+      if (err) done(err);
+      done(null, data);
+    }
+  );
 }
-
-/*
-incrementCounter(1, function(err, data) {
-  if(err) return console.log(err);
-  console.log(data);
-});
-*/
-
 
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
 
   try {
     // Parse URL
-    url_string = req.body.url;
-    url = new URL(url_string);
+    var url_string = req.body.url;
+    var url = new URL(url_string);
 
     // Test protocol
     if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
@@ -168,7 +154,7 @@ app.post("/api/shorturl/new", function(req, res) {
           invalidResponse();
         } else {
           
-          var urlEntry = createShortURL(url_id, url_string, url);
+          createShortURL(url_string, url);
         }
       });
 
@@ -181,17 +167,50 @@ app.post("/api/shorturl/new", function(req, res) {
   }
 
   // Create short URL entry and JSON response
-  var createShortURL = function(url_id, url_string, url) {
-    console.log("Create Short URL");
-    console.log("url_id: " + url_id);
-    console.log("url_string: " + url_string);
-    console.log("url:");
-    console.log(url);
-    
-    
+  var createShortURL = function(url_string, url) {
 
-    // JSON response
-    res.json( {original_url: url.hostname, short_url: url_id} );
+    incrementCounter(function(err, data){
+      if (err) return console.log(err);
+
+      var saveURLAndRespond = function() {
+        console.log("saveURLAndRespond");
+        
+        var url_id = data.url_id;
+        // console.log("Create Short URL");
+        // console.log("url_id: " + url_id);
+        // console.log("url_string: " + url_string);
+        // console.log("url:");
+        // console.log(url);
+
+        // Create short URL
+        var shortUrl = new ShortURL({
+          url_id: url_id,
+          url_string: url_string,
+          url: url
+        });
+      
+        createAndSaveURL(shortUrl, function(err, data) {
+          if (err) console.log(err);
+
+          // JSON response
+          res.json( {original_url: url.hostname, short_url: url_id} );
+        });
+      }
+
+      if (data) {
+        saveURLAndRespond();
+        console.log("Counters collection exists");
+      } else {
+        createAndSaveCounter(function(err, data) {
+          if (err) return err;
+          console.log("createAndSaveCounter");
+          createShortURL(url_string, url);
+          return data;
+        });
+      }
+      
+    });
+        
   }
   
   // Invalid URL response
