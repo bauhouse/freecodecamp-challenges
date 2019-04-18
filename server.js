@@ -80,14 +80,14 @@ var Counter = mongoose.model('Counter', counterSchema);
 
 // Declare variables
 var url_id = 1;
-var address = "https://google.com";
-var address_url = new URL(address);
+var url_string = "https://google.com";
+var url = new URL(url_string);
 
 // Create a short URL entry
 var shortUrl = new ShortURL({
   url_id: url_id,
-  url_string: address,
-  url: address_url
+  url_string: url_string,
+  url: url
 });
 
 // Save the short URL entry
@@ -132,18 +132,6 @@ var createAndSaveCounter = function(done) {
 
 // createAndSaveCounter(function(err, data) {});
 
-var findCounter = function(url_id, done) {
-  Counter.findOne( {url_id: url_id}, function(err, data) {
-    if(err) return done(err);
-    done(null, data);
-  });
-}
-
-findCounter(1, function(err, data) {
-  if(err) return console.log(err);
-  console.log(data);
-});
-
 var incrementCounter = function() {
   Counter.findOneAndUpdate(
     {_id: 1},
@@ -168,8 +156,8 @@ app.post("/api/shorturl/new", function(req, res) {
 
   try {
     // Parse URL
-    var url_string = req.body.url;
-    var url = new URL(url_string);
+    url_string = req.body.url;
+    url = new URL(url_string);
 
     // Test protocol
     if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
@@ -199,6 +187,8 @@ app.post("/api/shorturl/new", function(req, res) {
     console.log("url_string: " + url_string);
     console.log("url:");
     console.log(url);
+    
+    
 
     // JSON response
     res.json( {original_url: url.hostname, short_url: url_id} );
