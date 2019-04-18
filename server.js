@@ -78,19 +78,20 @@ var shortUrlSchema = new Schema({
 var ShortURL = mongoose.model('ShortURL', shortUrlSchema);
 var Counter = mongoose.model('Counter', counterSchema);
 
-
-var url_id = '';
+// Declare variables
+var url_id = 1;
 var address = "https://google.com";
 var address_url = new URL(address);
 
+// Create a short URL entry
 var shortUrl = new ShortURL({
+  url_id: url_id,
   url_string: address,
   url: address_url
 });
 
+// Save the short URL entry
 var createAndSaveURL = function(done) {
-  url_id = shortUrl._id;
-  // console.log(url_id);
   shortUrl.save(function(err, data) {
     if(err){
       return done(err);
@@ -102,6 +103,7 @@ var createAndSaveURL = function(done) {
 // createAndSaveURL(function(err, data) {});
 
 
+// Find URL entry
 var findURLById = function(id, done) {
   
   ShortURL.findById(id, function(err, data) {
@@ -113,7 +115,8 @@ var findURLById = function(id, done) {
   
 };
 
-var count = 0;
+// Auto increment entry id
+var count = 1;
 var counter = new Counter({
   url_id: url_id,
   sequence: count
@@ -141,6 +144,7 @@ var createAndSaveCounter = function(done) {
 
 // createAndSaveCounter(function(err, data) {});
 
+
 // Use body-parser to retrieve POST data
 app.post("/api/shorturl/new", function(req, res) {
 
@@ -158,13 +162,7 @@ app.post("/api/shorturl/new", function(req, res) {
           invalidResponse();
         } else {
           
-          var db = createShortURL(url_string, url);
-          console.log("url_string: " + url_string);
-          console.log("url:");
-          console.log(url);
-          
-          // JSON response
-          res.json( {original_url: url.hostname, short_url: '1'} );
+          var urlEntry = createShortURL(url_id, url_string, url);
         }
       });
 
@@ -177,26 +175,15 @@ app.post("/api/shorturl/new", function(req, res) {
   }
 
   // Create short URL entry and JSON response
-  var createShortURL = function(url_string, url) {
+  var createShortURL = function(url_id, url_string, url) {
     console.log("Create Short URL");
+    console.log("url_id: " + url_id);
+    console.log("url_string: " + url_string);
+    console.log("url:");
+    console.log(url);
 
-    var shortUrl = new ShortURL({
-      url_string: url_string,
-      url: url
-    });
-    
-    var createAndSaveURL = function(done) {
-
-      shortUrl.save(function(err, data) {
-        if(err){
-          console.log(err);
-          return done(err);
-        }
-        console.log("Saved");
-        return done(null, data);
-      });
-          
-    };
+    // JSON response
+    res.json( {original_url: url.hostname, short_url: url_id} );
   }
   
   // Invalid URL response
@@ -209,8 +196,13 @@ app.post("/api/shorturl/new", function(req, res) {
 // Redirect short URL to original URL
 var handleRedirect = function(req, res) {
   let req_url_id = req.params.url_id;
+  var url_entry = findURLById(req_url_id, function(err, data){
+    
+  });
+  console.log( url_entry );
   var targetUrl = "https://github.com/builders";
-  res.redirect(targetUrl);
+  res.json({ url: targetUrl, id: req_url_id });
+  // res.redirect(targetUrl);
 }
 
 app.get("/api/shorturl/:url_id", handleRedirect);
