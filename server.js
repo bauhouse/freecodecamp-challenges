@@ -54,8 +54,8 @@ var listener = app.listen(process.env.PORT || 3000 , function () {
 var Schema = mongoose.Schema;
 
 var counterSchema = new Schema({
-  url_id: String,
-  sequence: Number 
+  _id: Number,
+  url_id: Number 
 });
 
 var shortUrlSchema = new Schema({
@@ -116,22 +116,10 @@ var findURLById = function(id, done) {
 };
 
 // Auto increment entry id
-var count = 1;
 var counter = new Counter({
+  _id: 1,
   url_id: url_id,
-  sequence: count
 });
-
-var getNextSequenceValue = function(url_id){
-
-   var sequenceDocument = Counter.findAndModify({
-      query: {url_id: url_id },
-      update: {$inc:{sequence:1}},
-      new: true
-   });
-	
-   return sequenceDocument.sequence;
-}
 
 var createAndSaveCounter = function(done) {
   counter.save(function(err, data) {
@@ -143,6 +131,36 @@ var createAndSaveCounter = function(done) {
 };
 
 // createAndSaveCounter(function(err, data) {});
+
+var findCounter = function(url_id, done) {
+  Counter.findOne( {url_id: url_id}, function(err, data) {
+    if(err) return done(err);
+    done(null, data);
+  });
+}
+
+findCounter(1, function(err, data) {
+  if(err) return console.log(err);
+  console.log(data);
+});
+
+var incrementCounter = function() {
+  Counter.findOneAndUpdate(
+    {_id: 1},
+    {$inc: {url_id:1}},
+    {new: true},
+    function(err, data) {
+      if(err) return err;
+      return data;
+  });
+}
+
+/*
+incrementCounter(1, function(err, data) {
+  if(err) return console.log(err);
+  console.log(data);
+});
+*/
 
 
 // Use body-parser to retrieve POST data
