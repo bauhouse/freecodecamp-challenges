@@ -24,15 +24,6 @@ var database = mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, 
   }
 });
 
-// List collections
-mongoose.connection.on('open', function (ref) {
-  console.log('Connected to mongo server.');
-  //trying to get collection names
-  mongoose.connection.db.listCollections().toArray(function (err, names) {
-    console.log(names); // [{ name: 'dbname.myCollection' }]
-  });
-})
-
 app.use(cors());
 
 // Mount body-parser
@@ -114,7 +105,7 @@ var findURLById = function(id, done) {
 // Auto increment entry id
 var counter = new Counter({
   _id: 1,
-  url_id: 1,
+  url_id: 0,
 });
 
 var createAndSaveCounter = function(done) {
@@ -134,38 +125,26 @@ var findCounter = function(done) {
   });
 }
 
-/*
-database.connection.listCollections({name: 'counters'})
-  .next(function(err, collinfo) {
-    if (collinfo) {
-      console.log("The counters collection exists");
-    }
-  });
-*/
-
-
-
 var initializeCounter = function() {
-  findCounter(function(err, data) {
+  createAndSaveCounter(function(err, data) {
     if (err) return err;
-    if (data) {
-      console.log("Counter already exists");
-      console.log(data);
-    }
+    console.log("Counter collection initialized");
     return data;
   });
 };
 
-initializeCounter();
+// Test if counters collection exists
+mongoose.connection.on('open', function (ref) {
+  mongoose.connection.db.listCollections({name: 'counters'})
+    .next(function(err, data) {
+      if (!data) {
+        console.log("Counter collection does not exist");
+        initializeCounter();
+      }
+  });
+})
 
-/*
-initializeCounter(function(err, data) {
-  if (err) return err;
-  console.log("Initialized counter");
-  return data;
-});
-*/
-
+// Increment counter
 var incrementCounter = function(done) {
   Counter.findOneAndUpdate(
     {_id: 1},
@@ -194,7 +173,7 @@ app.post("/api/shorturl/new", function(req, res) {
         if (err) {
           invalidResponse();
         } else {
-          // createShortURL(url_string, url);
+          createShortURL(url_string, url);
         }
       });
 
