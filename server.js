@@ -206,3 +206,11 @@ app.post("/api/shorturl/new", function(req, res) {
   
 });
 
+// Redirect short URL to original URL
+var handleRedirect = function(req, res) {
+  let req_url_id = req.params.url_id;
+  var targetUrl = "https://github.com/builders";
+  res.redirect(targetUrl);
+}
+
+app.get("/api/shorturl/:url_id", handleRedirect);
