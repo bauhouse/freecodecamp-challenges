@@ -20,7 +20,7 @@ var database = mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, 
   if(error) {
     console.log(error);
   } else {
-  console.log("connection successful");
+    console.log("connection successful");
   }
 });
 
@@ -230,9 +230,7 @@ var handleRedirect = function(req, res) {
   let req_url_id = req.params.url_id;
   var url_entry = findURLById(req_url_id, function(err, data){
     if (err) return err;
-    console.log( data );
     var targetUrl = data.url_string;
-    // res.json({ url: targetUrl, id: req_url_id });
     res.redirect(targetUrl);
   });
 }
