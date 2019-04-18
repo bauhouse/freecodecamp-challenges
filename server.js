@@ -92,14 +92,12 @@ var createAndSaveURL = function(shortUrl, done) {
 
 // Find URL entry
 var findURLById = function(id, done) {
-  
-  ShortURL.findById(id, function(err, data) {
+  ShortURL.findOne({url_id: id}, function(err, data) {
     if(err) {
       done(err);
     }
     done(null, data);
   });  
-  
 };
 
 // Auto increment entry id
@@ -231,12 +229,12 @@ app.post("/api/shorturl/new", function(req, res) {
 var handleRedirect = function(req, res) {
   let req_url_id = req.params.url_id;
   var url_entry = findURLById(req_url_id, function(err, data){
-    
+    if (err) return err;
+    console.log( data );
+    var targetUrl = data.url_string;
+    res.json({ url: targetUrl, id: req_url_id });
+    // res.redirect(targetUrl);
   });
-  console.log( url_entry );
-  var targetUrl = "https://github.com/builders";
-  res.json({ url: targetUrl, id: req_url_id });
-  // res.redirect(targetUrl);
 }
 
 app.get("/api/shorturl/:url_id", handleRedirect);
