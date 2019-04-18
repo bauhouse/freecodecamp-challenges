@@ -128,7 +128,6 @@ var findCounter = function(done) {
 var initializeCounter = function() {
   createAndSaveCounter(function(err, data) {
     if (err) return err;
-    console.log("Counter collection initialized");
     return data;
   });
 };
@@ -138,7 +137,6 @@ mongoose.connection.on('open', function (ref) {
   mongoose.connection.db.listCollections({name: 'counters'})
     .next(function(err, data) {
       if (!data) {
-        console.log("Counter collection does not exist");
         initializeCounter();
       }
   });
@@ -216,7 +214,6 @@ app.post("/api/shorturl/new", function(req, res) {
 
       if (data) {
         saveURLAndRespond();
-        console.log("Counters collection exists");
       }
       
     });
