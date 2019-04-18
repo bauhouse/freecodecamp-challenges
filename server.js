@@ -232,8 +232,8 @@ var handleRedirect = function(req, res) {
     if (err) return err;
     console.log( data );
     var targetUrl = data.url_string;
-    res.json({ url: targetUrl, id: req_url_id });
-    // res.redirect(targetUrl);
+    // res.json({ url: targetUrl, id: req_url_id });
+    res.redirect(targetUrl);
   });
 }
 
