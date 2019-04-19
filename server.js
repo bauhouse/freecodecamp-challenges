@@ -31,6 +31,10 @@ const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 });
 
+// Helpers
+var today = new Date().toISOString().split('T')[0];
+var day1 = "0001-01-01";
+
 // Database schemas
 var Schema = mongoose.Schema;
 
@@ -90,6 +94,16 @@ var findExerciseByUserId = function(id, done) {
   });
 }
 
+var filterExerciseLog = function(id, from, to, limit, done) {
+  Exercise.
+    find({ userId: id, date: {$gt: from ? from : day1, $lt: to ? to : today }}).
+    limit( limit ).
+    exec(function(err, data) {
+      if (err) done(err);
+      done(null, data);
+  });
+}
+
 // Handle input events
 
 // Create new user
@@ -125,7 +139,7 @@ var handleAddExercise = function(req, res) {
     userId: req.body.userId,
     description: req.body.description,
     duration: req.body.duration,
-    date: req.body.date ? req.body.date : new Date().toISOString().split('T')[0]
+    date: req.body.date ? req.body.date : today
   });
 
   // Save to database and respond with JSON
@@ -141,9 +155,9 @@ app.post("/api/exercise/add", handleAddExercise);
 var handleExerciseLog = function(req, res) {
   findUserById(req.query.userId, function(err, user){
     if(err) return err;
-    findExerciseByUserId(req.query.userId, function(err, exercise){
+    filterExerciseLog(req.query.userId, req.query.from, req.query.to, Number(req.query.limit), function(err, exercise){
       if(err) return err;
-      return res.json({user: user, log: exercise, count: exercise.length});
+      return res.json({user: user, log: exercise, count: exercise ? exercise.length: 0});
     })
   });
 }
