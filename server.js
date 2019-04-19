@@ -92,3 +92,26 @@ var saveExercise = function(exercise, done) {
     done(null, data);
   });
 };
+
+// Handle input events
+
+// Create new user
+var handleNewUser = function(req, res) {
+  console.log("Create new user");
+}
+
+app.post("/api/exercise/new-user", handleNewUser);
+
+// Log exercise activity
+var handleAddExercise = function(req, res) {
+  console.log("Log exercise activity");
+}
+
+app.post("/api/exercise/add", handleAddExercise);
+
+// Display exercise log
+var handleExerciseLog = function(req, res) {
+  console.log("Display exercise log");
+}
+
+app.get("/api/exercise/log", handleExerciseLog);
