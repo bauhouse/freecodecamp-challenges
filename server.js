@@ -62,3 +62,33 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
   username: String 
 });
+
+var exerciseLogSchema = new Schema({
+  userId: String,
+  description: String,
+  duration: Number,
+  date: String
+});
+
+// Create models
+var user = mongoose.model('User', userSchema);
+var exerciseLog = mongoose.model('ExerciseLog', exerciseLogSchema);
+
+// Save documents
+var saveUser = function(user, done) {
+  user.save(function(err, data) {
+    if(err){
+      return done(err);
+    }
+    done(null, data);
+  });
+};
+
+var saveExerciseLog = function(exerciseLog, done) {
+  exerciseLog.save(function(err, data) {
+    if(err){
+      return done(err);
+    }
+    done(null, data);
+  });
+};
