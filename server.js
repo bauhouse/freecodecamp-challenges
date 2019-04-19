@@ -46,8 +46,8 @@ var exerciseSchema = new Schema({
 });
 
 // Create models
-var user = mongoose.model('User', userSchema);
-var exercise = mongoose.model('Exercise', exerciseSchema);
+var User = mongoose.model('User', userSchema);
+var Exercise = mongoose.model('Exercise', exerciseSchema);
 
 // Save documents
 var saveUser = function(user, done) {
@@ -72,16 +72,29 @@ var saveExercise = function(exercise, done) {
 
 // Create new user
 var handleNewUser = function(req, res) {
-  console.log("Create new user");
-  return res.json({event: "Create new user"});
+  // Create user
+  var user = new User({
+    username: req.body.username,
+  });
+
+  // Save to database and respond with JSON
+  saveUser(user, function(err, data) {
+    if (err) console.log(err);
+
+    console.log("Create new user");
+    // return res.json({event: "Create new user"});
+    // JSON response
+    res.json( {_id: data._id, username: data.username} );
+  });
 }
 
 app.post("/api/exercise/new-user", handleNewUser);
 
 // Log exercise activity
 var handleAddExercise = function(req, res) {
-  console.log("Log exercise activity");
-  return res.json({event: "Log exercise activity"});
+
+  // console.log("Log exercise activity");
+  // return res.json({event: "Log exercise activity"});
 }
 
 app.post("/api/exercise/add", handleAddExercise);
