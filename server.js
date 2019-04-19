@@ -1,11 +1,11 @@
 'use strict';
 
 var express = require('express');
-var multer  = require('multer');
-var upload = multer({ dest: 'public/uploads/' });
 var cors = require('cors');
 
 // require and use "multer"...
+var multer  = require('multer');
+var upload = multer({ dest: 'public/uploads/' });
 
 var app = express();
 
