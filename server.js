@@ -63,7 +63,7 @@ var userSchema = new Schema({
   username: String 
 });
 
-var exerciseLogSchema = new Schema({
+var exerciseSchema = new Schema({
   userId: String,
   description: String,
   duration: Number,
@@ -72,7 +72,7 @@ var exerciseLogSchema = new Schema({
 
 // Create models
 var user = mongoose.model('User', userSchema);
-var exerciseLog = mongoose.model('ExerciseLog', exerciseLogSchema);
+var exercise = mongoose.model('Exercise', exerciseSchema);
 
 // Save documents
 var saveUser = function(user, done) {
@@ -84,8 +84,8 @@ var saveUser = function(user, done) {
   });
 };
 
-var saveExerciseLog = function(exerciseLog, done) {
-  exerciseLog.save(function(err, data) {
+var saveExercise = function(exercise, done) {
+  exercise.save(function(err, data) {
     if(err){
       return done(err);
     }
