@@ -70,10 +70,23 @@ var saveExercise = function(exercise, done) {
 
 // Find documents
 var findUsers = function(done) {
-  User.find({},
-    function(err, data) {
-      if (err) done(err);
-      done(null, data);
+  User.find({}, function(err, data) {
+    if (err) done(err);
+    done(null, data);
+  });
+}
+
+var findUserById = function(id, done) {
+  User.findById(id, function(err, data) {
+    if (err) done(err);
+    done(null, data);
+  });
+}
+
+var findExerciseByUserId = function(id, done) {
+  Exercise.find({userId: id}, function(err, data) {
+    if (err) done(err);
+    done(null, data);
   });
 }
 
@@ -126,8 +139,13 @@ app.post("/api/exercise/add", handleAddExercise);
 
 // Display exercise log
 var handleExerciseLog = function(req, res) {
-  console.log("Display exercise log");
-  return res.json({event: "Display exercise log"});
+  findUserById(req.query.userId, function(err, user){
+    if(err) return err;
+    findExerciseByUserId(req.query.userId, function(err, exercise){
+      if(err) return err;
+      return res.json({user: user, log: exercise, count: exercise.length});
+    })
+  });
 }
 
 app.get("/api/exercise/log", handleExerciseLog);
