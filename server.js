@@ -68,6 +68,15 @@ var saveExercise = function(exercise, done) {
   });
 };
 
+// Find documents
+var findUsers = function(done) {
+  User.find({},
+    function(err, data) {
+      if (err) done(err);
+      done(null, data);
+  });
+}
+
 // Handle input events
 
 // Create new user
@@ -80,15 +89,21 @@ var handleNewUser = function(req, res) {
   // Save to database and respond with JSON
   saveUser(user, function(err, data) {
     if (err) console.log(err);
-
-    console.log("Create new user");
-    // return res.json({event: "Create new user"});
-    // JSON response
     res.json( {_id: data._id, username: data.username} );
   });
 }
 
 app.post("/api/exercise/new-user", handleNewUser);
+
+// List users
+var handleGetUsers = function(req, res) {
+  findUsers(function(err, data) {
+    if(err) return err;
+    return res.send(data);
+  });
+}
+
+app.get("/api/exercise/users", handleGetUsers);
 
 // Log exercise activity
 var handleAddExercise = function(req, res) {
