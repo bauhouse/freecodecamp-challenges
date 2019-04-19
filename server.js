@@ -1,238 +1,48 @@
-'use strict';
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
 
-var express = require('express');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var url = require('url');
-var dns = require('dns');
-var shortid = require('shortid');
+const cors = require('cors')
 
-var cors = require('cors');
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
 
-var app = express();
+app.use(cors())
 
-// Basic Configuration 
-var port = process.env.PORT || 3000;
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
-// Connect to Database
-var database = mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, function(error) {
-  if(error) {
-    console.log(error);
-  } else {
-    console.log("connection successful");
-  }
-});
 
-app.use(cors());
-
-// Mount body-parser
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.use('/public', express.static(process.cwd() + '/public'));
-
-app.get('/', function(req, res){
-  res.sendFile(process.cwd() + '/views/index.html');
-});
-
-  
-// your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+app.use(express.static('public'))
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/index.html')
 });
 
 
-var listener = app.listen(process.env.PORT || 3000 , function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
-
-// ==================================================
-// URL Shortener
-// ==================================================
-
-// Database schemas
-var Schema = mongoose.Schema;
-
-var counterSchema = new Schema({
-  _id: Number,
-  url_id: Number 
-});
-
-var shortUrlSchema = new Schema({
-  _id: {
-    type: String,
-    default: shortid.generate
-  },
-  url_id: Number,
-  url_string: {
-    type: String,
-    required: true
-  },
-  url: {
-    type: Object,
-    required: true
-  }
-});
-
-// Create models
-var ShortURL = mongoose.model('ShortURL', shortUrlSchema);
-var Counter = mongoose.model('Counter', counterSchema);
-
-// Save the short URL entry
-var createAndSaveURL = function(shortUrl, done) {
-
-  shortUrl.save(function(err, data) {
-    if(err){
-      return done(err);
-    }
-    done(null, data);
-  });
-};
-
-
-// Find URL entry
-var findURLById = function(id, done) {
-  ShortURL.findOne({url_id: id}, function(err, data) {
-    if(err) {
-      done(err);
-    }
-    done(null, data);
-  });  
-};
-
-// Auto increment entry id
-var counter = new Counter({
-  _id: 1,
-  url_id: 0,
-});
-
-var createAndSaveCounter = function(done) {
-  counter.save(function(err, data) {
-    if(err){
-      return done(err);
-    }
-    done(null, data);
-  });
-};
-
-var findCounter = function(done) {
-  Counter.find({},
-    function(err, data) {
-      if (err) done(err);
-      done(null, data);
-  });
-}
-
-var initializeCounter = function() {
-  createAndSaveCounter(function(err, data) {
-    if (err) return err;
-    return data;
-  });
-};
-
-// Test if counters collection exists
-mongoose.connection.on('open', function (ref) {
-  mongoose.connection.db.listCollections({name: 'counters'})
-    .next(function(err, data) {
-      if (!data) {
-        initializeCounter();
-      }
-  });
+// Not found middleware
+app.use((req, res, next) => {
+  return next({status: 404, message: 'not found'})
 })
 
-// Increment counter
-var incrementCounter = function(done) {
-  Counter.findOneAndUpdate(
-    {_id: 1},
-    {$inc: {url_id:1}},
-    {new: true},
-    function(err, data) {
-      if (err) done(err);
-      done(null, data);
-    }
-  );
-}
+// Error Handling middleware
+app.use((err, req, res, next) => {
+  let errCode, errMessage
 
-// Use body-parser to retrieve POST data
-app.post("/api/shorturl/new", function(req, res) {
-
-  try {
-    // Parse URL
-    var url_string = req.body.url;
-    var url = new URL(url_string);
-
-    // Test protocol
-    if ( url.protocol == 'http:' || url.protocol == 'https:' ) {
-
-      // DNS lookup
-      var url_lookup = dns.lookup(url.hostname, function (err, addresses, family) {
-        if (err) {
-          invalidResponse();
-        } else {
-          createShortURL(url_string, url);
-        }
-      });
-
-    } else {
-      invalidResponse();
-    }
+  if (err.errors) {
+    // mongoose validation error
+    errCode = 400 // bad request
+    const keys = Object.keys(err.errors)
+    // report the first validation error
+    errMessage = err.errors[keys[0]].message
+  } else {
+    // generic or custom error
+    errCode = err.status || 500
+    errMessage = err.message || 'Internal Server Error'
   }
-  catch(err) {
-    invalidResponse();
-  }
+  res.status(errCode).type('txt')
+    .send(errMessage)
+})
 
-  // Create short URL entry and JSON response
-  var createShortURL = function(url_string, url) {
-
-    incrementCounter(function(err, data){
-      if (err) return console.log(err);
-
-      // Save URL and respond with JSON
-      var saveURLAndRespond = function() {
-        console.log("saveURLAndRespond");
-        
-        // Set url_id to incremented number
-        var url_id = data.url_id;
-
-        // Create short URL
-        var shortUrl = new ShortURL({
-          url_id: url_id,
-          url_string: url_string,
-          url: url
-        });
-      
-        // Save to database and respond with JSON
-        createAndSaveURL(shortUrl, function(err, data) {
-          if (err) console.log(err);
-
-          // JSON response
-          res.json( {original_url: url.hostname, short_url: url_id} );
-        });
-      }
-
-      if (data) {
-        saveURLAndRespond();
-      }
-      
-    });
-        
-  }
-  
-  // Invalid URL response
-  var invalidResponse = function() {
-    res.json({"error": "Invalid URL"});
-  }
-  
-});
-
-// Redirect short URL to original URL
-var handleRedirect = function(req, res) {
-  let req_url_id = req.params.url_id;
-  var url_entry = findURLById(req_url_id, function(err, data){
-    if (err) return err;
-    var targetUrl = data.url_string;
-    res.redirect(targetUrl);
-  });
-}
-
-app.get("/api/shorturl/:url_id", handleRedirect);
+const listener = app.listen(process.env.PORT || 3000, () => {
+  console.log('Your app is listening on port ' + listener.address().port)
+})
