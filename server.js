@@ -21,3 +21,8 @@ app.get('/hello', function(req, res){
 app.listen(process.env.PORT || 3000, function () {
   console.log('Node.js listening ...');
 });
+
+app.post('/api/fileanalyse', function(req, res) {
+  console.log("Upload file");
+  res.json({filename: "filename", filesize: 12345, filetype: 'PDF'});
+});
