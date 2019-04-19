@@ -107,9 +107,19 @@ app.get("/api/exercise/users", handleGetUsers);
 
 // Log exercise activity
 var handleAddExercise = function(req, res) {
+  // Add exercise
+  var exercise = new Exercise({
+    userId: req.body.userId,
+    description: req.body.description,
+    duration: req.body.duration,
+    date: req.body.date ? req.body.date : new Date().toISOString().split('T')[0]
+  });
 
-  // console.log("Log exercise activity");
-  // return res.json({event: "Log exercise activity"});
+  // Save to database and respond with JSON
+  saveExercise(exercise, function(err, data) {
+    if (err) console.log(err);
+    res.json(data);
+  });
 }
 
 app.post("/api/exercise/add", handleAddExercise);
